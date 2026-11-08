@@ -15,7 +15,9 @@ async function settle(page: Page) {
 
 for (const locale of ["en", "pt"]) {
   test(`home (${locale}) looks right`, async ({ page }) => {
+    // Freeze time: timers and animations only move when the test advances the clock.
     await page.clock.install({ time: new Date("2026-11-08T12:00:00Z") });
+    await page.clock.pauseAt(new Date("2026-11-08T12:00:01Z"));
     await page.goto(`/${locale}`);
     await page.evaluate(() => document.fonts.ready);
     await settle(page);
