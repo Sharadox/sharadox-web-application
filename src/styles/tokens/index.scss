@@ -1,0 +1,18 @@
+// Sharadox — black canvas, white type, light as the only accent.
+// Colours and sizes live as CSS custom properties in styles/global; these are build-time helpers.
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+/// Below a viewport width.
+@mixin below($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+/// Fills the positioned parent and centres the content.
+@mixin fill-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}

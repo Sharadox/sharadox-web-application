@@ -1,0 +1,25 @@
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  padding: 22px 0;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.pill {
+  padding: 9px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--line-2);
+  font-size: 13px;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(calc(-50% - 6px));
+  }
+}

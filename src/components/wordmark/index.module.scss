@@ -1,0 +1,22 @@
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.04em;
+}
+.glyph {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.6px solid #fff;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1.6px 4px;
+    border-radius: 50%;
+    border: 1.2px solid rgba(255, 255, 255, 0.7);
+  }
+}

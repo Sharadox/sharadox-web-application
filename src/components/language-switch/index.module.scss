@@ -1,0 +1,19 @@
+.switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  a {
+    font: 500 11px/1 var(--mono);
+    padding: 6px 9px;
+    border-radius: 99px;
+    color: var(--fg-3);
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  a[aria-current] {
+    background: #fff;
+    color: #000;
+  }
+}

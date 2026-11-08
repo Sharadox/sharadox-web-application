@@ -1,0 +1,7 @@
+.next
+documentation
+test-results
+playwright-report
+pnpm-lock.yaml
+public
+**/snapshot/**

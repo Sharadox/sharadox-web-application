@@ -1,0 +1,52 @@
+@use "styles/tokens" as *;
+
+.nav {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.4s,
+    border-color 0.4s,
+    backdrop-filter 0.4s;
+}
+.scrolled {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px) saturate(1.6);
+  border-color: var(--line);
+}
+.inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  height: 64px;
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.links {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  color: var(--fg-2);
+  a {
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--fg);
+  }
+  @include below(820px) {
+    display: none;
+  }
+}
+.end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  @include below(420px) {
+    .cta {
+      display: none;
+    }
+  }
+}

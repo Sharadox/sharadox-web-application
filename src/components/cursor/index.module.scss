@@ -1,0 +1,50 @@
+:global(.has-cursor),
+:global(.has-cursor) a,
+:global(.has-cursor) button {
+  cursor: none;
+}
+:global(.has-cursor) canvas {
+  cursor: none !important;
+}
+.dot,
+.ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  :global(html:not(.has-cursor)) & {
+    display: none;
+  }
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+}
+.ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition:
+    width 0.35s var(--ease),
+    height 0.35s var(--ease),
+    margin 0.35s var(--ease),
+    background 0.35s;
+}
+.hot {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.grab {
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border-style: dashed;
+}

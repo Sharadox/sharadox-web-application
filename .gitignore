@@ -1,5 +1,11 @@
 node_modules/
 .next/
 .vercel/
+.turbo/
 .env*
+!.env.example
 next-env.d.ts
+*.tsbuildinfo
+documentation/
+test-results/
+playwright-report/

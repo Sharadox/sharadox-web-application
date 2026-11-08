@@ -1,0 +1,10 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "exclude": ["**/*unit-test.*", "**/*end-to-end-test.*", "**/*benchmark-test.*", "**/snapshot/**", "**/*.scss"],
+  "out": "documentation",
+  "readme": "README.md",
+  "excludePrivate": true,
+  "skipErrorChecking": true
+}

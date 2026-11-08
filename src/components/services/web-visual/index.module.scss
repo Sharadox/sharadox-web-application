@@ -1,0 +1,125 @@
+@use "styles/tokens" as *;
+
+.visual {
+  @include fill-center;
+}
+.browser {
+  width: min(78%, 520px);
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  background: #0c0c0c;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  transform: perspective(900px) rotateX(8deg);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--line);
+  i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2a2a2a;
+  }
+}
+.url {
+  margin-left: 12px;
+  font-size: 11px;
+  color: var(--fg-3);
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #151515;
+}
+.body {
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, #161616, #222, #161616);
+  background-size: 200% 100%;
+  opacity: 0;
+  transform: translateY(8px);
+  .on & {
+    animation:
+      skin 0.7s var(--ease) forwards,
+      shimmer 2.4s linear infinite;
+  }
+}
+.nav {
+  height: 12px;
+  width: 40%;
+}
+.hero {
+  height: 70px;
+  animation-delay: 0.15s !important;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  .skeleton:nth-child(1) {
+    animation-delay: 0.3s, 0s !important;
+  }
+  .skeleton:nth-child(2) {
+    animation-delay: 0.42s, 0s !important;
+  }
+  .skeleton:nth-child(3) {
+    animation-delay: 0.54s, 0s !important;
+  }
+}
+.card {
+  height: 44px;
+}
+@keyframes skin {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+.score {
+  position: absolute;
+  right: 9%;
+  bottom: 12%;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--line-2);
+  backdrop-filter: blur(8px);
+  svg {
+    position: absolute;
+    inset: 8px;
+    transform: rotate(-90deg);
+  }
+  span {
+    font-size: 17px;
+    font-weight: 500;
+  }
+}
+.track {
+  fill: none;
+  stroke: #1f1f1f;
+  stroke-width: 3;
+}
+.progress {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
