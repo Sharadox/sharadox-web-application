@@ -1,8 +1,8 @@
 @use "styles/tokens" as *;
 
 .card {
-  --mx: -500px;
-  --my: -500px;
+  --pointer-x: -500px;
+  --pointer-y: -500px;
   position: relative;
   height: 100%;
   border-radius: 20px;
@@ -17,7 +17,11 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.07), transparent 60%);
+    background: radial-gradient(
+      420px circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.07),
+      transparent 60%
+    );
   }
   &::after {
     content: "";
@@ -26,7 +30,11 @@
     border-radius: inherit;
     padding: 1px;
     pointer-events: none;
-    background: radial-gradient(300px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.45), transparent 60%);
+    background: radial-gradient(
+      300px circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.45),
+      transparent 60%
+    );
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -49,16 +57,16 @@
     margin-top: 4px;
   }
   p:not(.lead) {
-    color: var(--fg-2);
+    color: var(--foreground-2);
     max-width: 46ch;
   }
 }
 .tag {
   font-size: 12px;
-  color: var(--fg-3);
+  color: var(--foreground-3);
 }
 .lead {
-  color: var(--fg);
+  color: var(--foreground);
   font-weight: 500;
 }
 .wide {

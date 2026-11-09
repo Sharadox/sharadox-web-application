@@ -1,5 +1,5 @@
 import type { Locale } from "@/utilities/locale/type";
 
-export interface NavProps {
+export interface AppVisualProperties {
   locale: Locale;
 }

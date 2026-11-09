@@ -4,11 +4,11 @@ import { GLOW_VERTEX } from "../glow-vertex";
 export const ATMOSPHERE_SHADER = {
   vertex: GLOW_VERTEX,
   fragment: /* glsl */ `
-    varying vec3 vN;
-    uniform float uStrength;
+    varying vec3 viewNormal;
+    uniform float strength;
     void main() {
-      float i = smoothstep(0.0, 0.55, -vN.z);
-      gl_FragColor = vec4(vec3(1.0), i * i * uStrength);
+      float intensity = smoothstep(0.0, 0.55, -viewNormal.z);
+      gl_FragColor = vec4(vec3(1.0), intensity * intensity * strength);
     }
   `,
 };

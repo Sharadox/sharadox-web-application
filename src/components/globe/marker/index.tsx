@@ -2,22 +2,22 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Quaternion, Vector3, type Mesh, type MeshBasicMaterial } from "three";
-import { latLngToVector } from "@/utilities/lat-lng-to-vector";
-import type { MarkerProps } from "./type";
+import { latitudeLongitudeToVector } from "@/utilities/latitude-longitude-to-vector";
+import type { MarkerProperties } from "./type";
 
 /** A city dot lying flat on the surface. */
-export function Marker({ lat, lng, home = false }: MarkerProps) {
+export function Marker({ latitude, longitude, home = false }: MarkerProperties) {
   const ring = useRef<Mesh>(null);
-  const position = useMemo(() => latLngToVector(lat, lng, 1.004), [lat, lng]);
+  const position = useMemo(() => latitudeLongitudeToVector(latitude, longitude, 1.004), [latitude, longitude]);
   const quaternion = useMemo(
     () => new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), position.clone().normalize()),
     [position],
   );
   useFrame(({ clock }) => {
     if (!ring.current) return;
-    const t = (clock.elapsedTime * 0.6) % 1;
-    ring.current.scale.setScalar(1 + t * 5);
-    (ring.current.material as MeshBasicMaterial).opacity = (1 - t) * 0.8;
+    const progress = (clock.elapsedTime * 0.6) % 1;
+    ring.current.scale.setScalar(1 + progress * 5);
+    (ring.current.material as MeshBasicMaterial).opacity = (1 - progress) * 0.8;
   });
   return (
     <group position={position} quaternion={quaternion}>

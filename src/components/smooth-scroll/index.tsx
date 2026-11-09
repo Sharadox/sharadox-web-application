@@ -7,23 +7,23 @@ export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
-    let id = 0;
-    const raf = (t: number) => {
-      lenis.raf(t);
-      id = requestAnimationFrame(raf);
+    let frame = 0;
+    const animate = (time: number) => {
+      lenis.raf(time);
+      frame = requestAnimationFrame(animate);
     };
-    id = requestAnimationFrame(raf);
-    const onClick = (e: MouseEvent) => {
-      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
-      const target = a && document.querySelector<HTMLElement>(a.getAttribute("href")!);
+    frame = requestAnimationFrame(animate);
+    const onClick = (event: MouseEvent) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+      const target = link && document.querySelector<HTMLElement>(link.getAttribute("href")!);
       if (target) {
-        e.preventDefault();
+        event.preventDefault();
         lenis.scrollTo(target, { offset: -60 });
       }
     };
     document.addEventListener("click", onClick);
     return () => {
-      cancelAnimationFrame(id);
+      cancelAnimationFrame(frame);
       document.removeEventListener("click", onClick);
       lenis.destroy();
     };

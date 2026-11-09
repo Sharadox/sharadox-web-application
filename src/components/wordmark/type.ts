@@ -1,3 +1,3 @@
-export interface WordmarkProps {
+export interface WordmarkProperties {
   href: string;
 }

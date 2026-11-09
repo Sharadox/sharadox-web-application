@@ -1,8 +1,8 @@
 @use "styles/tokens" as *;
 
 .form {
-  --mx: -500px;
-  --my: -500px;
+  --pointer-x: -500px;
+  --pointer-y: -500px;
   position: relative;
   display: grid;
   gap: 14px;
@@ -17,7 +17,11 @@
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background: radial-gradient(500px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.05), transparent 60%);
+    background: radial-gradient(
+      500px circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.05),
+      transparent 60%
+    );
   }
 }
 .row {
@@ -33,14 +37,14 @@
   gap: 7px;
   span {
     font-size: 13px;
-    color: var(--fg-2);
+    color: var(--foreground-2);
   }
   input,
   textarea {
     width: 100%;
     font: inherit;
     font-size: 15px;
-    color: var(--fg);
+    color: var(--foreground);
     background: #000;
     border: 1px solid var(--line-2);
     border-radius: 12px;
@@ -78,7 +82,7 @@
   gap: 18px;
   p {
     max-width: 30ch;
-    color: var(--fg-2);
+    color: var(--foreground-2);
   }
 }
 .check {

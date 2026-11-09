@@ -7,9 +7,9 @@ export function Marquee() {
   return (
     <div className={styles.marquee} aria-label={STACK.join(", ")}>
       <div className={styles.track} aria-hidden>
-        {row.map((t, i) => (
-          <span key={i} className={`${styles.pill} mono`}>
-            {t}
+        {row.map((technology, index) => (
+          <span key={index} className={`${styles.pill} monospace`}>
+            {technology}
           </span>
         ))}
       </div>

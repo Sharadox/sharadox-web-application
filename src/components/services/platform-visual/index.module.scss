@@ -24,7 +24,7 @@
 }
 .coreLabel {
   fill: #fff;
-  font: 500 11px var(--mono);
+  font: 500 11px var(--monospace);
   text-anchor: middle;
 }
 .node {
@@ -33,7 +33,7 @@
   stroke-width: 1.4;
 }
 .nodeLabel {
-  fill: var(--fg-2);
-  font: 400 10.5px var(--mono);
+  fill: var(--foreground-2);
+  font: 400 10.5px var(--monospace);
   text-anchor: middle;
 }

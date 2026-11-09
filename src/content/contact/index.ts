@@ -12,7 +12,7 @@ export const CONTACT = {
   message: { en: "What are you building?", pt: "O que quer construir?" },
   send: { en: "Send message", pt: "Enviar mensagem" },
   sending: { en: "Sending…", pt: "A enviar…" },
-  ok: {
+  sent: {
     en: "Thank you — your message is on its way. We'll be in touch soon.",
     pt: "Obrigado — a sua mensagem foi enviada. Entraremos em contacto em breve.",
   },
@@ -21,7 +21,7 @@ export const CONTACT = {
       en: "Please fill in your name, a valid email and a message.",
       pt: "Preencha o nome, um email válido e a mensagem.",
     },
-    rate: {
+    "rate-limited": {
       en: "Too many messages from this connection. Please try again later.",
       pt: "Demasiadas mensagens desta ligação. Tente mais tarde.",
     },

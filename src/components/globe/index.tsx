@@ -5,7 +5,7 @@ import { HOME } from "@/content/globe";
 import { useGlobeDrag } from "@/hooks/globe-drag";
 import { useLandPoints } from "@/hooks/land-points";
 import { radians } from "@/utilities/radians";
-import { supportsWebgl } from "@/utilities/webgl-support";
+import { supportsWebGl } from "@/utilities/web-gl-support";
 import styles from "./index.module.scss";
 import { World } from "./world";
 
@@ -16,22 +16,27 @@ import { World } from "./world";
 export default function Globe() {
   const data = useLandPoints();
   const [visible, setVisible] = useState(true);
-  // Client-only component (loaded with ssr: false), so the browser APIs are safe here.
-  const [webgl] = useState(supportsWebgl);
+  // Client-only component (loaded without server rendering), so the browser APIs are safe here.
+  const [webGl] = useState(supportsWebGl);
   const [reduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   // Start over Europe/Africa; auto-rotation drifts west.
-  const [wrap, drag] = useGlobeDrag({ y: -radians(HOME.lng) - 0.5, x: radians(HOME.lat) * 0.62 }, !reduced);
+  const [wrapper, drag] = useGlobeDrag(
+    { y: -radians(HOME.longitude) - 0.5, x: radians(HOME.latitude) * 0.62 },
+    !reduced,
+  );
 
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => setVisible(!!e?.isIntersecting), { rootMargin: "100px" });
-    if (wrap.current) io.observe(wrap.current);
-    return () => io.disconnect();
-  }, [wrap]);
+    const observer = new IntersectionObserver(([entry]) => setVisible(!!entry?.isIntersecting), {
+      rootMargin: "100px",
+    });
+    if (wrapper.current) observer.observe(wrapper.current);
+    return () => observer.disconnect();
+  }, [wrapper]);
 
   return (
-    <div ref={wrap} className={styles.globe}>
+    <div ref={wrapper} className={styles.globe}>
       <div className={styles.halo} aria-hidden />
-      {webgl && data ? (
+      {webGl && data ? (
         <Canvas
           dpr={[1, 2]}
           camera={{ position: [0, 0, 3.7], fov: 38 }}

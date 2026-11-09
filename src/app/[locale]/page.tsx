@@ -3,7 +3,7 @@ import { Cursor } from "@/components/cursor";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Marquee } from "@/components/marquee";
-import { Nav } from "@/components/nav";
+import { Navigation } from "@/components/navigation";
 import { Process } from "@/components/process";
 import { Services } from "@/components/services";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -18,7 +18,7 @@ export default async function Page({ params }: PageProps<"/[locale]">) {
     <>
       <SmoothScroll />
       <Cursor />
-      <Nav locale={locale} />
+      <Navigation locale={locale} />
       <main>
         <Hero locale={locale} />
         <Statement text={translate(STATEMENT, locale)} />

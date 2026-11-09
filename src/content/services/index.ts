@@ -24,7 +24,7 @@ export const SERVICES = {
       },
     },
     {
-      key: "apps",
+      key: "applications",
       tag: "03 — Apps",
       title: { en: "Apps", pt: "Aplicações" },
       lead: { en: "In every pocket.", pt: "Em todos os bolsos." },

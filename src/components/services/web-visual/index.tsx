@@ -7,29 +7,29 @@ const CIRCUMFERENCE = 2 * Math.PI * 22;
 
 /** A browser whose layout assembles itself, with a performance score counting to 100. */
 export function WebVisual() {
-  const [ref, on] = useInView<HTMLDivElement>();
+  const [container, on] = useInView<HTMLDivElement>();
   const [score, setScore] = useState(0);
   useEffect(() => {
     if (!on) return;
-    let v = 0;
-    const id = setInterval(() => {
-      v += 3;
-      setScore(Math.min(100, v));
-      if (v >= 100) clearInterval(id);
+    let value = 0;
+    const timer = setInterval(() => {
+      value += 3;
+      setScore(Math.min(100, value));
+      if (value >= 100) clearInterval(timer);
     }, 22);
-    return () => clearInterval(id);
+    return () => clearInterval(timer);
   }, [on]);
   return (
-    <div ref={ref} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
+    <div ref={container} className={[styles.visual, on && styles.on].filter(Boolean).join(" ")} aria-hidden>
       <div className={styles.browser}>
         <div className={styles.bar}>
           <i />
           <i />
           <i />
-          <span className={`${styles.url} mono`}>yourbusiness.com</span>
+          <span className={`${styles.url} monospace`}>yourbusiness.com</span>
         </div>
         <div className={styles.body}>
-          <div className={`${styles.skeleton} ${styles.nav}`} />
+          <div className={`${styles.skeleton} ${styles.navigation}`} />
           <div className={`${styles.skeleton} ${styles.hero}`} />
           <div className={styles.row}>
             <div className={`${styles.skeleton} ${styles.card}`} />
@@ -49,7 +49,7 @@ export function WebVisual() {
             style={{ strokeDasharray: CIRCUMFERENCE, strokeDashoffset: CIRCUMFERENCE * (1 - score / 100) }}
           />
         </svg>
-        <span className="mono">{score}</span>
+        <span className="monospace">{score}</span>
       </div>
     </div>
   );

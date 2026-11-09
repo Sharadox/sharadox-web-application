@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface RevealProps {
+export interface RevealProperties {
   children: ReactNode;
   /** Seconds to wait before animating in. */
   delay?: number;

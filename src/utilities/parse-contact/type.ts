@@ -7,4 +7,4 @@ export interface ContactMessage {
   locale: string;
 }
 
-export type ParsedContact = { kind: "bot" } | { kind: "invalid" } | { kind: "ok"; value: ContactMessage };
+export type ParsedContact = { kind: "bot" } | { kind: "invalid" } | { kind: "valid"; value: ContactMessage };

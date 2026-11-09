@@ -7,13 +7,13 @@ import { GlobePlaceholder } from "@/components/globe/placeholder";
 import { HERO } from "@/content/hero";
 import { translate } from "@/utilities/translate";
 import styles from "./index.module.scss";
-import type { HeroProps } from "./type";
+import type { HeroProperties } from "./type";
 
 const Globe = dynamic(() => import("@/components/globe"), { ssr: false, loading: () => <GlobePlaceholder /> });
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** First screen: the slogan rising line by line beside the interactive globe. */
-export function Hero({ locale }: HeroProps) {
+export function Hero({ locale }: HeroProperties) {
   const lines = HERO.lines[locale];
   return (
     <section className={styles.hero}>
@@ -25,13 +25,13 @@ export function Hero({ locale }: HeroProps) {
           </Eyebrow>
         </motion.div>
         <h1 className={styles.title}>
-          {lines.map((line, i) => (
-            <span className={styles.line} key={i}>
+          {lines.map((line, index) => (
+            <span className={styles.line} key={index}>
               <motion.span
-                className={i === lines.length - 1 ? `${styles.lineInner} ${styles.dim}` : styles.lineInner}
+                className={index === lines.length - 1 ? `${styles.lineInner} ${styles.dim}` : styles.lineInner}
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
-                transition={{ duration: 1.1, delay: 0.2 + i * 0.12, ease: EASE }}
+                transition={{ duration: 1.1, delay: 0.2 + index * 0.12, ease: EASE }}
               >
                 {line}
               </motion.span>
@@ -39,12 +39,12 @@ export function Hero({ locale }: HeroProps) {
           ))}
         </h1>
         <motion.p
-          className={styles.sub}
+          className={styles.subtitle}
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.75, ease: EASE }}
         >
-          {translate(HERO.sub, locale)}
+          {translate(HERO.subtitle, locale)}
         </motion.p>
         <motion.div
           className={styles.actions}
@@ -67,7 +67,7 @@ export function Hero({ locale }: HeroProps) {
         transition={{ duration: 1.8, delay: 0.3, ease: EASE }}
       >
         <Globe />
-        <span className={`${styles.hint} mono`} aria-hidden>
+        <span className={`${styles.hint} monospace`} aria-hidden>
           {translate(HERO.drag, locale)}
         </span>
       </motion.div>

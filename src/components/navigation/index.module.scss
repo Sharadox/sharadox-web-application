@@ -1,6 +1,6 @@
 @use "styles/tokens" as *;
 
-.nav {
+.navigation {
   position: fixed;
   z-index: 50;
   inset: 0 0 auto;
@@ -16,10 +16,10 @@
   border-color: var(--line);
 }
 .inner {
-  max-width: var(--max);
+  max-width: var(--maximum-width);
   margin: 0 auto;
   height: 64px;
-  padding: 0 var(--pad);
+  padding: 0 var(--padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,12 +29,12 @@
   display: flex;
   gap: 30px;
   font-size: 14px;
-  color: var(--fg-2);
+  color: var(--foreground-2);
   a {
     transition: color 0.2s;
   }
   a:hover {
-    color: var(--fg);
+    color: var(--foreground);
   }
   @include below(820px) {
     display: none;
@@ -45,7 +45,7 @@
   align-items: center;
   gap: 12px;
   @include below(420px) {
-    .cta {
+    .callToAction {
       display: none;
     }
   }

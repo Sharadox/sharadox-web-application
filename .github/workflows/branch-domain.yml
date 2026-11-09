@@ -1,0 +1,42 @@
+# Serves every <thing>.development branch on <thing>.development.<PRODUCTION_DOMAIN> while the branch exists.
+# Only acts on repositories with their own domain (secret PRODUCTION_DOMAIN, set by the tools' set-up-repository
+# command); client sites stay on Vercel's branch urls. Like every non-production deployment, it needs the Vercel
+# team login.
+name: Branch domain
+on: [create, delete]
+jobs:
+  domain:
+    name: Branch domain
+    if: github.event.ref_type == 'branch' && endsWith(github.event.ref, '.development')
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Add or remove the branch's domain on Vercel
+        env:
+          EVENT: ${{ github.event_name }}
+          BRANCH: ${{ github.event.ref }}
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TEAM: team_P3FsiIXJ4Rx8wgllMYSjuycn
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$PRODUCTION_DOMAIN" ]; then
+            echo "No own domain: this branch stays on Vercel's branch url."
+            exit 0
+          fi
+          if [[ ! "$BRANCH" =~ ^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.development$ ]]; then
+            echo "::error::\"$BRANCH\" can't be a subdomain: use lowercase letters, digits and hyphens before .development."
+            exit 1
+          fi
+          domain="$BRANCH.$PRODUCTION_DOMAIN"
+          endpoint="https://api.vercel.com/v10/projects/$VERCEL_PROJECT_ID/domains"
+          if [ "$EVENT" = create ]; then
+            curl --fail-with-body --silent --show-error -X POST "$endpoint?teamId=$VERCEL_TEAM" \
+              -H "Authorization: Bearer $VERCEL_TOKEN" -H "Content-Type: application/json" \
+              -d "{\"name\":\"$domain\",\"gitBranch\":\"$BRANCH\"}"
+            echo "::notice::$BRANCH is served on https://$domain (Vercel team only)"
+          else
+            curl --fail-with-body --silent --show-error -X DELETE "$endpoint/$domain?teamId=$VERCEL_TEAM" \
+              -H "Authorization: Bearer $VERCEL_TOKEN"
+            echo "::notice::removed https://$domain"
+          fi

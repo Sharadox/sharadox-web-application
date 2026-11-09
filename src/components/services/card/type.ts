@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface CardProps {
+export interface CardProperties {
   /** The live visual in the top (or left, when wide) half. */
   visual: ReactNode;
   tag: string;

@@ -10,7 +10,7 @@ const font = (file: string) => readFile(join(process.cwd(), "src/assets/fonts", 
 
 /** Share card (Open Graph and Twitter): black canvas, a dotted planet rising from the bottom, the slogan in Geist. */
 export async function renderShareImage({ locale, width, height }: ShareImageOptions) {
-  const [semiBold, mono] = await Promise.all([font("Geist-SemiBold.ttf"), font("GeistMono-Regular.ttf")]);
+  const [semiBold, monospace] = await Promise.all([font("Geist-SemiBold.ttf"), font("GeistMono-Regular.ttf")]);
   return new ImageResponse(
     <div
       style={{
@@ -38,17 +38,17 @@ export async function renderShareImage({ locale, width, height }: ShareImageOpti
           display: "flex",
         }}
       />
-      {horizonDots().map((d, i) => (
+      {horizonDots().map((dot, index) => (
         <div
-          key={i}
+          key={index}
           style={{
             position: "absolute",
-            left: d.x,
-            top: d.y,
+            left: dot.x,
+            top: dot.y,
             width: 3,
             height: 3,
             borderRadius: 3,
-            background: `rgba(255,255,255,${d.opacity})`,
+            background: `rgba(255,255,255,${dot.opacity})`,
             display: "flex",
           }}
         />
@@ -89,7 +89,7 @@ export async function renderShareImage({ locale, width, height }: ShareImageOpti
       height,
       fonts: [
         { name: "Geist", data: semiBold, weight: 600 },
-        { name: "GeistMono", data: mono, weight: 400 },
+        { name: "GeistMono", data: monospace, weight: 400 },
       ],
     },
   );

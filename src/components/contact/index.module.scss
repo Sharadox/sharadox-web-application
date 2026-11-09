@@ -21,11 +21,11 @@
   pointer-events: none;
   z-index: -1;
 }
-.head h2 {
+.heading h2 {
   margin: 16px 0 22px;
 }
 .text {
-  color: var(--fg-2);
+  color: var(--foreground-2);
   font-size: 1.1rem;
   max-width: 30ch;
 }
@@ -33,9 +33,9 @@
   margin-top: 40px;
   display: grid;
   gap: 6px;
-  :global(.mono) {
+  :global(.monospace) {
     font-size: 12px;
-    color: var(--fg-3);
+    color: var(--foreground-3);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }

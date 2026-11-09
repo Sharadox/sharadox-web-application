@@ -1,7 +1,7 @@
-.wrap {
-  max-width: var(--max);
+.wrapper {
+  max-width: var(--maximum-width);
   margin: 0 auto;
-  padding: clamp(100px, 18vh, 200px) var(--pad);
+  padding: clamp(100px, 18vh, 200px) var(--padding);
 }
 .statement {
   font-size: clamp(1.9rem, 4.2vw, 3.8rem);

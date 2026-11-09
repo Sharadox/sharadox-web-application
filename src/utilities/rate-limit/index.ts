@@ -1,11 +1,11 @@
 import type { RateLimiter, RateLimitOptions } from "./type";
 
 /** In-memory sliding-window rate limiter. Best effort: each server instance keeps its own memory. */
-export function createRateLimiter({ window, max }: RateLimitOptions): RateLimiter {
+export function createRateLimiter({ window, maximum }: RateLimitOptions): RateLimiter {
   const hits = new Map<string, number[]>();
   return (key, now = Date.now()) => {
-    const recent = (hits.get(key) ?? []).filter((t) => now - t < window);
-    if (recent.length >= max) {
+    const recent = (hits.get(key) ?? []).filter((time) => now - time < window);
+    if (recent.length >= maximum) {
       hits.set(key, recent);
       return false;
     }

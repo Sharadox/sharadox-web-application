@@ -8,18 +8,18 @@ import { BODY_SHADER } from "../shader/body";
 import { Arc } from "../arc";
 import { Dots } from "../dots";
 import { Marker } from "../marker";
-import type { WorldProps } from "./type";
+import type { WorldProperties } from "./type";
 
 /** The planet scene: body, atmosphere, land, arcs and markers. Rotation comes from the drag controller. */
-export function World({ data, drag }: WorldProps) {
+export function World({ data, drag }: WorldProperties) {
   const group = useRef<Group>(null);
 
-  useFrame((_, dt) => {
-    const g = group.current;
-    if (!g) return;
-    const target = drag.step(dt);
-    g.rotation.y = MathUtils.damp(g.rotation.y, target.y, 6, dt);
-    g.rotation.x = MathUtils.damp(g.rotation.x, target.x, 6, dt);
+  useFrame((_, deltaSeconds) => {
+    const planet = group.current;
+    if (!planet) return;
+    const target = drag.step(deltaSeconds);
+    planet.rotation.y = MathUtils.damp(planet.rotation.y, target.y, 6, deltaSeconds);
+    planet.rotation.x = MathUtils.damp(planet.rotation.x, target.x, 6, deltaSeconds);
   });
 
   const body = useMemo(
@@ -31,7 +31,7 @@ export function World({ data, drag }: WorldProps) {
       new ShaderMaterial({
         vertexShader: ATMOSPHERE_SHADER.vertex,
         fragmentShader: ATMOSPHERE_SHADER.fragment,
-        uniforms: { uStrength: { value: 0.42 } },
+        uniforms: { strength: { value: 0.42 } },
         side: BackSide,
         transparent: true,
         blending: AdditiveBlending,
@@ -50,13 +50,13 @@ export function World({ data, drag }: WorldProps) {
           <sphereGeometry args={[0.995, 96, 96]} />
         </mesh>
         <Dots data={data} />
-        {CITIES.map((c, i) => (
-          <Arc key={i} from={HOME} to={c} offset={i / CITIES.length} />
+        {CITIES.map((city, index) => (
+          <Arc key={index} from={HOME} to={city} offset={index / CITIES.length} />
         ))}
-        {CITIES.map((c, i) => (
-          <Marker key={`m${i}`} lat={c[0]} lng={c[1]} />
+        {CITIES.map((city, index) => (
+          <Marker key={`marker${index}`} latitude={city[0]} longitude={city[1]} />
         ))}
-        <Marker lat={HOME.lat} lng={HOME.lng} home />
+        <Marker latitude={HOME.latitude} longitude={HOME.longitude} home />
       </group>
     </>
   );
