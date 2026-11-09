@@ -47,6 +47,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm exec turbo run format:check lint type-check test:unit test:benchmark build test:end-to-end
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with: { name: playwright, path: "test-results/", retention-days: 7 }
