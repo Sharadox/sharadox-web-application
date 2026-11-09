@@ -7,6 +7,7 @@ import { StructuredData } from "@sharadox/sharadox-web-library/component/structu
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { languageTag, openGraphLocale } from "@sharadox/web-library/internationalization/locale";
 import { isSiteLocale, LOCALES } from "@sharadox/sharadox-web-library/utility/locale";
+import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/web-library/internationalization/translate";
 import "@sharadox/sharadox-web-application/style/global/index.scss";
 
@@ -17,11 +18,11 @@ export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" }
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   if (!isSiteLocale(locale)) return {};
-  const title = `Sharadox — ${translate(SITE.slogan, locale)}`;
+  const title = separate(SITE.name, translate(SITE.slogan, locale));
   const description = translate(SITE.description, locale);
   return {
     metadataBase: new URL(SITE.url),
-    title: { default: title, template: "%s · Sharadox" },
+    title: { default: title, template: separate("%s", SITE.name) },
     description,
     applicationName: SITE.name,
     authors: [{ name: SITE.name, url: SITE.url }],
