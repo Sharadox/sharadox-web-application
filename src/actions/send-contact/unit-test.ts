@@ -27,16 +27,17 @@ describe("sendContact", () => {
     send.mockReset();
     send.mockResolvedValue({ messageId: "<id@example.com>", accepted: ["email@sharadox.com"], rejected: [] });
     vi.stubEnv("EMAIL_SERVER_HOST", "smtp.example.com");
-    vi.stubEnv("EMAIL_SERVER_USERNAME", "website@sharadox.com");
+    vi.stubEnv("EMAIL_SERVER_USERNAME", "AKIAEXAMPLE");
+    vi.stubEnv("EMAIL_SENDER_ADDRESS", "web@email.sharadox.com");
     vi.stubEnv("EMAIL_SERVER_PASSWORD", "secret");
   });
   const load = async () => (await import(".")).sendContact;
 
-  it("sends from the server login to the inbox, with the visitor as reply-to and escaped html", async () => {
+  it("sends from the sender address to the inbox, with the visitor as reply-to and escaped html", async () => {
     const sendContact = await load();
     expect(await sendContact({ status: "idle" }, form(valid))).toEqual({ status: "sent" });
     const message = send.mock.calls[0]![0];
-    expect(message.from).toEqual({ name: "Sharadox Website", address: "website@sharadox.com" });
+    expect(message.from).toEqual({ name: "Sharadox Website", address: "web@email.sharadox.com" });
     expect(message.to).toBe("email@sharadox.com");
     expect(message.replyTo).toEqual({ name: "Ana", address: "ana@example.com" });
     expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");

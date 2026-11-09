@@ -11,8 +11,8 @@ const allow = createRateLimiter({ window: 60 * 60 * 1000, maximum: 5 });
 
 /**
  * Sends a contact form message to the Sharadox inbox through the email server in the `EMAIL_SERVER_*` environment
- * variables (Proton SMTP), with the visitor as reply-to. The sender is the server's login address, the only one the
- * server accepts.
+ * variables (Amazon SES over SMTP), with the visitor as reply-to. The sender is `EMAIL_SENDER_ADDRESS`, an address on
+ * the sending subdomain verified in SES (email.sharadox.com), so the main domain's reputation stays separate.
  */
 export async function sendContact(_: ContactState, form: FormData): Promise<ContactState> {
   const parsed = parseContact(form);
@@ -35,7 +35,7 @@ export async function sendContact(_: ContactState, form: FormData): Promise<Cont
   try {
     const configuration = readEmailServerConfiguration();
     await createEmailSender(configuration).send({
-      from: { name: "Sharadox Website", address: configuration.username },
+      from: { name: "Sharadox Website", address: process.env.EMAIL_SENDER_ADDRESS || configuration.username },
       to: SITE.email,
       replyTo: { name: name.replace(/[\r\n]+/g, " "), address: email },
       subject: subject.replace(/[\r\n]+/g, " ").slice(0, 300),
