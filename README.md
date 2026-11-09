@@ -8,7 +8,7 @@ Built on the Sharadox engineering standard (see `template-web-application`): Typ
 
 - English/Portuguese at `/en` and `/pt`, Geist type, black canvas.
 - Interactive WebGL globe: `src/components/globe` (React Three Fiber). Land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points` (`src/scripts/globe-points`).
-- Contact form: server action `src/actions/send-contact` → [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library) → Amazon SES (SMTP, sending subdomain mail.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
+- Contact form: server action `src/actions/send-contact` → [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library) → Amazon SES (SMTP, sending subdomain email.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
 - SEO: per-locale metadata, share images (`src/components/share-image`), JSON-LD, sitemap, robots, manifest.
 
 ## Structure
