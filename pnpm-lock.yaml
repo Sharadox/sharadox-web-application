@@ -12,7 +12,7 @@ importers:
         specifier: ^9.3.0
         version: 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
       '@sharadox/email-web-library':
-        specifier: https://github.com/Sharadox/email-web-library/releases/download/v0.1.0/sharadox-email-web-library-0.1.0.tgz
+        specifier: ^0.1.0
         version: https://github.com/Sharadox/email-web-library/releases/download/v0.1.0/sharadox-email-web-library-0.1.0.tgz
       geist:
         specifier: ^1.4.0
