@@ -2,5 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm exec turbo run build"
+  "buildCommand": "TURBO_REMOTE_CACHE_SIGNATURE_KEY=$TURBOREPO_REMOTE_CACHE_SIGNATURE_KEY pnpm exec turbo run build"
 }

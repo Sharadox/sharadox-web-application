@@ -1,5 +1,5 @@
-# Serves every <thing>.development branch on <thing>.development.<PRODUCTION_DOMAIN> while the branch exists.
-# Only acts on repositories with their own domain (secret PRODUCTION_DOMAIN, set by the tools' set-up-repository
+# Serves every <feature>.preview branch on <feature>.preview.<PRODUCTION_DOMAIN> while the branch exists.
+# Only acts on repositories with their own domain (repository variable PRODUCTION_DOMAIN, set by the tools' set-up-repository
 # command); client sites stay on Vercel's branch urls. Like every non-production deployment, it needs the Vercel
 # team login.
 name: Branch domain
@@ -7,7 +7,7 @@ on: [create, delete]
 jobs:
   domain:
     name: Branch domain
-    if: github.event.ref_type == 'branch' && endsWith(github.event.ref, '.development')
+    if: github.event.ref_type == 'branch' && endsWith(github.event.ref, '.preview')
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -15,8 +15,8 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           BRANCH: ${{ github.event.ref }}
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          PRODUCTION_DOMAIN: ${{ vars.PRODUCTION_DOMAIN || secrets.PRODUCTION_DOMAIN }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID || secrets.VERCEL_PROJECT_ID }}
           VERCEL_TEAM: team_P3FsiIXJ4Rx8wgllMYSjuycn
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
@@ -24,8 +24,8 @@ jobs:
             echo "No own domain: this branch stays on Vercel's branch url."
             exit 0
           fi
-          if [[ ! "$BRANCH" =~ ^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.development$ ]]; then
-            echo "::error::\"$BRANCH\" can't be a subdomain: use lowercase letters, digits and hyphens before .development."
+          if [[ ! "$BRANCH" =~ ^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.preview$ ]]; then
+            echo "::error::\"$BRANCH\" can't be a subdomain: use lowercase letters, digits and hyphens before .preview."
             exit 1
           fi
           domain="$BRANCH.$PRODUCTION_DOMAIN"
