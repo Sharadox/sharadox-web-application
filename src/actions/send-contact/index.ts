@@ -1,31 +1,29 @@
 "use server";
-import { SendEmailCommand, SESv2Client } from "@aws-sdk/client-sesv2";
+import { createEmailSender, EmailError, readEmailServerConfiguration } from "@sharadox/email-web-library";
 import { headers } from "next/headers";
+import { SITE } from "@/content/site";
 import { escapeHtml } from "@/utilities/escape-html";
 import { parseContact } from "@/utilities/parse-contact";
 import { createRateLimiter } from "@/utilities/rate-limit";
 import type { ContactState } from "./type";
 
-const allow = createRateLimiter({ window: 60 * 60 * 1000, max: 5 });
+const allow = createRateLimiter({ window: 60 * 60 * 1000, maximum: 5 });
 
-/** Sends a contact form message to the Sharadox inbox through AWS SES, with the visitor as reply-to. */
+/**
+ * Sends a contact form message to the Sharadox inbox through the email server in the `EMAIL_SERVER_*` environment
+ * variables (Proton SMTP), with the visitor as reply-to. The sender is the server's login address, the only one the
+ * server accepts.
+ */
 export async function sendContact(_: ContactState, form: FormData): Promise<ContactState> {
   const parsed = parseContact(form);
   // Bots get a fake success so they don't retry.
-  if (parsed.kind === "bot") return { status: "ok" };
+  if (parsed.kind === "bot") return { status: "sent" };
   if (parsed.kind === "invalid") return { status: "invalid" };
   const { name, email, company, message, locale } = parsed.value;
 
   const ip = ((await headers()).get("x-forwarded-for") ?? "").split(",")[0]?.trim() || "unknown";
-  if (!allow(ip)) return { status: "rate" };
+  if (!allow(ip)) return { status: "rate-limited" };
 
-  const { SES_REGION, SES_ACCESS_KEY_ID, SES_SECRET_ACCESS_KEY } = process.env;
-  if (!SES_REGION || !SES_ACCESS_KEY_ID || !SES_SECRET_ACCESS_KEY) {
-    console.error("contact: SES env vars missing");
-    return { status: "failed" };
-  }
-  const to = process.env.CONTACT_TO || "email@sharadox.com";
-  const from = process.env.CONTACT_FROM || "Sharadox Website <website@sharadox.com>";
   const subject = `New project enquiry — ${name}${company ? ` (${company})` : ""}`;
   const text = `Name: ${name}\nEmail: ${email}\nCompany: ${company || "—"}\nLanguage: ${locale}\nIP: ${ip}\n\n${message}`;
   const html = `<div style="font-family:-apple-system,Segoe UI,sans-serif;font-size:15px;line-height:1.6;color:#111">
@@ -35,26 +33,19 @@ export async function sendContact(_: ContactState, form: FormData): Promise<Cont
     <p style="white-space:pre-wrap;margin:0">${escapeHtml(message)}</p></div>`;
 
   try {
-    const ses = new SESv2Client({
-      region: SES_REGION,
-      credentials: { accessKeyId: SES_ACCESS_KEY_ID, secretAccessKey: SES_SECRET_ACCESS_KEY },
+    const configuration = readEmailServerConfiguration();
+    await createEmailSender(configuration).send({
+      from: { name: "Sharadox Website", address: configuration.username },
+      to: SITE.email,
+      replyTo: { name: name.replace(/[\r\n]+/g, " "), address: email },
+      subject: subject.replace(/[\r\n]+/g, " ").slice(0, 300),
+      text,
+      html,
     });
-    await ses.send(
-      new SendEmailCommand({
-        FromEmailAddress: from,
-        Destination: { ToAddresses: [to] },
-        ReplyToAddresses: [email],
-        Content: {
-          Simple: {
-            Subject: { Data: subject, Charset: "UTF-8" },
-            Body: { Text: { Data: text, Charset: "UTF-8" }, Html: { Data: html, Charset: "UTF-8" } },
-          },
-        },
-      }),
-    );
-    return { status: "ok" };
-  } catch (e) {
-    console.error("contact: SES send failed", e);
+    return { status: "sent" };
+  } catch (error) {
+    if (error instanceof EmailError && error.code === "invalid-message") return { status: "invalid" };
+    console.error("contact: sending failed", error);
     return { status: "failed" };
   }
 }

@@ -1,16 +1,16 @@
 import { SITE } from "@/content/site";
 import { languageTag } from "@/utilities/locale";
 import { translate } from "@/utilities/translate";
-import type { StructuredDataProps } from "./type";
+import type { StructuredDataProperties } from "./type";
 
 /** JSON-LD for search engines: the Sharadox organization and website. */
-export function StructuredData({ locale }: StructuredDataProps) {
+export function StructuredData({ locale }: StructuredDataProperties) {
   const data = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${SITE.url}/#org`,
+        "@id": `${SITE.url}/#organization`,
         name: SITE.name,
         url: SITE.url,
         email: SITE.email,
@@ -19,7 +19,7 @@ export function StructuredData({ locale }: StructuredDataProps) {
         logo: `${SITE.url}/icon.svg`,
         address: { "@type": "PostalAddress", addressRegion: "Algarve", addressCountry: "PT" },
         areaServed: "Worldwide",
-        knowsAbout: ["Web development", "Web design", "Mobile apps", "Software platforms"],
+        knowsAbout: ["Web development", "Web design", "Mobile applications", "Software platforms"],
       },
       {
         "@type": "WebSite",
@@ -27,7 +27,7 @@ export function StructuredData({ locale }: StructuredDataProps) {
         url: `${SITE.url}/${locale}`,
         name: SITE.name,
         inLanguage: languageTag(locale),
-        publisher: { "@id": `${SITE.url}/#org` },
+        publisher: { "@id": `${SITE.url}/#organization` },
       },
     ],
   };

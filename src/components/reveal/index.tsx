@@ -1,9 +1,9 @@
 "use client";
 import { motion } from "motion/react";
-import type { RevealProps } from "./type";
+import type { RevealProperties } from "./type";
 
 /** Fades, unblurs and lifts its children into place the first time they scroll into view. */
-export function Reveal({ children, delay = 0, y = 24, className }: RevealProps) {
+export function Reveal({ children, delay = 0, y = 24, className }: RevealProperties) {
   return (
     <motion.div
       className={className}

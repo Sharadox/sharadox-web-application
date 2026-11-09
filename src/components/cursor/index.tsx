@@ -12,28 +12,28 @@ export function Cursor() {
     root.classList.add("has-cursor");
     let x = innerWidth / 2;
     let y = innerHeight / 2;
-    let rx = x;
-    let ry = y;
-    let id = 0;
-    const move = (e: PointerEvent) => {
-      x = e.clientX;
-      y = e.clientY;
-      const t = e.target as HTMLElement;
-      ring.current?.classList.toggle(styles.hot!, !!t.closest("a, button, input, textarea, label, [data-hot]"));
-      ring.current?.classList.toggle(styles.grab!, !!t.closest("canvas"));
+    let ringX = x;
+    let ringY = y;
+    let frame = 0;
+    const move = (event: PointerEvent) => {
+      x = event.clientX;
+      y = event.clientY;
+      const target = event.target as HTMLElement;
+      ring.current?.classList.toggle(styles.hot!, !!target.closest("a, button, input, textarea, label, [data-hot]"));
+      ring.current?.classList.toggle(styles.grab!, !!target.closest("canvas"));
     };
     const loop = () => {
-      rx += (x - rx) * 0.18;
-      ry += (y - ry) * 0.18;
+      ringX += (x - ringX) * 0.18;
+      ringY += (y - ringY) * 0.18;
       if (dot.current) dot.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      if (ring.current) ring.current.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-      id = requestAnimationFrame(loop);
+      if (ring.current) ring.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+      frame = requestAnimationFrame(loop);
     };
     addEventListener("pointermove", move);
-    id = requestAnimationFrame(loop);
+    frame = requestAnimationFrame(loop);
     return () => {
       removeEventListener("pointermove", move);
-      cancelAnimationFrame(id);
+      cancelAnimationFrame(frame);
       root.classList.remove("has-cursor");
     };
   }, []);

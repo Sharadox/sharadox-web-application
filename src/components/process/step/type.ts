@@ -1,6 +1,6 @@
 import type { MotionValue } from "motion/react";
 
-export interface StepProps {
+export interface StepProperties {
   index: number;
   count: number;
   progress: MotionValue<number>;

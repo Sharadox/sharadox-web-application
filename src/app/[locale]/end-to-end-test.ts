@@ -1,19 +1,22 @@
 import { expect, test } from "@playwright/test";
 
 test("both languages render with full SEO metadata", async ({ page }) => {
-  for (const [locale, lang, heading] of [
+  for (const [locale, language, heading] of [
     ["en", "en", "Technologies"],
     ["pt", "pt-PT", "Tecnologias"],
   ] as const) {
     await page.goto(`/${locale}`);
-    await expect(page.locator("html")).toHaveAttribute("lang", lang);
+    await expect(page.locator("html")).toHaveAttribute("lang", language);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(heading);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://sharadox.com/${locale}`);
     await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
-    const jsonLd = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? "{}");
-    expect(jsonLd["@graph"].map((n: { "@type": string }) => n["@type"])).toEqual(["Organization", "WebSite"]);
+    const structuredData = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? "{}");
+    expect(structuredData["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual([
+      "Organization",
+      "WebSite",
+    ]);
   }
 });
 
@@ -37,7 +40,7 @@ test("language switch moves between /en and /pt", async ({ page }) => {
 });
 
 test("contact form falls back to the email address when sending is unavailable", async ({ page }) => {
-  // No SES keys in tests, so a valid message must surface the direct email instead of failing silently.
+  // No email server in tests, so a valid message must surface the direct email instead of failing silently.
   await page.goto("/en#contact");
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");

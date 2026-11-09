@@ -2,25 +2,25 @@
 import { useEffect, useState } from "react";
 import { SERVICES } from "@/content/services";
 import styles from "./index.module.scss";
-import type { AppVisualProps } from "./type";
+import type { AppVisualProperties } from "./type";
 
 /** A phone with business notifications sliding in. */
-export function AppVisual({ locale }: AppVisualProps) {
+export function ApplicationVisual({ locale }: AppVisualProperties) {
   const items = SERVICES.notifications[locale];
   const [tick, setTick] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setTick((x) => x + 1), 1800);
-    return () => clearInterval(id);
+    const timer = setInterval(() => setTick((current) => current + 1), 1800);
+    return () => clearInterval(timer);
   }, []);
-  const shown = [0, 1, 2].map((k) => items[(tick + k) % items.length]!);
+  const shown = [0, 1, 2].map((slot) => items[(tick + slot) % items.length]!);
   return (
     <div className={styles.visual} aria-hidden>
       <div className={styles.phone}>
         <div className={styles.notch} />
-        <div className={`${styles.time} mono`}>9:41</div>
+        <div className={`${styles.time} monospace`}>9:41</div>
         <div className={styles.notes}>
-          {shown.map(([title, detail], k) => (
-            <div key={`${tick}-${k}`} className={`${styles.note} ${styles[`note${k}`] ?? ""}`}>
+          {shown.map(([title, detail], slot) => (
+            <div key={`${tick}-${slot}`} className={`${styles.note} ${styles[`note${slot}`] ?? ""}`}>
               <span className={styles.icon} />
               <span className={styles.text}>
                 <b>{title}</b>

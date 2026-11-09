@@ -3,9 +3,9 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  max-width: var(--max);
+  max-width: var(--maximum-width);
   margin: 0 auto;
-  padding: 96px var(--pad) 40px;
+  padding: 96px var(--padding) 40px;
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   align-items: center;
@@ -73,10 +73,10 @@
   background-clip: text;
   color: transparent;
 }
-.sub {
+.subtitle {
   max-width: 30rem;
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-  color: var(--fg-2);
+  color: var(--foreground-2);
   line-height: 1.55;
 }
 .actions {
@@ -106,6 +106,6 @@
   font-size: 11.5px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--fg-3);
+  color: var(--foreground-3);
   pointer-events: none;
 }

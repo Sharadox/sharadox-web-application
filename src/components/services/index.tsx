@@ -1,31 +1,35 @@
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
-import { SectionHead } from "@/components/section-head";
+import { SectionHeading } from "@/components/section-heading";
 import { SERVICES } from "@/content/services";
 import { translate } from "@/utilities/translate";
-import { AppVisual } from "./app-visual";
+import { ApplicationVisual } from "./application-visual";
 import { Card } from "./card";
 import styles from "./index.module.scss";
 import { PlatformVisual } from "./platform-visual";
-import type { ServicesProps } from "./type";
+import type { ServicesProperties } from "./type";
 import { WebVisual } from "./web-visual";
 
-/** "What we build": websites (wide), platforms and apps, each with a live visual. */
-export function Services({ locale }: ServicesProps) {
-  const visuals = { web: <WebVisual />, platform: <PlatformVisual />, apps: <AppVisual locale={locale} /> };
+/** "What we build": websites (wide), platforms and applications, each with a live visual. */
+export function Services({ locale }: ServicesProperties) {
+  const visuals = {
+    web: <WebVisual />,
+    platform: <PlatformVisual />,
+    applications: <ApplicationVisual locale={locale} />,
+  };
   return (
     <Section id="services">
-      <SectionHead eyebrow={translate(SERVICES.eyebrow, locale)} title={translate(SERVICES.title, locale)} />
+      <SectionHeading eyebrow={translate(SERVICES.eyebrow, locale)} title={translate(SERVICES.title, locale)} />
       <div className={styles.cards}>
-        {SERVICES.items.map((s, i) => (
-          <Reveal key={s.key} delay={i * 0.1} className={i === 0 ? styles.wide : undefined}>
+        {SERVICES.items.map((service, index) => (
+          <Reveal key={service.key} delay={index * 0.1} className={index === 0 ? styles.wide : undefined}>
             <Card
-              wide={i === 0}
-              visual={visuals[s.key]}
-              tag={s.tag}
-              title={translate(s.title, locale)}
-              lead={translate(s.lead, locale)}
-              text={translate(s.text, locale)}
+              wide={index === 0}
+              visual={visuals[service.key]}
+              tag={service.tag}
+              title={translate(service.title, locale)}
+              lead={translate(service.lead, locale)}
+              text={translate(service.text, locale)}
             />
           </Reveal>
         ))}

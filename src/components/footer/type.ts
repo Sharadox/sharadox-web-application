@@ -1,5 +1,5 @@
 import type { Locale } from "@/utilities/locale/type";
 
-export interface FooterProps {
+export interface FooterProperties {
   locale: Locale;
 }

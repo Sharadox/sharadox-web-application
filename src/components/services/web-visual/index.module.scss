@@ -31,7 +31,7 @@
 .url {
   margin-left: 12px;
   font-size: 11px;
-  color: var(--fg-3);
+  color: var(--foreground-3);
   padding: 3px 10px;
   border-radius: 6px;
   background: #151515;
@@ -53,7 +53,7 @@
       shimmer 2.4s linear infinite;
   }
 }
-.nav {
+.navigation {
   height: 12px;
   width: 40%;
 }

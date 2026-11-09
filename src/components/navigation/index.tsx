@@ -6,19 +6,19 @@ import { Wordmark } from "@/components/wordmark";
 import { NAVIGATION } from "@/content/navigation";
 import { translate } from "@/utilities/translate";
 import styles from "./index.module.scss";
-import type { NavProps } from "./type";
+import type { NavigationProperties } from "./type";
 
 /** Fixed top bar that frosts once the page scrolls. */
-export function Nav({ locale }: NavProps) {
+export function Navigation({ locale }: NavigationProperties) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const on = () => setScrolled(scrollY > 24);
-    on();
-    addEventListener("scroll", on, { passive: true });
-    return () => removeEventListener("scroll", on);
+    const update = () => setScrolled(scrollY > 24);
+    update();
+    addEventListener("scroll", update, { passive: true });
+    return () => removeEventListener("scroll", update);
   }, []);
   return (
-    <header className={[styles.nav, scrolled && styles.scrolled].filter(Boolean).join(" ")}>
+    <header className={[styles.navigation, scrolled && styles.scrolled].filter(Boolean).join(" ")}>
       <div className={styles.inner}>
         <Wordmark href={`/${locale}`} />
         <nav className={styles.links} aria-label="Main">
@@ -28,8 +28,8 @@ export function Nav({ locale }: NavProps) {
         </nav>
         <div className={styles.end}>
           <LanguageSwitch locale={locale} />
-          <Button href="#contact" size="small" className={styles.cta}>
-            {translate(NAVIGATION.cta, locale)}
+          <Button href="#contact" size="small" className={styles.callToAction}>
+            {translate(NAVIGATION.callToAction, locale)}
           </Button>
         </div>
       </div>

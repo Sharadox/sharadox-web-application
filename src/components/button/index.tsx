@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import type { ButtonProps } from "./type";
+import type { ButtonProperties } from "./type";
 
 /** Pill button or link. */
 export function Button({
@@ -10,9 +10,11 @@ export function Button({
   arrow,
   disabled,
   className,
-}: ButtonProps) {
-  const cls = [styles.button, styles[variant], size !== "medium" && styles[size], className].filter(Boolean).join(" ");
-  const inner = (
+}: ButtonProperties) {
+  const classNames = [styles.button, styles[variant], size !== "medium" && styles[size], className]
+    .filter(Boolean)
+    .join(" ");
+  const content = (
     <>
       {children}
       {arrow && (
@@ -23,12 +25,12 @@ export function Button({
     </>
   );
   return href ? (
-    <a href={href} className={cls}>
-      {inner}
+    <a href={href} className={classNames}>
+      {content}
     </a>
   ) : (
-    <button className={cls} disabled={disabled}>
-      {inner}
+    <button className={classNames} disabled={disabled}>
+      {content}
     </button>
   );
 }

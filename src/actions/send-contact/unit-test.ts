@@ -2,52 +2,59 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const send = vi.fn();
 vi.mock("next/headers", () => ({ headers: async () => new Headers({ "x-forwarded-for": "1.2.3.4" }) }));
-vi.mock("@aws-sdk/client-sesv2", () => ({
-  SESv2Client: class {
-    send = send;
-  },
-  SendEmailCommand: class {
-    constructor(public input: unknown) {}
-  },
+vi.mock("@sharadox/email-web-library", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@sharadox/email-web-library")>()),
+  createEmailSender: () => ({ send }),
 }));
 
 const form = (fields: Record<string, string>) => {
-  const f = new FormData();
-  for (const [k, v] of Object.entries(fields)) f.set(k, v);
-  return f;
+  const data = new FormData();
+  for (const [name, value] of Object.entries(fields)) data.set(name, value);
+  return data;
 };
-const valid = { name: "Ana", email: "ana@example.com", message: "<b>Hi</b>", company: "Café", t: "1", locale: "pt" };
+const valid = {
+  name: "Ana",
+  email: "ana@example.com",
+  message: "<b>Hi</b>",
+  company: "Café",
+  "started-at": "1",
+  locale: "pt",
+};
 
 describe("sendContact", () => {
   beforeEach(() => {
     vi.resetModules();
     send.mockReset();
-    vi.stubEnv("SES_REGION", "eu-west-1");
-    vi.stubEnv("SES_ACCESS_KEY_ID", "id");
-    vi.stubEnv("SES_SECRET_ACCESS_KEY", "secret");
+    send.mockResolvedValue({ messageId: "<id@example.com>", accepted: ["email@sharadox.com"], rejected: [] });
+    vi.stubEnv("EMAIL_SERVER_HOST", "smtp.example.com");
+    vi.stubEnv("EMAIL_SERVER_USERNAME", "website@sharadox.com");
+    vi.stubEnv("EMAIL_SERVER_PASSWORD", "secret");
   });
   const load = async () => (await import(".")).sendContact;
 
-  it("sends through SES with the visitor as reply-to and escaped HTML", async () => {
+  it("sends from the server login to the inbox, with the visitor as reply-to and escaped html", async () => {
     const sendContact = await load();
-    expect(await sendContact({ status: "idle" }, form(valid))).toEqual({ status: "ok" });
-    const input = send.mock.calls[0]![0].input;
-    expect(input.ReplyToAddresses).toEqual(["ana@example.com"]);
-    expect(input.Destination.ToAddresses).toEqual(["email@sharadox.com"]);
-    expect(input.Content.Simple.Body.Html.Data).toContain("&lt;b&gt;Hi&lt;/b&gt;");
+    expect(await sendContact({ status: "idle" }, form(valid))).toEqual({ status: "sent" });
+    const message = send.mock.calls[0]![0];
+    expect(message.from).toEqual({ name: "Sharadox Website", address: "website@sharadox.com" });
+    expect(message.to).toBe("email@sharadox.com");
+    expect(message.replyTo).toEqual({ name: "Ana", address: "ana@example.com" });
+    expect(message.html).toContain("&lt;b&gt;Hi&lt;/b&gt;");
   });
   it("fakes success for bots without sending", async () => {
     const sendContact = await load();
-    expect(await sendContact({ status: "idle" }, form({ ...valid, website: "spam" }))).toEqual({ status: "ok" });
+    expect(await sendContact({ status: "idle" }, form({ ...valid, website: "spam" }))).toEqual({ status: "sent" });
     expect(send).not.toHaveBeenCalled();
   });
-  it("reports invalid input, missing configuration and the rate limit", async () => {
+  it("reports invalid input, missing configuration, delivery failures and the rate limit", async () => {
     const sendContact = await load();
-    expect((await sendContact({ status: "idle" }, form({ ...valid, email: "x" }))).status).toBe("invalid");
-    for (let i = 0; i < 5; i++) await sendContact({ status: "idle" }, form(valid));
-    expect((await sendContact({ status: "idle" }, form(valid))).status).toBe("rate");
+    expect((await sendContact({ status: "idle" }, form({ ...valid, email: "ana" }))).status).toBe("invalid");
+    send.mockRejectedValueOnce(new Error("connection refused"));
+    expect((await sendContact({ status: "idle" }, form(valid))).status).toBe("failed");
+    for (let attempt = 0; attempt < 4; attempt++) await sendContact({ status: "idle" }, form(valid));
+    expect((await sendContact({ status: "idle" }, form(valid))).status).toBe("rate-limited");
     vi.resetModules();
-    vi.stubEnv("SES_REGION", "");
+    vi.stubEnv("EMAIL_SERVER_HOST", "");
     expect((await (await load())({ status: "idle" }, form(valid))).status).toBe("failed");
   });
 });

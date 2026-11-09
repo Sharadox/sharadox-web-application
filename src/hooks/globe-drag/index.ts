@@ -2,101 +2,101 @@
 import { useEffect, useRef, useState } from "react";
 import type { GlobeDrag } from "./type";
 
-const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
+const clamp = (value: number, minimum: number, maximum: number) => Math.min(maximum, Math.max(minimum, value));
 
 /**
  * Drag-to-spin with inertia, a slow auto-rotation that eases back in after a drag,
- * and a small tilt towards the cursor. Attach the returned ref to the element that receives the pointer.
+ * and a small tilt towards the cursor. Attach the returned reference to the element that receives the pointer.
  */
 export function useGlobeDrag(initial: { x: number; y: number }, autoRotate: boolean) {
   const target = useRef<HTMLDivElement>(null);
   const [drag] = useState(() => {
-    const s = {
-      rotX: initial.x,
-      rotY: initial.y,
-      velX: 0,
-      velY: 0,
+    const state = {
+      rotationX: initial.x,
+      rotationY: initial.y,
+      velocityX: 0,
+      velocityY: 0,
       dragging: false,
       lastX: 0,
       lastY: 0,
-      idle: 0,
+      idleSeconds: 0,
       tiltX: 0,
       tiltY: 0,
     };
     const controller: GlobeDrag & {
-      down: (e: PointerEvent, el: HTMLElement) => void;
-      move: (e: PointerEvent, el: HTMLElement) => void;
+      down: (event: PointerEvent, element: HTMLElement) => void;
+      move: (event: PointerEvent, element: HTMLElement) => void;
       up: () => void;
       leave: () => void;
     } = {
-      down(e) {
-        s.dragging = true;
-        s.lastX = e.clientX;
-        s.lastY = e.clientY;
+      down(event) {
+        state.dragging = true;
+        state.lastX = event.clientX;
+        state.lastY = event.clientY;
       },
-      move(e, el) {
-        const r = el.getBoundingClientRect();
-        s.tiltX = ((e.clientY - r.top) / r.height - 0.5) * 0.18;
-        s.tiltY = ((e.clientX - r.left) / r.width - 0.5) * 0.18;
-        if (!s.dragging) return;
-        const k = 2.6 / Math.max(r.width, 1);
-        s.velY = (e.clientX - s.lastX) * k;
-        s.velX = (e.clientY - s.lastY) * k;
-        s.lastX = e.clientX;
-        s.lastY = e.clientY;
-        s.rotY += s.velY;
-        s.rotX = clamp(s.rotX + s.velX, -0.9, 1.1);
-        s.idle = 0;
+      move(event, element) {
+        const bounds = element.getBoundingClientRect();
+        state.tiltX = ((event.clientY - bounds.top) / bounds.height - 0.5) * 0.18;
+        state.tiltY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 0.18;
+        if (!state.dragging) return;
+        const speed = 2.6 / Math.max(bounds.width, 1);
+        state.velocityY = (event.clientX - state.lastX) * speed;
+        state.velocityX = (event.clientY - state.lastY) * speed;
+        state.lastX = event.clientX;
+        state.lastY = event.clientY;
+        state.rotationY += state.velocityY;
+        state.rotationX = clamp(state.rotationX + state.velocityX, -0.9, 1.1);
+        state.idleSeconds = 0;
       },
       up() {
-        s.dragging = false;
+        state.dragging = false;
       },
       leave() {
-        s.tiltX = 0;
-        s.tiltY = 0;
+        state.tiltX = 0;
+        state.tiltY = 0;
       },
-      step(dt) {
-        if (!s.dragging) {
-          s.rotY += s.velY;
-          s.rotX = clamp(s.rotX + s.velX, -0.9, 1.1);
-          s.velY *= 0.94;
-          s.velX *= 0.9;
-          s.idle += dt;
-          if (autoRotate) s.rotY += dt * 0.06 * Math.min(1, s.idle / 2);
+      step(deltaSeconds) {
+        if (!state.dragging) {
+          state.rotationY += state.velocityY;
+          state.rotationX = clamp(state.rotationX + state.velocityX, -0.9, 1.1);
+          state.velocityY *= 0.94;
+          state.velocityX *= 0.9;
+          state.idleSeconds += deltaSeconds;
+          if (autoRotate) state.rotationY += deltaSeconds * 0.06 * Math.min(1, state.idleSeconds / 2);
         }
-        return { x: s.rotX + s.tiltX, y: s.rotY + s.tiltY };
+        return { x: state.rotationX + state.tiltX, y: state.rotationY + state.tiltY };
       },
     };
     return controller;
   });
 
   useEffect(() => {
-    const el = target.current;
-    if (!el) return;
-    const down = (e: PointerEvent) => {
-      drag.down(e, el);
-      el.setPointerCapture(e.pointerId);
-      el.style.cursor = "grabbing";
+    const element = target.current;
+    if (!element) return;
+    const down = (event: PointerEvent) => {
+      drag.down(event, element);
+      element.setPointerCapture(event.pointerId);
+      element.style.cursor = "grabbing";
     };
-    const move = (e: PointerEvent) => drag.move(e, el);
-    const up = (e: PointerEvent) => {
+    const move = (event: PointerEvent) => drag.move(event, element);
+    const up = (event: PointerEvent) => {
       drag.up();
-      el.style.cursor = "grab";
-      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+      element.style.cursor = "grab";
+      if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
     };
-    el.style.cursor = "grab";
-    el.style.touchAction = "pan-y";
-    el.addEventListener("pointerdown", down);
-    el.addEventListener("pointermove", move);
-    el.addEventListener("pointerup", up);
-    el.addEventListener("pointercancel", up);
-    el.addEventListener("pointerleave", drag.leave);
+    element.style.cursor = "grab";
+    element.style.touchAction = "pan-y";
+    element.addEventListener("pointerdown", down);
+    element.addEventListener("pointermove", move);
+    element.addEventListener("pointerup", up);
+    element.addEventListener("pointercancel", up);
+    element.addEventListener("pointerleave", drag.leave);
     return () => {
-      el.removeEventListener("pointerdown", down);
-      el.removeEventListener("pointermove", move);
-      el.removeEventListener("pointerup", up);
-      el.removeEventListener("pointercancel", up);
-      el.removeEventListener("pointerleave", drag.leave);
+      element.removeEventListener("pointerdown", down);
+      element.removeEventListener("pointermove", move);
+      element.removeEventListener("pointerup", up);
+      element.removeEventListener("pointercancel", up);
+      element.removeEventListener("pointerleave", drag.leave);
     };
   }, [drag]);
 

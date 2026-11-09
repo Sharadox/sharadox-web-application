@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface ButtonProps {
+export interface ButtonProperties {
   children: ReactNode;
   /** Renders a link when set, otherwise a button. */
   href?: string;

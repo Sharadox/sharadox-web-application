@@ -5,7 +5,7 @@ export const HERO = {
     en: ["Technologies", "that simplify", "the world."],
     pt: ["Tecnologias", "que simplificam", "o mundo."],
   },
-  sub: {
+  subtitle: {
     en: "We design and build websites, platforms and apps — fast to use, effortless to run, made to last.",
     pt: "Desenhamos e construímos websites, plataformas e aplicações — rápidas de usar, fáceis de gerir, feitas para durar.",
   },

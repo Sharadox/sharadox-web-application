@@ -1,5 +1,5 @@
 import type { Locale } from "@/utilities/locale/type";
 
-export interface ContactProps {
+export interface ContactProperties {
   locale: Locale;
 }

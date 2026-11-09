@@ -2,13 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 
 /** True once the element has been at least `threshold` visible. Stays true. */
-export function useInView<T extends HTMLElement>(threshold = 0.35) {
-  const ref = useRef<T>(null);
+export function useInView<Target extends HTMLElement>(threshold = 0.35) {
+  const element = useRef<Target>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => e?.isIntersecting && setInView(true), { threshold });
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
+    const observer = new IntersectionObserver(([entry]) => entry?.isIntersecting && setInView(true), { threshold });
+    if (element.current) observer.observe(element.current);
+    return () => observer.disconnect();
   }, [threshold]);
-  return [ref, inView] as const;
+  return [element, inView] as const;
 }

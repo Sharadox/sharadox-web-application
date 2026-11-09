@@ -1,3 +1,3 @@
-export interface StatementProps {
+export interface StatementProperties {
   text: string;
 }

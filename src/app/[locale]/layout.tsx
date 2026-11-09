@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       title,
       description,
       locale: openGraphLocale(locale),
-      alternateLocale: LOCALES.filter((l) => l !== locale).map(openGraphLocale),
+      alternateLocale: LOCALES.filter((other) => other !== locale).map(openGraphLocale),
     },
     twitter: { card: "summary_large_image", title, description },
     robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },

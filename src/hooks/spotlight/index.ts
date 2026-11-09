@@ -1,19 +1,19 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-/** Tracks the pointer inside an element as `--mx`/`--my`, for lights that follow the cursor. */
-export function useSpotlight<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
+/** Tracks the pointer inside an element as `--pointer-x`/`--pointer-y`, for lights that follow the cursor. */
+export function useSpotlight<Target extends HTMLElement>() {
+  const reference = useRef<Target>(null);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const move = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    const element = reference.current;
+    if (!element) return;
+    const move = (event: PointerEvent) => {
+      const bounds = element.getBoundingClientRect();
+      element.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
+      element.style.setProperty("--pointer-y", `${event.clientY - bounds.top}px`);
     };
-    el.addEventListener("pointermove", move);
-    return () => el.removeEventListener("pointermove", move);
+    element.addEventListener("pointermove", move);
+    return () => element.removeEventListener("pointermove", move);
   }, []);
-  return ref;
+  return reference;
 }

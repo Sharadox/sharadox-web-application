@@ -6,6 +6,6 @@ export interface GlobeRotation {
 
 /** Drag-to-spin controller for the globe. */
 export interface GlobeDrag {
-  /** Advances inertia and auto-rotation by `dt` seconds and returns the target rotation. */
-  step: (dt: number) => GlobeRotation;
+  /** Advances inertia and auto-rotation by `deltaSeconds` and returns the target rotation. */
+  step: (deltaSeconds: number) => GlobeRotation;
 }

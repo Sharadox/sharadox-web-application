@@ -4,9 +4,9 @@ import { GLOW_VERTEX } from "../glow-vertex";
 export const BODY_SHADER = {
   vertex: GLOW_VERTEX,
   fragment: /* glsl */ `
-    varying vec3 vN;
+    varying vec3 viewNormal;
     void main() {
-      float rim = pow(1.0 - abs(vN.z), 3.0);
+      float rim = pow(1.0 - abs(viewNormal.z), 3.0);
       gl_FragColor = vec4(vec3(0.02) + vec3(0.32) * rim, 1.0);
     }
   `,

@@ -1,7 +1,7 @@
 /** Where the globe's arcs start: Almancil, Algarve. */
-export const HOME = { lat: 37.08, lng: -8.03 };
+export const HOME = { latitude: 37.08, longitude: -8.03 };
 
-/** Cities the arcs travel to, as [lat, lng]. */
+/** Cities the arcs travel to, as [latitude, longitude]. */
 export const CITIES: readonly (readonly [number, number])[] = [
   [51.51, -0.13], // London
   [40.71, -74.0], // New York
