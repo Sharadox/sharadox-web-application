@@ -1,19 +1,17 @@
+import { localeRedirects } from "@sharadox/web-library/internationalization/locale-redirect";
 import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 
 const config: NextConfig = {
-  // Lets stylesheets `@use "style/token"` from anywhere under src/.
-  sassOptions: { loadPaths: [fileURLToPath(new URL("./src", import.meta.url))] },
+  sassOptions: {
+    // `@use "style/token"` resolves to the design tokens shipped with @sharadox/sharadox-web-library.
+    loadPaths: [
+      fileURLToPath(new URL("./node_modules/@sharadox/sharadox-web-library/distribution", import.meta.url)),
+      fileURLToPath(new URL("./src", import.meta.url)),
+    ],
+  },
   async redirects() {
-    return [
-      {
-        source: "/",
-        has: [{ type: "header", key: "accept-language", value: "pt.*" }],
-        destination: "/pt",
-        permanent: false,
-      },
-      { source: "/", destination: "/en", permanent: false },
-    ];
+    return localeRedirects(["en", "pt"], "en");
   },
 };
 

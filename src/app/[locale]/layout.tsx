@@ -3,10 +3,11 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { StructuredData } from "@sharadox/sharadox-web-application/component/structured-data";
-import { SITE } from "@sharadox/sharadox-web-application/content/site";
-import { isLocale, languageTag, LOCALES, openGraphLocale } from "@sharadox/sharadox-web-application/utility/locale";
-import { translate } from "@sharadox/sharadox-web-application/utility/translate";
+import { StructuredData } from "@sharadox/sharadox-web-library/component/structured-data";
+import { SITE } from "@sharadox/sharadox-web-library/content/site";
+import { languageTag, openGraphLocale } from "@sharadox/web-library/internationalization/locale";
+import { isSiteLocale, LOCALES } from "@sharadox/sharadox-web-library/utility/locale";
+import { translate } from "@sharadox/web-library/internationalization/translate";
 import "@sharadox/sharadox-web-application/style/global/index.scss";
 
 export const dynamicParams = false;
@@ -15,7 +16,7 @@ export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" }
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
-  if (!isLocale(locale)) return {};
+  if (!isSiteLocale(locale)) return {};
   const title = `Sharadox — ${translate(SITE.slogan, locale)}`;
   const description = translate(SITE.description, locale);
   return {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
 
 export default async function Layout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
-  if (!isLocale(locale)) notFound();
+  if (!isSiteLocale(locale)) notFound();
   return (
     <html lang={languageTag(locale)} className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body id="top">
