@@ -3,11 +3,11 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { StructuredData } from "@/components/structured-data";
-import { SITE } from "@/content/site";
-import { isLocale, languageTag, LOCALES, openGraphLocale } from "@/utilities/locale";
-import { translate } from "@/utilities/translate";
-import "@/styles/global/index.scss";
+import { StructuredData } from "@sharadox/sharadox-web-application/component/structured-data";
+import { SITE } from "@sharadox/sharadox-web-application/content/site";
+import { isLocale, languageTag, LOCALES, openGraphLocale } from "@sharadox/sharadox-web-application/utility/locale";
+import { translate } from "@sharadox/sharadox-web-application/utility/translate";
+import "@sharadox/sharadox-web-application/style/global/index.scss";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));

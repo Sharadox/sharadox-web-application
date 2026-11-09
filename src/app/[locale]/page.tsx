@@ -1,16 +1,16 @@
-import { Contact } from "@/components/contact";
-import { Cursor } from "@/components/cursor";
-import { Footer } from "@/components/footer";
-import { Hero } from "@/components/hero";
-import { Marquee } from "@/components/marquee";
-import { Navigation } from "@/components/navigation";
-import { Process } from "@/components/process";
-import { Services } from "@/components/services";
-import { SmoothScroll } from "@/components/smooth-scroll";
-import { Statement } from "@/components/statement";
-import { STATEMENT } from "@/content/statement";
-import type { Locale } from "@/utilities/locale/type";
-import { translate } from "@/utilities/translate";
+import { Contact } from "@sharadox/sharadox-web-application/component/contact";
+import { Cursor } from "@sharadox/sharadox-web-application/component/cursor";
+import { Footer } from "@sharadox/sharadox-web-application/component/footer";
+import { Hero } from "@sharadox/sharadox-web-application/component/hero";
+import { Marquee } from "@sharadox/sharadox-web-application/component/marquee";
+import { Navigation } from "@sharadox/sharadox-web-application/component/navigation";
+import { Process } from "@sharadox/sharadox-web-application/component/process";
+import { Services } from "@sharadox/sharadox-web-application/component/services";
+import { SmoothScroll } from "@sharadox/sharadox-web-application/component/smooth-scroll";
+import { Statement } from "@sharadox/sharadox-web-application/component/statement";
+import { STATEMENT } from "@sharadox/sharadox-web-application/content/statement";
+import type { Locale } from "@sharadox/sharadox-web-application/utility/locale/type";
+import { translate } from "@sharadox/sharadox-web-application/utility/translate";
 
 export default async function Page({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;

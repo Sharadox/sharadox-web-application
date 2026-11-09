@@ -1,0 +1,106 @@
+@use "style/token" as *;
+
+.form {
+  --pointer-x: -500px;
+  --pointer-y: -500px;
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      500px circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.05),
+      transparent 60%
+    );
+  }
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  @include below(860px) {
+    grid-template-columns: 1fr;
+  }
+}
+.field {
+  display: grid;
+  gap: 7px;
+  span {
+    font-size: 13px;
+    color: var(--foreground-2);
+  }
+  input,
+  textarea {
+    width: 100%;
+    font: inherit;
+    font-size: 15px;
+    color: var(--foreground);
+    background: #000;
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    padding: 13px 14px;
+    transition:
+      border-color 0.25s,
+      box-shadow 0.25s;
+    resize: vertical;
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+    }
+  }
+}
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.error {
+  font-size: 14px;
+  color: #ff8a8a;
+  a {
+    text-decoration: underline;
+  }
+}
+.done {
+  min-height: 380px;
+  place-items: center;
+  text-align: center;
+  align-content: center;
+  gap: 18px;
+  p {
+    max-width: 30ch;
+    color: var(--foreground-2);
+  }
+}
+.check {
+  width: 56px;
+  height: 56px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  path {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: draw 0.8s 0.2s var(--ease) forwards;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

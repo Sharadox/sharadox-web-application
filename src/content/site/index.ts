@@ -1,4 +1,4 @@
-import type { Translated } from "@/utilities/locale/type";
+import type { Translated } from "@sharadox/sharadox-web-application/utility/locale/type";
 
 /** Site-wide identity used by metadata, structured data, sitemap and share images. */
 export const SITE = {

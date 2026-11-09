@@ -1,5 +1,6 @@
 {
-  "name": "sharadox-web-application",
+  "name": "@sharadox/sharadox-web-application",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "development": "next dev",
@@ -15,7 +16,7 @@
     "documentation": "typedoc",
     "verify": "turbo run format:check lint type-check test:unit test:benchmark build test:end-to-end",
     "prepare": "husky",
-    "globe-points": "node src/scripts/globe-points/index.ts"
+    "globe-points": "node src/script/globe-points/index.ts"
   },
   "dependencies": {
     "@react-three/fiber": "^9.3.0",
@@ -72,5 +73,6 @@
     "ignoredBuiltDependencies": [
       "@parcel/watcher"
     ]
-  }
+  },
+  "license": "SEE LICENSE IN LICENCA.md"
 }

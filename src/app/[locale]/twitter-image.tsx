@@ -1,6 +1,6 @@
-import { renderShareImage } from "@/components/share-image";
-import { LOCALES } from "@/utilities/locale";
-import type { Locale } from "@/utilities/locale/type";
+import { renderShareImage } from "@sharadox/sharadox-web-application/component/share-image";
+import { LOCALES } from "@sharadox/sharadox-web-application/utility/locale";
+import type { Locale } from "@sharadox/sharadox-web-application/utility/locale/type";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

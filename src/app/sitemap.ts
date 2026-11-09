@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/content/site";
-import { LOCALES } from "@/utilities/locale";
+import { SITE } from "@sharadox/sharadox-web-application/content/site";
+import { LOCALES } from "@sharadox/sharadox-web-application/utility/locale";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return LOCALES.map((locale) => ({
