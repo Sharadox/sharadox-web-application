@@ -8,7 +8,7 @@ Built on the Sharadox engineering standard (see `template-web-application`): Typ
 
 - English/Portuguese at `/en` and `/pt`, Geist type, black canvas.
 - Interactive WebGL globe: `src/components/globe` (React Three Fiber). Land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points` (`src/scripts/globe-points`).
-- Contact form: server action `src/actions/send-contact` → [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library) → Proton SMTP → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
+- Contact form: server action `src/actions/send-contact` → [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library) → Amazon SES (SMTP, sending subdomain mail.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
 - SEO: per-locale metadata, share images (`src/components/share-image`), JSON-LD, sitemap, robots, manifest.
 
 ## Structure
@@ -43,4 +43,4 @@ Work on `<thing>.development`, merge it into `pre-production` (squash), check it
 
 ## Environment (Vercel)
 
-`EMAIL_SERVER_HOST`, `EMAIL_SERVER_PORT`, `EMAIL_SERVER_USERNAME`, `EMAIL_SERVER_PASSWORD` (a Proton SMTP token; production and preview). Turborepo remote cache: `TURBO_REMOTE_CACHE_SIGNATURE_KEY`.
+`EMAIL_SERVER_HOST`, `EMAIL_SERVER_PORT`, `EMAIL_SERVER_USERNAME`, `EMAIL_SERVER_PASSWORD` (Amazon SES SMTP credentials) and `EMAIL_SENDER_ADDRESS`; production and preview. Turborepo remote cache: `TURBO_REMOTE_CACHE_SIGNATURE_KEY`.
