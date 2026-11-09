@@ -4,26 +4,13 @@ The Sharadox website — https://sharadox.com · "Technologies that simplify the
 
 Built on the Sharadox engineering standard (see `template-web-application`): TypeScript, Next.js App Router, Turborepo with the Vercel Remote Cache, Sass modules, ESLint, Prettier, Vitest, Playwright, Husky, TypeDoc. Names are never abbreviated.
 
-## Highlights
-
-- English/Portuguese at `/en` and `/pt`, Geist type, black canvas.
-- Interactive WebGL globe: `src/component/globe` (React Three Fiber). Land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points` (`src/script/globe-points`).
-- Contact form: server action `src/action/send-contact` → [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library) → Amazon SES (SMTP, sending subdomain email.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
-- SEO: per-locale metadata, share images (`src/component/share-image`), JSON-LD, sitemap, robots, manifest.
-
 ## Structure
 
-One thing per file: `index.<extension>` named by its folder, with `type.ts`, `index.module.scss`, `unit-test.ts(x)`, `end-to-end-test.ts` and `benchmark-test.ts` beside it.
+This application is thin: routes (`src/app`), global styles (`src/style/global`), configuration, the contact form's server action (`src/action/send-contact`) and the globe land-points generator (`src/script/globe-points`). Everything the site is made of lives in [`@sharadox/sharadox-web-library`](https://github.com/Sharadox/sharadox-web-library); generic pieces come from [`@sharadox/web-library`](https://github.com/Sharadox/web-library) and email from [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library).
 
-```
-src/app/            routes (Next's own file names)
-src/component/     hero, globe (+ world, dots, arc, marker, shader/*), services (+ card, *-visual), process (+ step), contact (+ form), navigation, …
-src/hook/          spotlight, in-view, land-points, globe-drag
-src/utility/      locale, translate, parse-contact, rate-limit, escape-html, latitude-longitude-to-vector, radians, horizon-dots, web-gl-support
-src/content/        copy per section
-src/action/        server actions
-src/style/         tokens (Sass helpers), global
-```
+- English/Portuguese at `/en` and `/pt`; the interactive WebGL globe's land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points`.
+- Contact form: Amazon SES (SMTP, sending subdomain email.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
+- Search engines: per-locale metadata, share images, JSON-LD, sitemap, robots, manifest.
 
 ## Commands
 
