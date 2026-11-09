@@ -12,7 +12,7 @@ const allow = createRateLimiter({ window: 60 * 60 * 1000, maximum: 5 });
 /**
  * Sends a contact form message to the Sharadox inbox through the email server in the `EMAIL_SERVER_*` environment
  * variables (Amazon SES over SMTP), with the visitor as reply-to. The sender is `EMAIL_SENDER_ADDRESS`, an address on
- * the sending subdomain verified in SES (mail.sharadox.com), so the main domain's reputation stays separate.
+ * the sending subdomain verified in SES (email.sharadox.com), so the main domain's reputation stays separate.
  */
 export async function sendContact(_: ContactState, form: FormData): Promise<ContactState> {
   const parsed = parseContact(form);
