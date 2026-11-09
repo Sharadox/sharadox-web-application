@@ -6,7 +6,7 @@ const src = fileURLToPath(new URL("./src", import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
-  resolve: { alias: { "@": src } },
+  resolve: { alias: { "@sharadox/sharadox-web-application": src } },
   css: { preprocessorOptions: { scss: { loadPaths: [src] } } },
   test: {
     environment: "happy-dom",

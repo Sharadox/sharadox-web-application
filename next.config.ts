@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 
 const config: NextConfig = {
-  // Lets stylesheets `@use "styles/tokens"` from anywhere under src/.
+  // Lets stylesheets `@use "style/token"` from anywhere under src/.
   sassOptions: { loadPaths: [fileURLToPath(new URL("./src", import.meta.url))] },
   async redirects() {
     return [
