@@ -9,7 +9,7 @@ Built on the Sharadox engineering standard (see `template-web-application`): Typ
 This application is thin: routes (`src/app`), global styles (`src/style/global`), configuration, the contact form's server action (`src/action/send-contact`) and the globe land-points generator (`src/script/globe-points`). Everything the site is made of lives in [`@sharadox/sharadox-web-library`](https://github.com/Sharadox/sharadox-web-library); generic pieces come from [`@sharadox/web-library`](https://github.com/Sharadox/web-library) and email from [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library).
 
 - English/Portuguese at `/en` and `/pt`; the interactive WebGL globe's land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points`.
-- Contact form: Amazon SES (SMTP, sending subdomain email.sharadox.com) → email@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
+- Contact form: Amazon SES (SMTP, sending subdomain email.sharadox.com) → contact@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
 - Search engines: per-locale metadata, share images, JSON-LD, sitemap, robots, manifest.
 
 ## Commands
