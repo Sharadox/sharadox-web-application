@@ -17,6 +17,7 @@ test("both languages render with full SEO metadata", async ({ page }) => {
       "Organization",
       "WebSite",
     ]);
+    expect(structuredData["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(5);
   }
 });
 
@@ -32,11 +33,36 @@ test("share image, sitemap and robots are served", async ({ request }) => {
   }
 });
 
-test("language switch moves between /en and /pt", async ({ page }) => {
-  test.setTimeout(20_000);
-  await page.goto("/en");
-  await page.getByRole("group", { name: "Language" }).getByRole("link", { name: "PT" }).click();
+test("the language follows the browser until the visitor picks one, then is remembered", async ({ browser }) => {
+  test.setTimeout(30_000);
+  const context = await browser.newContext({ locale: "pt-PT" });
+  const page = await context.newPage();
+  await page.goto("/");
   await expect(page).toHaveURL(/\/pt$/);
+  await page.getByRole("group", { name: "Idioma" }).getByRole("link", { name: "EN" }).click();
+  await expect(page).toHaveURL(/\/en$/);
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/en$/);
+  await context.close();
+});
+
+test("the style follows the device until the visitor picks one, then is remembered", async ({ browser }) => {
+  const context = await browser.newContext({ colorScheme: "light" });
+  const page = await context.newPage();
+  const html = page.locator("html");
+  await page.goto("/en");
+  await expect(html).toHaveAttribute("data-style", "white");
+  const picker = page.getByRole("banner").getByRole("radiogroup", { name: "Style" });
+  await expect(picker.getByRole("radio", { name: "System" })).toBeChecked();
+  await picker.getByRole("radio", { name: "Black" }).click();
+  await expect(html).toHaveAttribute("data-style", "black");
+  await page.reload();
+  await expect(html).toHaveAttribute("data-style", "black");
+  await expect(picker.getByRole("radio", { name: "Black" })).toBeChecked();
+  await picker.getByRole("radio", { name: "System" }).click();
+  await page.reload();
+  await expect(html).toHaveAttribute("data-style", "white");
+  await context.close();
 });
 
 test("contact form falls back to the email address when sending is unavailable", async ({ page }) => {
@@ -45,7 +71,8 @@ test("contact form falls back to the email address when sending is unavailable",
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");
   await form.getByLabel("Email").fill("test@example.com");
-  await form.getByLabel("What are you building?").fill("A website.");
+  await form.getByLabel("Graphic Design").check();
+  await form.getByLabel("Tell us about your project").fill("A website.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
   await form.getByRole("button", { name: /Send message/ }).click();
   await expect(form.getByRole("alert")).toContainText("email@sharadox.com");

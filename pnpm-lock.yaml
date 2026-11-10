@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@sharadox/sharadox-web-library':
-        specifier: ^0.3.0
-        version: 0.3.0(@playwright/test@1.65.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.4.0
+        version: 0.4.0(@playwright/test@1.65.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.2.0
+        version: 0.2.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       geist:
         specifier: ^1.4.0
         version: 1.9.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))
@@ -719,16 +719,16 @@ packages:
     resolution: {integrity: sha512-7NveCloeJckm9e+hXYVrvHBpD1eqhIoi/Ze6uC1kDLsSmc4wkKNAiszeEFMzC6zsJt+SUWi8sOAJfyVoj2P8bg==}
     engines: {node: '>=20'}
 
-  '@sharadox/sharadox-web-library@0.3.0':
-    resolution: {integrity: sha512-zIvKfXY4AMw3Ryq1M+p1wD4xOS8fT5lEw3adM9Bmg/mu5wACDXT8FKY9kF8xY3kR4cQmJIWEaXVhg5Bauq4SLQ==}
+  '@sharadox/sharadox-web-library@0.4.0':
+    resolution: {integrity: sha512-Uj5LK+e8WsSZGy0+5CrGFXeVzjkmPdq73mUVwr/CtHiGPxLx69FYVBwjnunsBXLibJx0YH/ag91EDgbbGyzAsA==}
     engines: {node: '>=20'}
     peerDependencies:
       next: '>=16'
       react: '>=19'
       react-dom: '>=19'
 
-  '@sharadox/web-library@0.1.0':
-    resolution: {integrity: sha512-Q8wI0BIZMq1Dr0thvCobmRAECJWFmjpO5aOK588UrzsPZRWyOQUqNzLomi6G2QKtvY/RVJvYO7oyplG6dynQJQ==}
+  '@sharadox/web-library@0.2.0':
+    resolution: {integrity: sha512-6NS6nW/L8vzjqJFQk93eG/y1fYJ7lUTv+35ihq+1maGXegkb6/Af/RIbSkHEgh4xJtDDx6lOx9yAF//qmZSqig==}
     engines: {node: '>=20'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -3219,11 +3219,11 @@ snapshots:
     dependencies:
       nodemailer: 10.4.0
 
-  '@sharadox/sharadox-web-library@0.3.0(@playwright/test@1.65.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.4.0(@playwright/test@1.65.0)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
       '@sharadox/email-web-library': 0.2.0
-      '@sharadox/web-library': 0.1.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/web-library': 0.2.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1)
       react: 19.3.1
@@ -3242,7 +3242,7 @@ snapshots:
       - react-native
       - vue
 
-  '@sharadox/web-library@0.1.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/web-library@0.2.0(@playwright/test@1.65.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       lenis: 1.3.27(react@19.3.1)
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3947,7 +3947,7 @@ snapshots:
       eslint: 9.39.5
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint@9.39.5)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.5)
       eslint-plugin-react: 7.37.5(eslint@9.39.5)
       eslint-plugin-react-hooks: 7.1.1(eslint@9.39.5)
@@ -3984,7 +3984,7 @@ snapshots:
       tinyglobby: 0.2.17
       unrs-resolver: 1.13.0
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -3999,7 +3999,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.5):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.72.1(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5))(eslint@9.39.5))(eslint@9.39.5):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.2.0
