@@ -71,9 +71,9 @@ test("contact form falls back to the email address when sending is unavailable",
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");
   await form.getByLabel("Email").fill("test@example.com");
-  await form.getByLabel("Graphic Design").check();
+  await form.getByLabel("Logo").check();
   await form.getByLabel("Tell us about your project").fill("A website.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
-  await form.getByRole("button", { name: /Send message/ }).click();
+  await form.getByRole("button", { name: /Send Message/ }).click();
   await expect(form.getByRole("alert")).toContainText("email@sharadox.com");
 });
