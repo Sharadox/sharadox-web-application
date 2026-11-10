@@ -1,14 +1,14 @@
 import { expect, test } from "@playwright/test";
 import { prepareVisualSnapshot } from "@sharadox/web-library/test/visual-snapshot";
 
-// Black (dark devices) in both languages, and White (light devices) once.
-for (const [locale, colorScheme, name] of [
-  ["en", "dark", "home-en"],
-  ["pt", "dark", "home-pt"],
-  ["en", "light", "home-en-white"],
+// The default style (Black) in both languages, and White once, as a visitor who picked it.
+for (const [locale, style, name] of [
+  ["en", undefined, "home-en"],
+  ["pt", undefined, "home-pt"],
+  ["en", "white", "home-en-white"],
 ] as const) {
   test(`${name} looks right`, async ({ page }) => {
-    await page.emulateMedia({ colorScheme });
+    if (style) await page.addInitScript((chosen) => localStorage.setItem("style", chosen), style);
     await prepareVisualSnapshot(page, `/${locale}`);
     await expect(page).toHaveScreenshot(`${name}.png`, {
       fullPage: true,
