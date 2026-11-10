@@ -1,16 +1,12 @@
+/* Colours come from the active style (Black, White…), written into <head> by StyleScript from content/style. */
 :root {
-  --background: #000;
-  --foreground: #fff;
-  --foreground-2: #a1a1a1;
-  --foreground-3: #6b6b6b;
-  --line: rgba(255, 255, 255, 0.09);
-  --line-2: rgba(255, 255, 255, 0.16);
-  --card: #0a0a0a;
   --sans-serif: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --monospace: var(--font-geist-mono), ui-monospace, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --padding: clamp(20px, 4vw, 56px);
-  --maximum-width: 1280px;
+  /* Space outside the grid frame's side rails, and inside them. */
+  --gutter: clamp(12px, 3vw, 40px);
+  --padding: clamp(18px, 3.4vw, 48px);
+  --maximum-width: 1240px;
 }
 *,
 *::before,
@@ -21,6 +17,9 @@ html {
   background: var(--background);
   color: var(--foreground);
   -webkit-text-size-adjust: 100%;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 html.lenis,
 html.lenis body {
@@ -69,11 +68,11 @@ p {
   margin: 0;
 }
 ::selection {
-  background: #fff;
-  color: #000;
+  background: var(--foreground);
+  color: var(--background);
 }
 :focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--foreground);
   outline-offset: 3px;
   border-radius: 6px;
 }

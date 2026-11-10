@@ -19,8 +19,8 @@
     "globe-points": "node src/script/globe-points/index.ts"
   },
   "dependencies": {
-    "@sharadox/sharadox-web-library": "^0.3.0",
-    "@sharadox/web-library": "^0.1.0",
+    "@sharadox/sharadox-web-library": "^0.4.0",
+    "@sharadox/web-library": "^0.2.0",
     "geist": "^1.4.0",
     "next": "16.4.5",
     "react": "19.3.1",
