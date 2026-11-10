@@ -5,15 +5,23 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { StructuredData } from "@sharadox/sharadox-web-library/component/structured-data";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
+import { STYLE_CONFIGURATION } from "@sharadox/sharadox-web-library/content/style";
 import { languageTag, openGraphLocale } from "@sharadox/web-library/internationalization/locale";
 import { isSiteLocale, LOCALES } from "@sharadox/sharadox-web-library/utility/locale";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/web-library/internationalization/translate";
+import { StyleScript } from "@sharadox/web-library/style/style-script";
 import "@sharadox/sharadox-web-application/style/global/index.scss";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LOCALES.map((locale) => ({ locale }));
-export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+  colorScheme: "dark light",
+};
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
@@ -51,7 +59,11 @@ export default async function Layout({ children, params }: LayoutProps<"/[locale
   const { locale } = await params;
   if (!isSiteLocale(locale)) notFound();
   return (
-    <html lang={languageTag(locale)} className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    // The style script sets data-style on <html> before React loads, so the attributes differ on purpose.
+    <html lang={languageTag(locale)} className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <StyleScript configuration={STYLE_CONFIGURATION} />
+      </head>
       <body id="top">
         <StructuredData locale={locale} />
         {children as ReactNode}
