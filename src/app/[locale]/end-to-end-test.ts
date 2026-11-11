@@ -65,6 +65,34 @@ test("the licence page shows the Portuguese original and the English translation
   }
 });
 
+test("a chosen style stays when the language changes", async ({ page }) => {
+  await page.goto("/en");
+  await page.getByRole("radiogroup", { name: "Style" }).first().getByRole("radio", { name: "White" }).click();
+  await page.getByRole("group", { name: "Language" }).getByRole("link", { name: "PT" }).click();
+  await expect(page).toHaveURL(/\/pt$/);
+  await expect(page.locator("html")).toHaveAttribute("data-style-color", "white");
+});
+
+test("addresses without a language get the remembered one, or the default", async ({ page, context }) => {
+  await page.goto("/licence");
+  await expect(page).toHaveURL(/\/en\/licence$/);
+  await context.addCookies([{ name: "locale", value: "pt", url: new URL(page.url()).origin }]);
+  await page.goto("/license");
+  await expect(page).toHaveURL(/\/pt\/licence$/);
+});
+
+test("missing pages answer 404 with the site's own page, in their language", async ({ page, request }) => {
+  for (const [path, heading] of [
+    ["/pt/nada-aqui", "Esta página está fora do mapa."],
+    ["/report.pdf", "This page is off the map."],
+  ] as const) {
+    expect((await request.get(path)).status(), path).toBe(404);
+    await page.goto(path);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading);
+    await expect(page.getByText(path, { exact: true })).toBeVisible();
+  }
+});
+
 test("the five services are in the search engine offer catalog", async ({ page }) => {
   await page.goto("/en");
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent()) ?? "{}");
