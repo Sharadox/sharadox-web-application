@@ -32,6 +32,6 @@ Work on `<feature>.development`, merge it into `development` (squash), check it 
 
 `EMAIL_SERVER_HOST`, `EMAIL_SERVER_PORT`, `EMAIL_SERVER_USERNAME`, `EMAIL_SERVER_PASSWORD` (Amazon SES SMTP credentials) and `EMAIL_SENDER_ADDRESS`; production and preview. Turborepo remote cache: `TURBO_REMOTE_CACHE_SIGNATURE_KEY`.
 
-## Licence
+## License
 
 The source is public so anyone can read and verify it, but it is **not open source**: Licença Sharadox de Código Verificável, versão 0.1.0 ([português](LICENCA.md), the binding text · [English translation](LICENSE.md)). The Sharadox name, brand and design are reserved.

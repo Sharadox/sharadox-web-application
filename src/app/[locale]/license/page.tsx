@@ -3,9 +3,9 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
-import { Licence } from "@sharadox/sharadox-web-library/component/licence";
+import { License } from "@sharadox/sharadox-web-library/component/license";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
-import { LICENCE } from "@sharadox/sharadox-web-library/content/licence";
+import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
@@ -21,32 +21,32 @@ const READ = {
   en: () => readFile(join(process.cwd(), "LICENSE.md"), "utf8"),
 } as const satisfies Record<Locale, () => Promise<string>>;
 
-export async function generateMetadata({ params }: PageProps<"/[locale]/licence">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/[locale]/license">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
-  const title = translate(LICENCE.title, locale);
+  const title = translate(LICENSE.title, locale);
   return pageMetadata({
     name: SITE.name,
     url: SITE.url,
     locales: LOCALES,
     locale,
-    path: LICENCE.path,
+    path: LICENSE.path,
     title: separate(title, SITE.name),
-    description: translate(LICENCE.description, locale),
+    description: translate(LICENSE.description, locale),
   });
 }
 
-export default async function LicencePage({ params }: PageProps<"/[locale]/licence">) {
+export default async function LicensePage({ params }: PageProps<"/[locale]/license">) {
   const locale = (await params).locale as Locale;
   const markdown = await READ[locale]();
   return (
     <>
       <SmoothScroll />
       <Cursor />
-      <Navigation locale={locale} path={LICENCE.path} />
+      <Navigation locale={locale} path={LICENSE.path} />
       <main>
-        <Licence locale={locale} markdown={markdown} />
+        <License locale={locale} markdown={markdown} />
       </main>
-      <Footer locale={locale} path={LICENCE.path} />
+      <Footer locale={locale} path={LICENSE.path} />
       <Consent locale={locale} />
     </>
   );

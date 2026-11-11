@@ -43,17 +43,17 @@ describeConsent({
   expectedGranted: { required: true, analytics: true, marketing: false },
 });
 
-test("the licence page shows the Portuguese original and the English translation, and links back home", async ({
+test("the license page shows the Portuguese original and the English translation, and links back home", async ({
   page,
   request,
 }) => {
   await page.goto("/pt");
   await page.getByRole("contentinfo").getByRole("link", { name: "Licença" }).click();
-  await expect(page).toHaveURL(/\/pt\/licence$/);
+  await expect(page).toHaveURL(/\/pt\/license$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Licença Sharadox de Código Verificável");
   await page.getByRole("contentinfo").getByRole("link", { name: "English" }).click();
-  await expect(page).toHaveURL(/\/en\/licence$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source Licence");
+  await expect(page).toHaveURL(/\/en\/license$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source License");
   await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web Applications" })).toHaveAttribute(
     "href",
     "/en#web-application",
@@ -76,7 +76,7 @@ test("page titles carry the whole slogan, full stop included", async ({ page }) 
 });
 
 test("every redirect is temporary", async ({ request }) => {
-  for (const path of ["/", "/licence", "/en/license"]) {
+  for (const path of ["/", "/license"]) {
     const response = await request.get(path, { maxRedirects: 0 });
     expect(response.status(), path).toBe(307);
   }
@@ -91,11 +91,11 @@ test("a chosen style stays when the language changes", async ({ page }) => {
 });
 
 test("addresses without a language get the remembered one, or the default", async ({ page, context }) => {
-  await page.goto("/licence");
-  await expect(page).toHaveURL(/\/en\/licence$/);
+  await page.goto("/license");
+  await expect(page).toHaveURL(/\/en\/license$/);
   await context.addCookies([{ name: "locale", value: "pt", url: new URL(page.url()).origin }]);
   await page.goto("/license");
-  await expect(page).toHaveURL(/\/pt\/licence$/);
+  await expect(page).toHaveURL(/\/pt\/license$/);
 });
 
 test("missing pages answer 404 with the site's own page, in their language", async ({ page, request }) => {
