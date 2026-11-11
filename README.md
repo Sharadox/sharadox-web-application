@@ -20,13 +20,13 @@ Visual regression tests freeze time with Playwright's clock, scroll through the 
 
 ## Branches and addresses
 
-| Branch              | Address                                | Who can open it  |
-| ------------------- | -------------------------------------- | ---------------- |
-| `index`             | https://sharadox.com                   | everyone         |
-| `preview`           | https://preview.sharadox.com           | Vercel team only |
-| `<feature>.preview` | https://<feature>.preview.sharadox.com | Vercel team only |
+| Branch                  | Address                                    | Who can open it  |
+| ----------------------- | ------------------------------------------ | ---------------- |
+| `index`                 | https://sharadox.com                       | everyone         |
+| `development`           | https://development.sharadox.com           | Vercel team only |
+| `<feature>.development` | https://<feature>.development.sharadox.com | Vercel team only |
 
-Work on `<feature>.preview`, merge it into `preview` (squash), check it there, then merge `preview` into `index` (merge commit). The branch-domain workflow adds and removes each feature branch's address.
+Work on `<feature>.development`, merge it into `development` (squash), check it there, then merge `development` into `index` (merge commit). The branch-domain workflow adds and removes each feature branch's address.
 
 ## Environment (Vercel)
 
