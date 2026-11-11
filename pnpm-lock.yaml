@@ -21,8 +21,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.9.1
-        version: 0.9.1(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.10.0
+        version: 0.10.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.1)
@@ -46,8 +46,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(eslint-config-next@16.4.5(@typescript-eslint/parser@8.72.2(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)
       '@sharadox/next-js-configuration-web-library':
-        specifier: ^0.1.0
-        version: 0.1.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.1.1
+        version: 0.1.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/playwright-configuration-web-library':
         specifier: ^0.1.0
         version: 0.1.0(@playwright/test@1.65.0)
@@ -808,8 +808,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/next-js-configuration-web-library@0.1.0':
-    resolution: {integrity: sha512-ZBZLoGXIAxipNTXbZHZkHlhOsGcHzM5FiSf01gyt+/QQfqs0lMie+SqA2lNGFhzp+keE+gnjPd55m/p9vMLhEQ==}
+  '@sharadox/next-js-configuration-web-library@0.1.1':
+    resolution: {integrity: sha512-M9/teGiQnc8Qi3x9M9yXmqniCPGafud6QN/0SgRqCRlFaSM8ZpgFNk+UCyOMDdd+kb13GOmjKTGWXuhs4oSyCg==}
     engines: {node: '>=24'}
     peerDependencies:
       next: '>=16'
@@ -836,8 +836,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.9.1':
-    resolution: {integrity: sha512-AhBG9onMx2TjWeSO/vc/J1hcYT/D2IW9iFcKiKJCPpkjR+yHWjz4zthasd8jD95w0fkKRBv4E3B9JAkZ0eZfqA==}
+  '@sharadox/sharadox-web-library@0.10.0':
+    resolution: {integrity: sha512-LHOSg1wizQ/3qoX1TQSqEPhwd98NI5vh7T5wGN/5FGxbtKDRb+NIAdw4xjyWTX0QfckLEdQI5E0kVK6lBWtAXA==}
     engines: {node: '>=24'}
     peerDependencies:
       next: '>=16'
@@ -3495,7 +3495,7 @@ snapshots:
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
 
-  '@sharadox/next-js-configuration-web-library@0.1.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+  '@sharadox/next-js-configuration-web-library@0.1.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/internationalization-web-library': 0.1.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/web-library': 0.5.0
@@ -3523,7 +3523,7 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.9.1(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.10.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.1.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
