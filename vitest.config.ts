@@ -1,17 +1,3 @@
-import react from "@vitejs/plugin-react";
-import { fileURLToPath } from "node:url";
-import { defineConfig } from "vitest/config";
+import { defineApplicationTest } from "@sharadox/vitest-configuration-web-library/application-test";
 
-const src = fileURLToPath(new URL("./src", import.meta.url));
-
-export default defineConfig({
-  plugins: [react()],
-  resolve: { alias: { "@sharadox/sharadox-web-application": src } },
-  css: { preprocessorOptions: { scss: { loadPaths: [src] } } },
-  test: {
-    environment: "happy-dom",
-    css: { modules: { classNameStrategy: "non-scoped" } },
-    include: ["src/**/?(*-)unit-test.{ts,tsx}"],
-    benchmark: { include: ["src/**/?(*-)benchmark-test.{ts,tsx}"] },
-  },
-});
+export default defineApplicationTest({ root: new URL("./", import.meta.url) });

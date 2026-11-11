@@ -10,3 +10,5 @@ documentation/
 test-results/
 playwright-report/
 .vercel
+turbo.json
+/coverage/
