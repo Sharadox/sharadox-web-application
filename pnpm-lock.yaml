@@ -786,8 +786,8 @@ packages:
     resolution: {integrity: sha512-W0fBeO5ZnBikc2KuLaEfxyNe4yB1iSSjKbrxIyfXczoItFt1BBPIYdmrMYNqEfxQhGvDj12MGLPP6ixU/BEWeQ==}
     engines: {node: '>=26'}
 
-  '@sharadox/globe-web-library@0.1.1':
-    resolution: {integrity: sha512-Yk9OW8MTZMYvBrnng38wBdGDXKyyk6EkfOcE7uTxwML12/J8CAnjwJrT+TDPGZbzuBj1jp9TRYy9XdzczBgawg==}
+  '@sharadox/globe-web-library@0.1.2':
+    resolution: {integrity: sha512-L8IZmPbN1iUzgoWuVylYs6VS+QQhVqw3JcjkKz+c5lTSOVLZqAiJBvZUlW6eLKJQabHmIHXw2ViUBgMAhjcXBg==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -3463,7 +3463,7 @@ snapshots:
       '@sharadox/email-web-library': 0.2.2
       '@sharadox/web-library': 0.5.1
 
-  '@sharadox/globe-web-library@0.1.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/globe-web-library@0.1.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
       '@sharadox/web-library': 0.5.1
@@ -3528,7 +3528,7 @@ snapshots:
       '@sharadox/animation-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library': 0.1.1
-      '@sharadox/globe-web-library': 0.1.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/globe-web-library': 0.1.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/metadata-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
