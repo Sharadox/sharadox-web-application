@@ -7,6 +7,7 @@ for (const [path, style, name] of [
   ["/pt", undefined, "home-pt"],
   ["/en", "white", "home-en-white"],
   ["/pt/licence", undefined, "licence-pt"],
+  ["/en/off-the-map", undefined, "not-found-en"],
 ] as const) {
   test(`${name} looks right`, async ({ page }) => {
     if (style) await page.addInitScript((chosen) => localStorage.setItem("style", chosen), style);
