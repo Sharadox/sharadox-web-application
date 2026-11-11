@@ -20,7 +20,7 @@
   "devDependencies": {
     "@playwright/test": "1.65.0",
     "@sharadox/es-lint-configuration-web-library": "^0.1.1",
-    "@sharadox/next-js-configuration-web-library": "^0.1.0",
+    "@sharadox/next-js-configuration-web-library": "^0.1.1",
     "@sharadox/playwright-configuration-web-library": "^0.1.0",
     "@sharadox/prettier-configuration-web-library": "^0.1.0",
     "@sharadox/test-web-library": "^0.3.0",
@@ -68,7 +68,7 @@
     "@sharadox/metadata-web-library": "^0.1.0",
     "@sharadox/pointer-web-library": "^0.1.0",
     "@sharadox/scroll-web-library": "^0.1.0",
-    "@sharadox/sharadox-web-library": "^0.9.1",
+    "@sharadox/sharadox-web-library": "^0.10.0",
     "@sharadox/style-web-library": "^0.2.0",
     "geist": "^1.9.2",
     "next": "16.4.5",

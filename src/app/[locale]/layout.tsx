@@ -9,6 +9,7 @@ import { StyleScript } from "@sharadox/style-web-library/style-script";
 import { StructuredData } from "@sharadox/sharadox-web-library/component/structured-data";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
+import { SLOGAN } from "@sharadox/sharadox-web-library/content/slogan";
 import { STYLES } from "@sharadox/sharadox-web-library/content/style";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import "@sharadox/sharadox-web-application/style/global/index.scss";
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     url: SITE.url,
     locales: LOCALES,
     locale,
-    title: separate(SITE.name, translate(SITE.slogan, locale)),
+    title: separate(SITE.name, translate(SLOGAN, locale)),
     titleTemplate: separate("%s", SITE.name),
     description: translate(SITE.description, locale),
     keywords: SITE.keywords[locale],

@@ -65,6 +65,23 @@ test("the licence page shows the Portuguese original and the English translation
   }
 });
 
+test("page titles carry the whole slogan, full stop included", async ({ page }) => {
+  for (const [path, title] of [
+    ["/en", "Sharadox • Technologies that simplify the world."],
+    ["/pt", "Sharadox • Tecnologias que simplificam o mundo."],
+  ] as const) {
+    await page.goto(path);
+    await expect(page).toHaveTitle(title);
+  }
+});
+
+test("every redirect is temporary", async ({ request }) => {
+  for (const path of ["/", "/licence", "/en/license"]) {
+    const response = await request.get(path, { maxRedirects: 0 });
+    expect(response.status(), path).toBe(307);
+  }
+});
+
 test("a chosen style stays when the language changes", async ({ page }) => {
   await page.goto("/en");
   await page.getByRole("radiogroup", { name: "Style" }).first().getByRole("radio", { name: "White" }).click();

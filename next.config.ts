@@ -16,7 +16,7 @@ export default defineNextConfiguration({
         {
           source: `/:locale(${LOCALES.locales.join("|")})/license`,
           destination: `/:locale${LICENCE.path}`,
-          permanent: true,
+          permanent: false,
         },
       ];
     },
