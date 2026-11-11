@@ -1,7 +1,6 @@
-import type { MetadataRoute } from "next";
+import { robots } from "@sharadox/metadata-web-library/robots";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { robots as robotRules } from "@sharadox/web-library/search-engine/robots";
 
-export default function robots(): MetadataRoute.Robots {
-  return robotRules({ url: SITE.url, indexable: true });
+export default function robotRules() {
+  return robots({ url: SITE.url, indexable: true });
 }

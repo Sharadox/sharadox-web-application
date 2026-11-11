@@ -20,18 +20,18 @@ Visual regression tests freeze time with Playwright's clock, scroll through the 
 
 ## Branches and addresses
 
-| Branch              | Address                                | Who can open it  |
-| ------------------- | -------------------------------------- | ---------------- |
-| `index`             | https://sharadox.com                   | everyone         |
-| `preview`           | https://preview.sharadox.com           | Vercel team only |
-| `<feature>.preview` | https://<feature>.preview.sharadox.com | Vercel team only |
+| Branch                  | Address                                    | Who can open it  |
+| ----------------------- | ------------------------------------------ | ---------------- |
+| `index`                 | https://sharadox.com                       | everyone         |
+| `development`           | https://development.sharadox.com           | Vercel team only |
+| `<feature>.development` | https://<feature>.development.sharadox.com | Vercel team only |
 
-Work on `<feature>.preview`, merge it into `preview` (squash), check it there, then merge `preview` into `index` (merge commit). The branch-domain workflow adds and removes each feature branch's address.
+Work on `<feature>.development`, merge it into `development` (squash), check it there, then merge `development` into `index` (merge commit). The branch-domain workflow adds and removes each feature branch's address.
 
 ## Environment (Vercel)
 
 `EMAIL_SERVER_HOST`, `EMAIL_SERVER_PORT`, `EMAIL_SERVER_USERNAME`, `EMAIL_SERVER_PASSWORD` (Amazon SES SMTP credentials) and `EMAIL_SENDER_ADDRESS`; production and preview. Turborepo remote cache: `TURBO_REMOTE_CACHE_SIGNATURE_KEY`.
 
-## Licence
+## License
 
 The source is public so anyone can read and verify it, but it is **not open source**: Licença Sharadox de Código Verificável, versão 0.1.0 ([português](LICENCA.md), the binding text · [English translation](LICENSE.md)). The Sharadox name, brand and design are reserved.

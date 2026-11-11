@@ -1,11 +1,3 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTypescript from "eslint-config-next/typescript";
-import prettier from "eslint-config-prettier/flat";
+import { nextJsApplicationConfiguration } from "@sharadox/es-lint-configuration-web-library/next-js-application";
 
-export default defineConfig([
-  ...nextVitals,
-  ...nextTypescript,
-  prettier,
-  globalIgnores([".next/**", "documentation/**", "test-results/**", "playwright-report/**", "next-env.d.ts"]),
-]);
+export default nextJsApplicationConfiguration();
