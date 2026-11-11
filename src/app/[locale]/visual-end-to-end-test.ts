@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { prepareVisualSnapshot } from "@sharadox/web-library/test/visual-snapshot";
+import { prepareVisualSnapshot } from "@sharadox/test-web-library/visual-snapshot";
 
 // The default style (Black) in both languages, and White once, as a visitor who picked it.
 for (const [locale, style, name] of [
