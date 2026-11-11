@@ -43,6 +43,28 @@ describeConsent({
   expectedGranted: { required: true, analytics: true, marketing: false },
 });
 
+test("the licence page shows the Portuguese original and the English translation, and links back home", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/pt");
+  await page.getByRole("contentinfo").getByRole("link", { name: "Licença" }).click();
+  await expect(page).toHaveURL(/\/pt\/licence$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Licença Sharadox de Código Verificável");
+  await page.getByRole("contentinfo").getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en\/licence$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source Licence");
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web Applications" })).toHaveAttribute(
+    "href",
+    "/en#web-application",
+  );
+  for (const path of ["/LICENCA.md", "/LICENSE.md"]) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(200);
+    expect(await response.text()).toContain("Sharadox");
+  }
+});
+
 test("the five services are in the search engine offer catalog", async ({ page }) => {
   await page.goto("/en");
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent()) ?? "{}");
