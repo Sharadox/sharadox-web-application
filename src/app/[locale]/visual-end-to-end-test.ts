@@ -14,7 +14,9 @@ for (const [path, style, name] of [
     await prepareVisualSnapshot(page, path);
     await expect(page).toHaveScreenshot(`${name}.png`, {
       fullPage: true,
-      mask: [page.locator("canvas")],
+      // The canvas's container, not the canvas: its size comes from CSS alone, while the canvas is resized by script
+      // and can change while Playwright stretches the window for the full-page shot.
+      mask: [page.locator("div:has(> canvas)")],
       timeout: 40000,
     });
   });
