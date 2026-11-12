@@ -68,7 +68,7 @@
     "@sharadox/metadata-web-library": "^0.1.2",
     "@sharadox/pointer-web-library": "^0.1.1",
     "@sharadox/scroll-web-library": "^0.1.1",
-    "@sharadox/sharadox-web-library": "^0.13.1",
+    "@sharadox/sharadox-web-library": "^0.13.2",
     "@sharadox/style-web-library": "^0.2.1",
     "geist": "^1.9.2",
     "next": "16.4.5",
