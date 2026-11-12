@@ -1,6 +1,7 @@
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { LocaleTransitionStyle } from "@sharadox/internationalization-web-library/locale-transition-style";
 import { StyleScript } from "@sharadox/style-web-library/style-script";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
@@ -21,6 +22,7 @@ export default function GlobalNotFound() {
     >
       <head>
         <StyleScript configuration={STYLES} />
+        <LocaleTransitionStyle />
       </head>
       <body id="top">
         <NotFoundPage />
