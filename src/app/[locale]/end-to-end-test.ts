@@ -82,6 +82,40 @@ test("every redirect is temporary", async ({ request }) => {
   }
 });
 
+test("switching language happens in place: no reload, no replayed entrance", async ({ page }) => {
+  await page.goto("/en");
+  await page.evaluate(() => Object.assign(window, { samePage: true }));
+  await page.mouse.wheel(0, 1200);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
+  await page.getByRole("group", { name: "Language" }).getByRole("link", { name: "PT" }).click();
+  await expect(page).toHaveURL(/\/pt$/);
+  await expect(page.locator("html")).toHaveAttribute("data-soft-navigation", "");
+  expect(await page.evaluate(() => (window as unknown as { samePage?: boolean }).samePage)).toBe(true);
+  const heroLine = page.locator("#home h1 span span").first();
+  await expect(heroLine).not.toHaveAttribute("style", /110%/);
+  // Once the skipped entrances would have finished, the page animates normally again.
+  await expect(page.locator("html")).not.toHaveAttribute("data-soft-navigation", "", { timeout: 8000 });
+});
+
+test("a service card button opens the form with its choice ticked", async ({ page }) => {
+  await page.goto("/en#services");
+  await page.getByRole("link", { name: "Build a Platform" }).click();
+  await expect(page.locator("#contact")).toBeInViewport();
+  await expect(page.locator("form").getByRole("checkbox", { name: "Platform" })).toBeChecked();
+  await expect(page.locator("form").getByRole("checkbox", { name: "Website" })).not.toBeChecked();
+});
+
+test("switching language keeps the reader on the same section", async ({ page }) => {
+  await page.goto("/en");
+  await page.locator("#process h2").scrollIntoViewIfNeeded();
+  await page
+    .locator("#process")
+    .evaluate((section) => scrollTo({ top: section.getBoundingClientRect().top + scrollY - 80, behavior: "instant" }));
+  await page.getByRole("group", { name: "Language" }).getByRole("link", { name: "PT" }).click();
+  await expect(page).toHaveURL(/\/pt$/);
+  await expect(page.locator("#process h2")).toBeInViewport();
+});
+
 test("a chosen style stays when the language changes", async ({ page }) => {
   await page.goto("/en");
   await page.getByRole("radiogroup", { name: "Style" }).first().getByRole("radio", { name: "White" }).click();
@@ -122,7 +156,7 @@ test("the contact form falls back to the email address when sending is unavailab
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");
   await form.getByLabel("Email").fill("test@example.com");
-  await form.getByLabel("Logo").check();
+  await form.getByLabel("Brand Identity").check();
   await form.getByLabel("Tell us about your project").fill("A website.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
   await form.getByRole("button", { name: /Send Message/ }).click();
