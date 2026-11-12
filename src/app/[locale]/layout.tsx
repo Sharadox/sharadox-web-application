@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
+import { LocaleTransitionStyle } from "@sharadox/internationalization-web-library/locale-transition-style";
 import { StyleScript } from "@sharadox/style-web-library/style-script";
 import { StructuredData } from "@sharadox/sharadox-web-library/component/structured-data";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
@@ -51,6 +52,7 @@ export default async function Layout({ children, params }: LayoutProps<"/[locale
     >
       <head>
         <StyleScript configuration={STYLES} />
+        <LocaleTransitionStyle />
       </head>
       <body id="top">
         <StructuredData locale={locale} />

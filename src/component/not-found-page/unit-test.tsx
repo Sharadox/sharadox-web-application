@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import { installBrowserEnvironment } from "@sharadox/test-web-library/browser-environment";
 
 const pathname = { value: "/pt/old-page" as string | null };
-vi.mock("next/navigation", () => ({ usePathname: () => pathname.value }));
+vi.mock("next/navigation", () => ({ usePathname: () => pathname.value, useRouter: () => ({ push: () => {} }) }));
 vi.mock("@sharadox/globe-web-library/globe", () => ({ Globe: () => null }));
 const { NotFoundPage } = await import("@sharadox/sharadox-web-application/component/not-found-page");
 

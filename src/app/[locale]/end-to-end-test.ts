@@ -82,6 +82,21 @@ test("every redirect is temporary", async ({ request }) => {
   }
 });
 
+test("switching language happens in place: no reload, same scroll position, no replayed entrance", async ({ page }) => {
+  await page.goto("/en");
+  await page.evaluate(() => Object.assign(window, { samePage: true }));
+  await page.mouse.wheel(0, 1200);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
+  const before = await page.evaluate(() => scrollY);
+  await page.getByRole("group", { name: "Language" }).getByRole("link", { name: "PT" }).click();
+  await expect(page).toHaveURL(/\/pt$/);
+  await expect(page.locator("html")).toHaveAttribute("data-soft-navigation", "");
+  expect(await page.evaluate(() => (window as unknown as { samePage?: boolean }).samePage)).toBe(true);
+  expect(Math.abs((await page.evaluate(() => scrollY)) - before)).toBeLessThan(40);
+  const heroLine = page.locator("#home h1 span span").first();
+  await expect(heroLine).not.toHaveAttribute("style", /110%/);
+});
+
 test("a chosen style stays when the language changes", async ({ page }) => {
   await page.goto("/en");
   await page.getByRole("radiogroup", { name: "Style" }).first().getByRole("radio", { name: "White" }).click();

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sharadox/internationalization-web-library':
-        specifier: ^0.1.2
-        version: 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.2.1
+        version: 0.2.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.1.2
         version: 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -21,8 +21,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.11.2
-        version: 0.11.2(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.12.0
+        version: 0.12.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -755,8 +755,8 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@sharadox/animation-web-library@0.1.1':
-    resolution: {integrity: sha512-f4gL89WuV3muiFz4mKISF+smUhZ1ZPI72RB0qWTEerwtU+qXYjuum/XxR8NcA0ttNDnQ5tCIZXjerFzK4FxSlQ==}
+  '@sharadox/animation-web-library@0.2.0':
+    resolution: {integrity: sha512-Va0T58agS696bKoVRBzhQf0wRl0N2pd2cwNjfTSVmfjXQ3DSVOxpQV2g00N8oppCERvl27rfFBwFZxpDVtZmTw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -786,8 +786,8 @@ packages:
     resolution: {integrity: sha512-W0fBeO5ZnBikc2KuLaEfxyNe4yB1iSSjKbrxIyfXczoItFt1BBPIYdmrMYNqEfxQhGvDj12MGLPP6ixU/BEWeQ==}
     engines: {node: '>=26'}
 
-  '@sharadox/globe-web-library@0.1.2':
-    resolution: {integrity: sha512-L8IZmPbN1iUzgoWuVylYs6VS+QQhVqw3JcjkKz+c5lTSOVLZqAiJBvZUlW6eLKJQabHmIHXw2ViUBgMAhjcXBg==}
+  '@sharadox/globe-web-library@0.2.0':
+    resolution: {integrity: sha512-RjPtQgY3+3pwqN0NAoRBwnJgfSZTcLl9/ZCwLhM4D+jtwIX+j+1j3COVKqbQm34xd+fEuo1g7CtzVFmSVejXiQ==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -796,6 +796,13 @@ packages:
 
   '@sharadox/internationalization-web-library@0.1.2':
     resolution: {integrity: sha512-Y2wFpC79Air0h4bCxU+fRBZfEmZhRA9KbjBDBZMnXSBO5EZc8LS/iMb0lAwxshuAuzYdlCxzCF9oFqo3c+GT3A==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      next: '>=16'
+      react: '>=19'
+
+  '@sharadox/internationalization-web-library@0.2.1':
+    resolution: {integrity: sha512-WJXe2zPYm20aq/n+3BZaDBDIS5LrGyfI+tY1pqICzdOHSKxp/dmjzE3eNJKnxIJot/ocwPJcLWxxdPmfU6W9Uw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -836,8 +843,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.11.2':
-    resolution: {integrity: sha512-O3cQeNZT72BhwWal0e8ia5LBZSoLiAZSZqGYoz1YB21E33h5vHXbZCsStIwjeGGRCLdf3mRBFF+mhINOBJ6O6g==}
+  '@sharadox/sharadox-web-library@0.12.0':
+    resolution: {integrity: sha512-CQkBt46Z9HnX2t0y0bX2mDKmkofysOMCJnuhFY1Ww/47TE3pOc2rGtpAvG9NMiogeRpAILCB+avJN5kaG0cxIQ==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -887,6 +894,10 @@ packages:
 
   '@sharadox/web-library@0.5.1':
     resolution: {integrity: sha512-BmFQwwAhH5NAufBZPsmrhjzlNMAQ54xMiMyXiYMQ91LZ3/RPImVDhNm0I8mOKb+YJfNRXtw5+b6TsYmHv3YJyA==}
+    engines: {node: '>=26'}
+
+  '@sharadox/web-library@0.6.0':
+    resolution: {integrity: sha512-wDZ2AqpbDzihSkHsEPEhVYeJ9lgJW6PUNT8ehYVJEuer19qsdRZCU2Mmb9nx6MVgc0i2jRaC/LeeUywys3IvKw==}
     engines: {node: '>=26'}
 
   '@shikijs/engine-oniguruma@3.23.0':
@@ -3423,9 +3434,9 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/web-library': 0.5.1
+      '@sharadox/web-library': 0.6.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
@@ -3463,10 +3474,10 @@ snapshots:
       '@sharadox/email-web-library': 0.2.2
       '@sharadox/web-library': 0.5.1
 
-  '@sharadox/globe-web-library@0.1.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/globe-web-library@0.2.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
-      '@sharadox/web-library': 0.5.1
+      '@sharadox/web-library': 0.6.0
       d3-geo: 3.1.2
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
@@ -3485,6 +3496,12 @@ snapshots:
   '@sharadox/internationalization-web-library@0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.1
+      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      react: 19.3.1
+
+  '@sharadox/internationalization-web-library@0.2.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.6.0
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
 
@@ -3523,18 +3540,18 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.11.2(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.12.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/animation-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/animation-web-library': 0.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library': 0.1.1
-      '@sharadox/globe-web-library': 0.1.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+      '@sharadox/globe-web-library': 0.2.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/internationalization-web-library': 0.2.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/metadata-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library': 0.1.1(react@19.3.1)
       '@sharadox/style-web-library': 0.2.1(react@19.3.1)
-      '@sharadox/web-library': 0.5.1
+      '@sharadox/web-library': 0.6.0
       marked: 17.0.6
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
@@ -3585,6 +3602,8 @@ snapshots:
       - vite
 
   '@sharadox/web-library@0.5.1': {}
+
+  '@sharadox/web-library@0.6.0': {}
 
   '@shikijs/engine-oniguruma@3.23.0':
     dependencies:
