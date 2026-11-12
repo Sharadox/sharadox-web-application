@@ -21,8 +21,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.13.0
-        version: 0.13.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.13.1
+        version: 0.13.1(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -843,8 +843,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.13.0':
-    resolution: {integrity: sha512-sKHKKwrxYvd9W7SQzDn1oH/bTSknM1PiFZ2JUmKjScHN+FUJ+3R3vcrKsTjWLXQPHANdNU6jo5WrOWkQci00Mw==}
+  '@sharadox/sharadox-web-library@0.13.1':
+    resolution: {integrity: sha512-hlEFs8RCx+l/NLhl+qZ/PIuFMgOPUSpQ9GfQdxPkG/B4eEFS76SO3MzNJer/yDJ3TRxjMsZgB2XSgdKdCCsjig==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3540,7 +3540,7 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.13.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.13.1(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.2.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
