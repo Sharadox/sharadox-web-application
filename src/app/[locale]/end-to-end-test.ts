@@ -219,3 +219,12 @@ test("on a phone the menu lists every section and scrolls when held sideways", a
     await expect(menu).toBeHidden();
   }
 });
+
+test("tapping the logo closes the phone menu", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await expect(page.locator("#menu")).toBeVisible();
+  await page.getByRole("banner").getByRole("link").first().click();
+  await expect(page.locator("#menu")).toHaveCount(0);
+});
