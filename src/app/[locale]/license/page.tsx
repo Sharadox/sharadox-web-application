@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/license"
     path: LICENSE.path,
     title: separate(title, SITE.name),
     description: translate(LICENSE.description, locale),
+    image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
 }
 

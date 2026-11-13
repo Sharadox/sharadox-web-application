@@ -65,10 +65,10 @@
   "license": "SEE LICENSE IN LICENCA.md",
   "dependencies": {
     "@sharadox/internationalization-web-library": "^0.2.3",
-    "@sharadox/metadata-web-library": "^0.2.0",
+    "@sharadox/metadata-web-library": "^0.3.0",
     "@sharadox/pointer-web-library": "^0.1.1",
     "@sharadox/scroll-web-library": "^0.2.0",
-    "@sharadox/sharadox-web-library": "^0.14.0",
+    "@sharadox/sharadox-web-library": "^0.15.0",
     "@sharadox/style-web-library": "^0.2.1",
     "@sharadox/web-library": "^0.7.0",
     "geist": "^1.9.2",

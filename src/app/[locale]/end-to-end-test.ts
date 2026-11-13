@@ -9,6 +9,9 @@ describeSearchEngine({
   pages: [
     { path: "/en", language: "en", heading: "Technologies" },
     { path: "/pt", language: "pt-PT", heading: "Tecnologias" },
+    { path: "/en/license", language: "en", heading: "Sharadox Verifiable Source License" },
+    { path: "/en/privacy", language: "en", heading: "Privacy Policy" },
+    { path: "/pt/privacy", language: "pt-PT", heading: "Política de Privacidade" },
   ],
   routes: [
     "/en/opengraph-image",
@@ -164,4 +167,11 @@ test("on the home page the logo glides back to the top instead of reloading", as
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
   // The same document: nothing reloaded.
   expect(await page.evaluate(() => (window as unknown as { marker?: boolean }).marker)).toBe(true);
+});
+
+test("the footer leads to the privacy policy", async ({ page }) => {
+  await page.goto("/pt");
+  await page.getByRole("contentinfo").getByRole("link", { name: "Política de Privacidade" }).click();
+  await expect(page).toHaveURL(/\/pt\/privacy$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de Privacidade");
 });
