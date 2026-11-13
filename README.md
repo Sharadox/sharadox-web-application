@@ -11,7 +11,7 @@ This application is thin: routes (`src/app`), global styles (`src/style/global`)
 - English/Portuguese at `/en` and `/pt`; the interactive WebGL globe's land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points`.
 - Contact form: Amazon SES (SMTP, sending subdomain email.sharadox.com) → contact@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
 - Search engines and AI: per-locale metadata, share images, JSON-LD, sitemap, robots, manifest and icons, `/llms.txt` (a plain summary for AI assistants) and `/.well-known/security.txt` (renewed for a year with every build).
-- No cookie panel: the site keeps only what it needs (language and style), which needs no consent.
+- A cookie panel that only tells: the site keeps just what it needs (language and style), so there is one button (Got It) and the details; the footer's Cookie Preferences reopens it. The footer also links Portugal's complaints book and names the consumer dispute resolution center (CIMAAL).
 
 ## Commands
 

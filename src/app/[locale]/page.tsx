@@ -2,6 +2,7 @@ import { sendContactAction } from "@sharadox/sharadox-web-application/action/sen
 import { Capability } from "@sharadox/sharadox-web-library/component/capability";
 import { Contact } from "@sharadox/sharadox-web-library/component/contact";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
+import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { Hero } from "@sharadox/sharadox-web-library/component/hero";
 import { Marquee } from "@sharadox/sharadox-web-library/component/marquee";
@@ -37,6 +38,7 @@ export default async function Page({ params }: PageProps<"/[locale]">) {
         <Contact locale={locale} action={sendContactAction} />
       </main>
       <Footer locale={locale} />
+      <Consent locale={locale} />
     </>
   );
 }
