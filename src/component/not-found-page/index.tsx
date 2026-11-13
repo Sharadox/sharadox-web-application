@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
 import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
+import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 import { NotFound } from "@sharadox/sharadox-web-library/component/not-found";
@@ -29,6 +30,7 @@ export function NotFoundPage({ path }: NotFoundPageProperties) {
         <ServiceIndex locale={locale} base={`/${locale}`} />
       </main>
       <Footer locale={locale} path={after} />
+      <Consent locale={locale} />
     </>
   );
 }

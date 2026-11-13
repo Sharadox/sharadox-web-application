@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 import { PrivacyPage } from "@sharadox/sharadox-web-library/component/privacy-page";
@@ -37,6 +38,7 @@ export default async function Privacy({ params }: PageProps<"/[locale]/privacy">
         <PrivacyPage locale={locale} />
       </main>
       <Footer locale={locale} path={PRIVACY_PAGE.path} />
+      <Consent locale={locale} />
     </>
   );
 }

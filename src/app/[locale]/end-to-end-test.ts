@@ -175,3 +175,28 @@ test("the footer leads to the privacy policy", async ({ page }) => {
   await expect(page).toHaveURL(/\/pt\/privacy$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de Privacidade");
 });
+
+test("the footer carries the complaints book and the consumer dispute notice", async ({ page }) => {
+  await page.goto("/pt");
+  const footer = page.getByRole("contentinfo");
+  await expect(footer.getByRole("link", { name: "Livro de Reclamações" })).toHaveAttribute(
+    "href",
+    "https://www.livroreclamacoes.pt/",
+  );
+  await expect(footer.getByRole("link", { name: /CIMAAL/ })).toHaveAttribute("href", "https://www.consumoalgarve.pt/");
+});
+
+test("the cookie panel only tells, once, and Cookie Preferences shows the details", async ({ browser }) => {
+  const context = await browser.newContext({ storageState: { cookies: [], origins: [] } });
+  const page = await context.newPage();
+  await page.goto("/en");
+  const panel = page.getByRole("dialog", { name: "Cookies" });
+  await expect(panel.getByRole("button", { name: "Deny" })).toHaveCount(0);
+  await panel.getByRole("button", { name: "Got It" }).click();
+  await expect(panel).toBeHidden();
+  await page.reload();
+  await expect(panel).toBeHidden();
+  await page.getByRole("contentinfo").getByRole("button", { name: "Cookie Preferences" }).click();
+  await expect(panel.getByText(/Your language/)).toBeVisible();
+  await context.close();
+});
