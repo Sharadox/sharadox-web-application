@@ -1,10 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { describeInstallability } from "@sharadox/test-web-library/installability-suite";
-import {
-  describeConsent,
-  describeLocaleMemory,
-  describeStyleMemory,
-} from "@sharadox/test-web-library/preference-suite";
+import { describeLocaleMemory, describeStyleMemory } from "@sharadox/test-web-library/preference-suite";
 import { describeSearchEngine } from "@sharadox/test-web-library/search-engine-suite";
 
 describeSearchEngine({
@@ -13,8 +9,18 @@ describeSearchEngine({
   pages: [
     { path: "/en", language: "en", heading: "Technologies" },
     { path: "/pt", language: "pt-PT", heading: "Tecnologias" },
+    { path: "/en/license", language: "en", heading: "Sharadox Verifiable Source License" },
+    { path: "/en/privacy", language: "en", heading: "Privacy Policy" },
+    { path: "/pt/privacy", language: "pt-PT", heading: "Política de Privacidade" },
   ],
-  routes: ["/en/opengraph-image", "/pt/twitter-image"],
+  routes: [
+    "/en/opengraph-image",
+    "/pt/twitter-image",
+    "/llms.txt",
+    "/.well-known/security.txt",
+    "/icon-192.png",
+    "/icon-512.png",
+  ],
 });
 describeInstallability("/en");
 describeLocaleMemory({
@@ -30,17 +36,6 @@ describeStyleMemory({
   colorScheme: "light",
   initial: "black",
   pick: { radio: "White", style: "white" },
-});
-describeConsent({
-  path: "/en",
-  dialogName: "Cookies",
-  deny: "Deny",
-  customize: "Customize",
-  save: "Save Choices",
-  preferences: "Cookie Preferences",
-  category: "Analytics",
-  storageKey: "consent",
-  expectedGranted: { required: true, analytics: true, marketing: false },
 });
 
 test("the license page shows the Portuguese original and the English translation, and links back home", async ({
@@ -67,8 +62,8 @@ test("the license page shows the Portuguese original and the English translation
 
 test("page titles carry the whole slogan, full stop included", async ({ page }) => {
   for (const [path, title] of [
-    ["/en", "Sharadox • Technologies that simplify the world."],
-    ["/pt", "Sharadox • Tecnologias que simplificam o mundo."],
+    ["/en", "Sharadox · Technologies that simplify the world."],
+    ["/pt", "Sharadox · Tecnologias que simplificam o mundo."],
   ] as const) {
     await page.goto(path);
     await expect(page).toHaveTitle(title);
@@ -161,4 +156,22 @@ test("the contact form falls back to the email address when sending is unavailab
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
   await form.getByRole("button", { name: /Send Message/ }).click();
   await expect(form.getByRole("alert")).toContainText("contact@sharadox.com");
+});
+
+test("on the home page the logo glides back to the top instead of reloading", async ({ page }) => {
+  await page.goto("/en");
+  await page.mouse.wheel(0, 2500);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
+  await page.evaluate(() => ((window as unknown as { marker: boolean }).marker = true));
+  await page.getByRole("banner").getByRole("link").first().click();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
+  // The same document: nothing reloaded.
+  expect(await page.evaluate(() => (window as unknown as { marker?: boolean }).marker)).toBe(true);
+});
+
+test("the footer leads to the privacy policy", async ({ page }) => {
+  await page.goto("/pt");
+  await page.getByRole("contentinfo").getByRole("link", { name: "Política de Privacidade" }).click();
+  await expect(page).toHaveURL(/\/pt\/privacy$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de Privacidade");
 });

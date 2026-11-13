@@ -1,7 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { License } from "@sharadox/sharadox-web-library/component/license";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
@@ -32,6 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/license"
     path: LICENSE.path,
     title: separate(title, SITE.name),
     description: translate(LICENSE.description, locale),
+    image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
 }
 
@@ -47,7 +47,6 @@ export default async function LicensePage({ params }: PageProps<"/[locale]/licen
         <License locale={locale} markdown={markdown} />
       </main>
       <Footer locale={locale} path={LICENSE.path} />
-      <Consent locale={locale} />
     </>
   );
 }

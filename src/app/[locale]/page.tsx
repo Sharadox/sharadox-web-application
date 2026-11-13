@@ -1,6 +1,5 @@
 import { sendContactAction } from "@sharadox/sharadox-web-application/action/send-contact";
 import { Capability } from "@sharadox/sharadox-web-library/component/capability";
-import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Contact } from "@sharadox/sharadox-web-library/component/contact";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
@@ -38,7 +37,6 @@ export default async function Page({ params }: PageProps<"/[locale]">) {
         <Contact locale={locale} action={sendContactAction} />
       </main>
       <Footer locale={locale} />
-      <Consent locale={locale} />
     </>
   );
 }
