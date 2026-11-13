@@ -200,3 +200,22 @@ test("the cookie panel only tells, once, and Cookie Preferences shows the detail
   await expect(panel.getByText(/Your language/)).toBeVisible();
   await context.close();
 });
+
+test("on a phone the menu lists every section and scrolls when held sideways", async ({ page }) => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 844, height: 390 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/en");
+    await page.getByRole("button", { name: "Open menu" }).click();
+    const menu = page.locator("#menu");
+    await expect(menu.getByRole("link", { name: /One System/ })).toBeVisible();
+    const [scrollHeight, clientHeight] = await menu.evaluate((element) => [element.scrollHeight, element.clientHeight]);
+    if (viewport.width > viewport.height) expect(scrollHeight).toBeGreaterThan(clientHeight!);
+    await menu.evaluate((element) => element.scrollTo(0, element.scrollHeight));
+    await expect(menu.getByRole("link", { name: "Start a Project" })).toBeInViewport();
+    await menu.getByRole("link", { name: /Process/ }).click();
+    await expect(menu).toBeHidden();
+  }
+});
