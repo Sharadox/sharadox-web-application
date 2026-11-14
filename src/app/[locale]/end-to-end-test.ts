@@ -121,7 +121,7 @@ test("the services come in four groups, each card with its own 3D object", async
     "Marketing Campaigns",
   ])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
-  await expect(page.locator("#services article")).toHaveCount(14);
+  await expect(page.locator("#services article")).toHaveCount(16);
   await expect(page.locator("#services").getByText("Didn't find what you were looking for?")).toBeVisible();
 });
 
@@ -195,7 +195,7 @@ test("missing pages answer 404 with the site's own page, in their language", asy
 test("every service card is in the search engine offer catalog", async ({ page }) => {
   await page.goto("/en");
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent()) ?? "{}");
-  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(14);
+  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(16);
 });
 
 test("the contact form falls back to the email address when sending is unavailable", async ({ page }) => {
