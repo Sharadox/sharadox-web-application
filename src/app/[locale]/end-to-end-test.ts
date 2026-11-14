@@ -98,6 +98,27 @@ test("a service card button opens the form with its choice ticked", async ({ pag
   await expect(page.locator("#contact")).toBeInViewport();
   await expect(page.locator("form").getByRole("checkbox", { name: "Platform" })).toBeChecked();
   await expect(page.locator("form").getByRole("checkbox", { name: "Website" })).not.toBeChecked();
+  await page.goto("/en#marketing");
+  await page.getByRole("link", { name: "Plan My Growth" }).click();
+  await expect(page.locator("form").getByRole("checkbox", { name: "Social Media Strategy" })).toBeChecked();
+});
+
+test("the services come in four groups, each card with its own 3D object", async ({ page }) => {
+  await page.goto("/en#services");
+  for (const name of ["Web Applications", "Mobile Applications", "Creative", "Marketing"])
+    await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
+  await expect(page.locator("#services article")).toHaveCount(14);
+});
+
+test("the process line starts empty on phones too, and fills as you scroll", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto("/en");
+  const line = page.locator("#process [aria-hidden] > span").first();
+  const drawn = () => line.evaluate((element) => element.getBoundingClientRect().height);
+  // Nothing is drawn before the reader gets there; it fills once they scroll through the steps.
+  expect(await drawn()).toBeLessThan(2);
+  await page.locator("#contact").scrollIntoViewIfNeeded();
+  await expect.poll(drawn).toBeGreaterThan(200);
 });
 
 test("switching language keeps the reader on the same section", async ({ page }) => {
@@ -139,10 +160,10 @@ test("missing pages answer 404 with the site's own page, in their language", asy
   }
 });
 
-test("the five services are in the search engine offer catalog", async ({ page }) => {
+test("every service card is in the search engine offer catalog", async ({ page }) => {
   await page.goto("/en");
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent()) ?? "{}");
-  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(5);
+  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(14);
 });
 
 test("the contact form falls back to the email address when sending is unavailable", async ({ page }) => {
@@ -151,7 +172,7 @@ test("the contact form falls back to the email address when sending is unavailab
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");
   await form.getByLabel("Email").fill("test@example.com");
-  await form.getByLabel("Brand Identity").check();
+  await form.getByLabel("Branding Design").check();
   await form.getByLabel("Tell us about your project").fill("A website.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
   await form.getByRole("button", { name: /Send Message/ }).click();
