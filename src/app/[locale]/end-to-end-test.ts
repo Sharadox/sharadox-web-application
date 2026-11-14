@@ -100,11 +100,14 @@ test("switching language happens in place: no reload, no replayed entrance", asy
 
 test("a service card button opens the form with its choice ticked", async ({ page }) => {
   await page.goto("/en#services");
+  // The buttons tick their choice once the page's scripts are running; before that they only scroll.
+  await page.waitForLoadState("networkidle");
   await page.getByRole("link", { name: "Build a Platform" }).click();
   await expect(page.locator("#contact")).toBeInViewport();
   await expect(page.locator("form").getByRole("checkbox", { name: "Platform" })).toBeChecked();
   await expect(page.locator("form").getByRole("checkbox", { name: "Website" })).not.toBeChecked();
   await page.goto("/en#marketing");
+  await page.waitForLoadState("networkidle");
   await page.getByRole("link", { name: "Plan My Growth" }).click();
   await expect(page.locator("form").getByRole("checkbox", { name: "Social Media Strategy" })).toBeChecked();
   // After the services, ideas none of them name.
