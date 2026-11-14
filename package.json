@@ -15,10 +15,12 @@
     "test:end-to-end": "playwright test",
     "documentation": "typedoc",
     "verify": "turbo run format:check lint type-check test:unit test:benchmark build test:end-to-end",
-    "prepare": "turborepo-configuration next-js-application && (husky || true)"
+    "prepare": "turborepo-configuration next-js-application && (husky || true)",
+    "app-icons": "app-icons"
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
+    "@resvg/resvg-js": "2.6.2",
     "@sharadox/es-lint-configuration-web-library": "^0.1.2",
     "@sharadox/next-js-configuration-web-library": "^0.1.2",
     "@sharadox/playwright-configuration-web-library": "^0.1.1",
@@ -65,10 +67,10 @@
   "license": "SEE LICENSE IN LICENCA.md",
   "dependencies": {
     "@sharadox/internationalization-web-library": "^0.2.3",
-    "@sharadox/metadata-web-library": "^0.3.0",
+    "@sharadox/metadata-web-library": "^0.4.0",
     "@sharadox/pointer-web-library": "^0.1.1",
     "@sharadox/scroll-web-library": "^0.2.0",
-    "@sharadox/sharadox-web-library": "^0.20.1",
+    "@sharadox/sharadox-web-library": "^0.21.0",
     "@sharadox/style-web-library": "^0.2.1",
     "@sharadox/web-library": "^0.7.0",
     "geist": "^1.9.2",

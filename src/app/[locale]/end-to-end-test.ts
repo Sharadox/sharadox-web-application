@@ -18,8 +18,14 @@ describeSearchEngine({
     "/pt/twitter-image",
     "/llms.txt",
     "/.well-known/security.txt",
+    // Every app icon, made from the one master (src/app/icon.svg).
+    "/icon.svg",
+    "/favicon.ico",
+    "/apple-icon.png",
     "/icon-192.png",
     "/icon-512.png",
+    "/icon-maskable-512.png",
+    "/profile-picture.png",
   ],
 });
 describeInstallability("/en");
@@ -101,13 +107,39 @@ test("a service card button opens the form with its choice ticked", async ({ pag
   await page.goto("/en#marketing");
   await page.getByRole("link", { name: "Plan My Growth" }).click();
   await expect(page.locator("form").getByRole("checkbox", { name: "Social Media Strategy" })).toBeChecked();
+  // After the services, ideas none of them name.
+  await page.getByRole("link", { name: "Let's Talk" }).click();
+  await expect(page.locator("form").getByRole("checkbox", { name: "What I need is not listed" })).toBeChecked();
 });
 
 test("the services come in four groups, each card with its own 3D object", async ({ page }) => {
   await page.goto("/en#services");
-  for (const name of ["Web Applications", "Mobile Applications", "Creative", "Marketing"])
+  for (const name of [
+    "Web Applications",
+    "Desktop and Mobile Applications",
+    "Creative Services",
+    "Marketing Campaigns",
+  ])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
   await expect(page.locator("#services article")).toHaveCount(14);
+  await expect(page.locator("#services").getByText("Didn't find what you were looking for?")).toBeVisible();
+});
+
+test("the contact form says what's missing before sending, and takes a phone instead of an email", async ({ page }) => {
+  await page.goto("/en#contact");
+  const form = page.locator("form");
+  await form.getByRole("button", { name: /Send Message/ }).click();
+  await expect(form.getByLabel("Name")).toBeFocused();
+  for (const text of ["Please tell us your name.", "Leave an email or a phone number", "Choose at least one option."])
+    await expect(form.getByText(text)).toBeVisible();
+  await form.getByLabel("Name").fill("Test Person");
+  await form.getByLabel("Phone").fill("+351 912 345 678");
+  await form.getByLabel("I don't know what I need").check();
+  await form.getByLabel("Tell us about your project").fill("Too short.");
+  await expect(form.getByText("at least 20 characters")).toBeVisible();
+  await form.getByLabel("Tell us about your project").fill("We'd like to sell our cakes online.");
+  await expect(form.getByText("Please tell us your name.")).toHaveCount(0);
+  await expect(form.getByText("at least 20 characters")).toHaveCount(0);
 });
 
 test("the process line starts empty on phones too, and fills as you scroll", async ({ page }) => {
@@ -173,7 +205,7 @@ test("the contact form falls back to the email address when sending is unavailab
   await form.getByLabel("Name").fill("Test Person");
   await form.getByLabel("Email").fill("test@example.com");
   await form.getByLabel("Branding Design").check();
-  await form.getByLabel("Tell us about your project").fill("A website.");
+  await form.getByLabel("Tell us about your project").fill("A website for our bakery.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
   await form.getByRole("button", { name: /Send Message/ }).click();
   await expect(form.getByRole("alert")).toContainText("contact@sharadox.com");
