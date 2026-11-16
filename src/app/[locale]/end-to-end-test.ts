@@ -55,7 +55,7 @@ test("the license page shows the Portuguese original and the English translation
   await page.getByRole("contentinfo").getByRole("link", { name: "English" }).click();
   await expect(page).toHaveURL(/\/en\/license$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source License");
-  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web Applications" })).toHaveAttribute(
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web", exact: true })).toHaveAttribute(
     "href",
     "/en#web-application",
   );
@@ -117,15 +117,10 @@ test("a service card button opens the form with its choice ticked", async ({ pag
 
 test("the services come in four groups, each card with its own 3D object", async ({ page }) => {
   await page.goto("/en#services");
-  for (const name of [
-    "Web Applications",
-    "Desktop and Mobile Applications",
-    "Creative Services",
-    "Marketing Campaigns",
-  ])
+  for (const name of ["Web", "Desktop & Mobile", "Creative", "Marketing"])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
   await expect(page.locator("#services article")).toHaveCount(15);
-  await expect(page.locator("#services").getByText("Didn't find what you were looking for?")).toBeVisible();
+  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toBeVisible();
 });
 
 test("the contact form says what's missing before sending, and takes a phone instead of an email", async ({ page }) => {
@@ -206,7 +201,7 @@ test("the contact form falls back to the email address when sending is unavailab
   await page.goto("/en#contact");
   const form = page.locator("form");
   await form.getByLabel("Name").fill("Test Person");
-  await form.getByLabel("Email").fill("test@example.com");
+  await form.getByLabel("Email", { exact: true }).fill("test@example.com");
   await form.getByLabel("Branding Design").check();
   await form.getByLabel("Tell us about your project").fill("A website for our bakery.");
   await page.waitForTimeout(2600); // humans take longer than the bot threshold
