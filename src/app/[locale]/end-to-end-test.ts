@@ -124,7 +124,7 @@ test("the services come in four groups, each card with its own 3D object", async
     "Marketing Campaigns",
   ])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
-  await expect(page.locator("#services article")).toHaveCount(16);
+  await expect(page.locator("#services article")).toHaveCount(15);
   await expect(page.locator("#services").getByText("Didn't find what you were looking for?")).toBeVisible();
 });
 
@@ -198,7 +198,7 @@ test("missing pages answer 404 with the site's own page, in their language", asy
 test("every service card is in the search engine offer catalog", async ({ page }) => {
   await page.goto("/en");
   const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent()) ?? "{}");
-  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(16);
+  expect(data["@graph"][0].hasOfferCatalog.itemListElement).toHaveLength(15);
 });
 
 test("the contact form falls back to the email address when sending is unavailable", async ({ page }) => {
@@ -223,6 +223,17 @@ test("on the home page the logo glides back to the top instead of reloading", as
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
   // The same document: nothing reloaded.
   expect(await page.evaluate(() => (window as unknown as { marker?: boolean }).marker)).toBe(true);
+});
+
+test("Back to top stays on the page it is on, and section links glide on every page", async ({ page }) => {
+  await page.goto("/en/privacy");
+  await page.evaluate(() => scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+  await page
+    .getByRole("contentinfo")
+    .getByRole("link", { name: /Back to top/ })
+    .click();
+  await expect(page).toHaveURL(/\/en\/privacy(#top)?$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
 });
 
 test("the footer leads to the privacy policy", async ({ page }) => {

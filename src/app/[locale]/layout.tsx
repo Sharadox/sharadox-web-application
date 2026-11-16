@@ -7,6 +7,7 @@ import { translate } from "@sharadox/internationalization-web-library/translate"
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
 import { LocaleTransitionStyle } from "@sharadox/internationalization-web-library/locale-transition-style";
 import { StyleScript } from "@sharadox/style-web-library/style-script";
+import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 import { StructuredData } from "@sharadox/sharadox-web-library/component/structured-data";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
@@ -56,6 +57,8 @@ export default async function Layout({ children, params }: LayoutProps<"/[locale
       </head>
       <body id="top">
         <StructuredData locale={locale} />
+        {/* Every page scrolls smoothly, and its section links (SectionLink) glide through it. */}
+        <SmoothScroll />
         {children as ReactNode}
       </body>
     </html>
