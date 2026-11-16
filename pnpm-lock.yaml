@@ -18,11 +18,11 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library':
-        specifier: ^0.2.0
-        version: 0.2.0(react@19.3.1)
+        specifier: ^0.4.1
+        version: 0.4.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.23.0
-        version: 0.23.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.24.0
+        version: 0.24.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -971,14 +971,15 @@ packages:
       react:
         optional: true
 
-  '@sharadox/scroll-web-library@0.2.0':
-    resolution: {integrity: sha512-XcGpv4YnAwWL5LJZe1cD4loK/YDtw+SLQfKDuxEjXmAaczxJkxkxZIW9FxROgkZrjXcxmHISTT3bnaBJo0p3ug==}
+  '@sharadox/scroll-web-library@0.4.1':
+    resolution: {integrity: sha512-T1HofzNx6jqYGTqDAz82ckGK43YANRJz50TJgdHOHJbTKVjdVa0BeG3V5dnFQJ1BGOvez/K5RVsrqrsbwsXnDA==}
     engines: {node: '>=26'}
     peerDependencies:
+      next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.23.0':
-    resolution: {integrity: sha512-MP+hr7A2+SEMLLRA6j1yUQGJQwqzAbccsjeNwlfi6j17v6KBR+5HF2BRfRZ1eYI3sOJHVQXVAvKYUnocyWey4A==}
+  '@sharadox/sharadox-web-library@0.24.0':
+    resolution: {integrity: sha512-Fu31bZCJoVBMPPkwBXhkTpmjO6GxMMh6yIhyGcJ5lD15us4hN7Hg+FlUI3rfLpVDYAe0duic3VTQjXLiXctNWw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3757,16 +3758,17 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/scroll-web-library@0.2.0(react@19.3.1)':
+  '@sharadox/scroll-web-library@0.4.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.1
       lenis: 1.3.27(react@19.3.1)
+      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
     transitivePeerDependencies:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.23.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.24.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.2.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.3.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3779,7 +3781,7 @@ snapshots:
       '@sharadox/metadata-web-library': 0.2.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
       '@sharadox/privacy-web-library': 0.1.1(react@19.3.1)
-      '@sharadox/scroll-web-library': 0.2.0(react@19.3.1)
+      '@sharadox/scroll-web-library': 0.4.1(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/style-web-library': 0.2.1(react@19.3.1)
       '@sharadox/time-web-library': 0.2.0(react@19.3.1)
       '@sharadox/web-library': 0.7.0

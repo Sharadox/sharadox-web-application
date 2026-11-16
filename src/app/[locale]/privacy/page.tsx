@@ -11,7 +11,6 @@ import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
-import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/privacy">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
@@ -31,7 +30,6 @@ export default async function Privacy({ params }: PageProps<"/[locale]/privacy">
   const locale = (await params).locale as Locale;
   return (
     <>
-      <SmoothScroll />
       <Cursor />
       <Navigation locale={locale} path={PRIVACY_PAGE.path} />
       <main>

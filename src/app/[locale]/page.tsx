@@ -15,14 +15,12 @@ import { Statement } from "@sharadox/sharadox-web-library/component/statement";
 import { Touchpoint } from "@sharadox/sharadox-web-library/component/touchpoint";
 import { STATEMENT } from "@sharadox/sharadox-web-library/content/statement";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
-import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 
 export default async function Page({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   return (
     <>
-      <SmoothScroll />
       <Cursor />
       <Navigation locale={locale} />
       <SectionIndicator locale={locale} />

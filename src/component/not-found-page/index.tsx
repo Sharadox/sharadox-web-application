@@ -1,7 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
-import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 import { Consent } from "@sharadox/sharadox-web-library/component/consent";
 import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
@@ -22,7 +21,6 @@ export function NotFoundPage({ path }: NotFoundPageProperties) {
   const after = LOCALES.isLocale(first) ? (rest.length ? `/${rest.join("/")}` : "/") : "/";
   return (
     <>
-      <SmoothScroll />
       <Cursor />
       <Navigation locale={locale} path={after} />
       <main>
