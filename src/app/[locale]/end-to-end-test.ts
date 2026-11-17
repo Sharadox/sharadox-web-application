@@ -120,7 +120,7 @@ test("the services come in four groups, each card with its own 3D object", async
   for (const name of ["Web", "Desktop & Mobile", "Creative", "Marketing"])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
   await expect(page.locator("#services article")).toHaveCount(18);
-  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toBeVisible();
+  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toHaveCount(0);
 });
 
 test("the contact form says what's missing before sending, and takes a phone instead of an email", async ({ page }) => {
@@ -345,4 +345,35 @@ test("typing in the project message starts on its first line, at the top", async
   });
   expect(alignment).toBe("start");
   expect(padding).toBe("13px");
+});
+
+test("the questions open to their answers, and are given to search engines on the home page only", async ({ page }) => {
+  await page.goto("/en#faq");
+  const question = page.locator("#faq details").filter({ hasText: "manual work" });
+  await expect(question.getByText("That's where it helps most.")).toBeHidden();
+  await question.locator("summary").click();
+  await expect(question.getByText("That's where it helps most.")).toBeVisible();
+  const faqPage = (texts: string[]) => texts.some((text) => text.includes('"FAQPage"'));
+  expect(faqPage(await page.locator('script[type="application/ld+json"]').allTextContents())).toBe(true);
+  await page.goto("/en/privacy");
+  expect(faqPage(await page.locator('script[type="application/ld+json"]').allTextContents())).toBe(false);
+});
+
+test("the sections come in order, the invitation for unlisted ideas after the capabilities", async ({ page }) => {
+  await page.goto("/en");
+  const order = await page.evaluate(() =>
+    [...document.querySelectorAll("main > section")].map(
+      (section) => section.id || section.querySelector("h2")?.textContent,
+    ),
+  );
+  expect(order).toEqual([
+    "home",
+    "about",
+    "services",
+    "capabilities",
+    "Didn't find the service you were looking for?",
+    "process",
+    "faq",
+    "contact",
+  ]);
 });
