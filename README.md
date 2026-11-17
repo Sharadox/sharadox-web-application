@@ -9,7 +9,7 @@ Built on the Sharadox engineering standard (see `template-web-application`): Typ
 This application is thin: routes (`src/app`), global styles (`src/style/global`), configuration, the contact form's server action (`src/action/send-contact`) and the globe land-points generator (`src/script/globe-points`). Everything the site is made of lives in [`@sharadox/sharadox-web-library`](https://github.com/Sharadox/sharadox-web-library); generic pieces come from [`@sharadox/web-library`](https://github.com/Sharadox/web-library) and email from [`@sharadox/email-web-library`](https://github.com/Sharadox/email-web-library).
 
 - English/Portuguese at `/en` and `/pt`; the interactive WebGL globe's land dots are precomputed into `public/globe/land.bin` by `pnpm globe-points`.
-- Contact form: Amazon SES (SMTP, sending subdomain email.sharadox.com) → contact@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
+- Contact form: Amazon SES (SMTP, from contact@web.sharadox.com, the sending subdomain web.sharadox.com) → contact@sharadox.com, with honeypot, fill-time and rate-limit spam checks.
 - Search engines and AI: per-locale metadata, share images, JSON-LD, sitemap, robots, manifest and icons, `/llms.txt` (a plain summary for AI assistants) and `/.well-known/security.txt` (renewed for a year with every build).
 - A cookie panel that only tells: the site keeps just what it needs (language and style), so there is one button (Got It) and the details; the footer's Cookie Preferences reopens it. The footer also links Portugal's complaints book and names the consumer dispute resolution center (CIMAAL).
 
