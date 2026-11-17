@@ -406,3 +406,36 @@ test("the section indicator holds still when the section changes, and its names 
     }
   }
 });
+
+test("the images to post on social media are served in both languages, landscape and portrait", async ({ request }) => {
+  for (const locale of ["en", "pt"])
+    for (const [name, width, height] of [
+      ["landscape.png", 1920, 1080],
+      ["portrait.png", 1080, 1920],
+      ["landscape-headline.png", 1920, 1080],
+      ["portrait-headline.png", 1080, 1920],
+    ] as const) {
+      const response = await request.get(`/${locale}/social/${name}`);
+      expect(response.status(), name).toBe(200);
+      expect(response.headers()["content-type"]).toBe("image/png");
+      const png = await response.body();
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)], name).toEqual([width, height]);
+    }
+  expect((await request.get("/en/social/other.png")).status()).toBe(404);
+});
+
+test("on a wide screen, the hero's copy sits in the middle of the space under the bar, the globe beside it", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/en");
+  // Once the entrance has played (the globe grows in), measure.
+  await page.waitForFunction(() => document.getAnimations().every((animation) => animation.playState !== "running"));
+  await page.waitForTimeout(2000);
+  const box = async (selector: string) => (await page.locator(selector).first().boundingBox())!;
+  const copy = await box("#home > div[class*='copy']");
+  const shortcuts = await box("nav[aria-label='Services']");
+  const globe = await box("#home > div[class*='globe']");
+  expect(Math.abs(copy.y - 64 - (shortcuts.y - copy.y - copy.height))).toBeLessThanOrEqual(2);
+  expect(Math.abs(copy.y + copy.height / 2 - (globe.y + globe.height / 2))).toBeLessThanOrEqual(2);
+});
