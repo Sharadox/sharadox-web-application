@@ -57,7 +57,7 @@ test("the license page shows the Portuguese original and the English translation
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source License");
   await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web", exact: true })).toHaveAttribute(
     "href",
-    "/en#web-application",
+    "/en#web",
   );
   for (const path of ["/LICENCA.md", "/LICENSE.md"]) {
     const response = await request.get(path);
@@ -120,7 +120,7 @@ test("the services come in four groups, each card with its own 3D object", async
   for (const name of ["Web", "Desktop & Mobile", "Creative", "Marketing"])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
   await expect(page.locator("#services article")).toHaveCount(18);
-  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toBeVisible();
+  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toHaveCount(0);
 });
 
 test("the contact form says what's missing before sending, and takes a phone instead of an email", async ({ page }) => {
@@ -272,7 +272,7 @@ test("on a phone the menu lists every section and scrolls when held sideways", a
     await page.goto("/en");
     await page.getByRole("button", { name: "Open menu" }).click();
     const menu = page.locator("#menu");
-    await expect(menu.getByRole("link", { name: /One System/ })).toBeVisible();
+    await expect(menu.getByRole("link", { name: /About/ })).toBeVisible();
     const [scrollHeight, clientHeight] = await menu.evaluate((element) => [element.scrollHeight, element.clientHeight]);
     if (viewport.width > viewport.height) expect(scrollHeight).toBeGreaterThan(clientHeight!);
     await menu.evaluate((element) => element.scrollTo(0, element.scrollHeight));
@@ -289,4 +289,153 @@ test("tapping the logo closes the phone menu", async ({ page }) => {
   await expect(page.locator("#menu")).toBeVisible();
   await page.getByRole("banner").getByRole("link").first().click();
   await expect(page.locator("#menu")).toHaveCount(0);
+});
+
+test("on a wide screen, the four service shortcuts show at the bottom of the first screen", async ({ page }) => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/en");
+    const shortcuts = page.getByRole("navigation", { name: "Services" }).first();
+    await expect(shortcuts).toBeInViewport({ ratio: 1 });
+  }
+});
+
+test("the section indicator stays outside the grid frame's right line", async ({ page }) => {
+  for (const width of [1440, 1280, 1200]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en");
+    const frame = (await page.locator("#home").boundingBox())!;
+    const sections = page.getByRole("navigation", { name: "Sections" });
+    // Once it has slid in, its whole box sits between the frame's right line and the window's edge.
+    await sections.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+    const indicator = (await sections.boundingBox())!;
+    expect(indicator.x, `at ${width}px`).toBeGreaterThanOrEqual(frame.x + frame.width);
+    expect(indicator.x + indicator.width, `at ${width}px`).toBeLessThanOrEqual(width);
+  }
+});
+
+test("the About section replaces One System, and the services and groups have short addresses", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.locator("#about")).toContainText("Your business, run from anywhere.");
+  for (const id of [
+    "about",
+    "services",
+    "web",
+    "desktop-and-mobile",
+    "creative",
+    "marketing",
+    "capabilities",
+    "process",
+    "contact",
+  ])
+    await expect(page.locator(`#${id}`)).toHaveCount(1);
+  await expect(page.locator("#touchpoints")).toHaveCount(0);
+});
+
+test("typing in the project message starts on its first line, at the top", async ({ page }) => {
+  await page.goto("/en#contact");
+  const message = page.getByLabel("Tell us about your project");
+  await message.fill("A booking platform for three clinics.");
+  const [alignment, padding] = await message.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return [style.alignContent, style.paddingTop];
+  });
+  expect(alignment).toBe("start");
+  expect(padding).toBe("13px");
+});
+
+test("the questions open to their answers, and are given to search engines on the home page only", async ({ page }) => {
+  await page.goto("/en#faq");
+  const question = page.locator("#faq details").filter({ hasText: "manual work" });
+  await expect(question.getByText("That's where it helps most.")).toBeHidden();
+  await question.locator("summary").click();
+  await expect(question.getByText("That's where it helps most.")).toBeVisible();
+  const faqPage = (texts: string[]) => texts.some((text) => text.includes('"FAQPage"'));
+  expect(faqPage(await page.locator('script[type="application/ld+json"]').allTextContents())).toBe(true);
+  await page.goto("/en/privacy");
+  expect(faqPage(await page.locator('script[type="application/ld+json"]').allTextContents())).toBe(false);
+});
+
+test("the sections come in order, the invitation for unlisted ideas after the capabilities", async ({ page }) => {
+  await page.goto("/en");
+  const order = await page.evaluate(() =>
+    [...document.querySelectorAll("main > section")].map(
+      (section) => section.id || section.querySelector("h2")?.textContent,
+    ),
+  );
+  expect(order).toEqual([
+    "home",
+    "about",
+    "services",
+    "capabilities",
+    "Didn't find the service you were looking for?",
+    "process",
+    "faq",
+    "contact",
+  ]);
+});
+
+test("the section indicator holds still when the section changes, and its names stay beside the frame", async ({
+  page,
+}) => {
+  for (const width of [1440, 1600]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en");
+    const sections = page.getByRole("navigation", { name: "Sections" });
+    await sections.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+    const places = () =>
+      sections.evaluate((element) =>
+        [...element.querySelectorAll("a > span:not(:last-child)")].map((part) =>
+          Math.round(part.getBoundingClientRect().x),
+        ),
+      );
+    const before = await places();
+    await page.evaluate(() => window.scrollTo(0, document.getElementById("services")!.offsetTop + 50));
+    await expect(sections.locator('[aria-current="location"]')).toHaveAttribute("title", "Services");
+    expect(await places()).toEqual(before);
+    await sections.hover();
+    const frame = (await page.locator("#home").boundingBox())!;
+    for (const name of await sections.locator("a > span:last-child > span").all()) {
+      await expect(name).toHaveCSS("opacity", "1");
+      const box = (await name.boundingBox())!;
+      expect(box.x, `at ${width}px`).toBeGreaterThanOrEqual(frame.x + frame.width);
+      expect(box.x + box.width, `at ${width}px`).toBeLessThanOrEqual(width);
+    }
+  }
+});
+
+test("the images to post on social media are served in both languages, landscape and portrait", async ({ request }) => {
+  for (const locale of ["en", "pt"])
+    for (const [name, width, height] of [
+      ["landscape.png", 1920, 1080],
+      ["portrait.png", 1080, 1920],
+      ["landscape-headline.png", 1920, 1080],
+      ["portrait-headline.png", 1080, 1920],
+    ] as const) {
+      const response = await request.get(`/${locale}/social/${name}`);
+      expect(response.status(), name).toBe(200);
+      expect(response.headers()["content-type"]).toBe("image/png");
+      const png = await response.body();
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)], name).toEqual([width, height]);
+    }
+  expect((await request.get("/en/social/other.png")).status()).toBe(404);
+});
+
+test("on a wide screen, the hero's copy sits in the middle of the space under the bar, the globe beside it", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/en");
+  // Once the entrance has played (the globe grows in), measure.
+  await page.waitForFunction(() => document.getAnimations().every((animation) => animation.playState !== "running"));
+  await page.waitForTimeout(2000);
+  const box = async (selector: string) => (await page.locator(selector).first().boundingBox())!;
+  const copy = await box("#home > div[class*='copy']");
+  const shortcuts = await box("nav[aria-label='Services']");
+  const globe = await box("#home > div[class*='globe']");
+  expect(Math.abs(copy.y - 64 - (shortcuts.y - copy.y - copy.height))).toBeLessThanOrEqual(2);
+  expect(Math.abs(copy.y + copy.height / 2 - (globe.y + globe.height / 2))).toBeLessThanOrEqual(2);
 });
