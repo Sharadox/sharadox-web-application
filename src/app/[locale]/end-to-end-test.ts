@@ -377,3 +377,32 @@ test("the sections come in order, the invitation for unlisted ideas after the ca
     "contact",
   ]);
 });
+
+test("the section indicator holds still when the section changes, and its names stay beside the frame", async ({
+  page,
+}) => {
+  for (const width of [1440, 1600]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en");
+    const sections = page.getByRole("navigation", { name: "Sections" });
+    await sections.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+    const places = () =>
+      sections.evaluate((element) =>
+        [...element.querySelectorAll("a > span:not(:last-child)")].map((part) =>
+          Math.round(part.getBoundingClientRect().x),
+        ),
+      );
+    const before = await places();
+    await page.evaluate(() => window.scrollTo(0, document.getElementById("services")!.offsetTop + 50));
+    await expect(sections.locator('[aria-current="location"]')).toHaveAttribute("title", "Services");
+    expect(await places()).toEqual(before);
+    await sections.hover();
+    const frame = (await page.locator("#home").boundingBox())!;
+    for (const name of await sections.locator("a > span:last-child > span").all()) {
+      await expect(name).toHaveCSS("opacity", "1");
+      const box = (await name.boundingBox())!;
+      expect(box.x, `at ${width}px`).toBeGreaterThanOrEqual(frame.x + frame.width);
+      expect(box.x + box.width, `at ${width}px`).toBeLessThanOrEqual(width);
+    }
+  }
+});
