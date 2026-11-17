@@ -7,6 +7,7 @@ import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { STYLES } from "@sharadox/sharadox-web-library/content/style";
 import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 import { NotFoundPage } from "@sharadox/sharadox-web-application/component/not-found-page";
 import "@sharadox/sharadox-web-application/style/global/index.scss";
 
@@ -25,6 +26,7 @@ export default function GlobalNotFound() {
         <LocaleTransitionStyle />
       </head>
       <body id="top">
+        <SmoothScroll />
         <NotFoundPage />
       </body>
     </html>

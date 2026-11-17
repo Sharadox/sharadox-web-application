@@ -13,6 +13,23 @@
 *::after {
   box-sizing: border-box;
 }
+/* Every box starts centered: its text, its free space on both axes (flex, grid and block), and its items across the
+   line (an icon beside a label sits on the label's middle). A component says so wherever it aligns otherwise (left,
+   top, stretched), so a box that says nothing (a button, a chip, an icon in a circle) is always centered. Boxes still
+   fill their width by default: \`justify-items: center\` would shrink every block to its content. Zero specificity, so
+   any component's own alignment wins. */
+:where(*, *::before, *::after) {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+/* Except a multi-line text field: typing starts on its first line, at the top. */
+:where(textarea) {
+  align-content: start;
+}
+body {
+  text-align: center;
+}
 html {
   background: var(--background);
   color: var(--foreground);

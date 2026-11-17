@@ -13,7 +13,6 @@ import { separate } from "@sharadox/sharadox-web-library/utility/separate";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
-import { SmoothScroll } from "@sharadox/scroll-web-library/smooth-scroll";
 
 /** The binding Portuguese original, or its English translation; both live at the repository's root. */
 const READ = {
@@ -32,6 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/license"
     path: LICENSE.path,
     title: separate(title, SITE.name),
     description: translate(LICENSE.description, locale),
+    image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
 }
 
@@ -40,7 +40,6 @@ export default async function LicensePage({ params }: PageProps<"/[locale]/licen
   const markdown = await READ[locale]();
   return (
     <>
-      <SmoothScroll />
       <Cursor />
       <Navigation locale={locale} path={LICENSE.path} />
       <main>
