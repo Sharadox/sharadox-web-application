@@ -57,7 +57,7 @@ test("the license page shows the Portuguese original and the English translation
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Sharadox Verifiable Source License");
   await expect(page.getByRole("contentinfo").getByRole("link", { name: "Web", exact: true })).toHaveAttribute(
     "href",
-    "/en#web-application",
+    "/en#web",
   );
   for (const path of ["/LICENCA.md", "/LICENSE.md"]) {
     const response = await request.get(path);
@@ -272,7 +272,7 @@ test("on a phone the menu lists every section and scrolls when held sideways", a
     await page.goto("/en");
     await page.getByRole("button", { name: "Open menu" }).click();
     const menu = page.locator("#menu");
-    await expect(menu.getByRole("link", { name: /One System/ })).toBeVisible();
+    await expect(menu.getByRole("link", { name: /About/ })).toBeVisible();
     const [scrollHeight, clientHeight] = await menu.evaluate((element) => [element.scrollHeight, element.clientHeight]);
     if (viewport.width > viewport.height) expect(scrollHeight).toBeGreaterThan(clientHeight!);
     await menu.evaluate((element) => element.scrollTo(0, element.scrollHeight));
@@ -289,4 +289,60 @@ test("tapping the logo closes the phone menu", async ({ page }) => {
   await expect(page.locator("#menu")).toBeVisible();
   await page.getByRole("banner").getByRole("link").first().click();
   await expect(page.locator("#menu")).toHaveCount(0);
+});
+
+test("on a wide screen, the four service shortcuts show at the bottom of the first screen", async ({ page }) => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/en");
+    const shortcuts = page.getByRole("navigation", { name: "Services" }).first();
+    await expect(shortcuts).toBeInViewport({ ratio: 1 });
+  }
+});
+
+test("the section indicator stays outside the grid frame's right line", async ({ page }) => {
+  for (const width of [1440, 1280, 1200]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en");
+    const frame = (await page.locator("#home").boundingBox())!;
+    const sections = page.getByRole("navigation", { name: "Sections" });
+    // Once it has slid in, its whole box sits between the frame's right line and the window's edge.
+    await sections.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+    const indicator = (await sections.boundingBox())!;
+    expect(indicator.x, `at ${width}px`).toBeGreaterThanOrEqual(frame.x + frame.width);
+    expect(indicator.x + indicator.width, `at ${width}px`).toBeLessThanOrEqual(width);
+  }
+});
+
+test("the About section replaces One System, and the services and groups have short addresses", async ({ page }) => {
+  await page.goto("/en");
+  await expect(page.locator("#about")).toContainText("Your business, run from anywhere.");
+  for (const id of [
+    "about",
+    "services",
+    "web",
+    "desktop-and-mobile",
+    "creative",
+    "marketing",
+    "capabilities",
+    "process",
+    "contact",
+  ])
+    await expect(page.locator(`#${id}`)).toHaveCount(1);
+  await expect(page.locator("#touchpoints")).toHaveCount(0);
+});
+
+test("typing in the project message starts on its first line, at the top", async ({ page }) => {
+  await page.goto("/en#contact");
+  const message = page.getByLabel("Tell us about your project");
+  await message.fill("A booking platform for three clinics.");
+  const [alignment, padding] = await message.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return [style.alignContent, style.paddingTop];
+  });
+  expect(alignment).toBe("start");
+  expect(padding).toBe("13px");
 });

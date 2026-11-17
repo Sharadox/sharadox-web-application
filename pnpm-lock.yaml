@@ -21,8 +21,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.31.0
-        version: 0.31.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.32.0
+        version: 0.32.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -883,8 +883,8 @@ packages:
       react: '>=19'
       react-dom: '>=19'
 
-  '@sharadox/icon-web-library@0.1.0':
-    resolution: {integrity: sha512-8+UN5OVpiH50Ow0u/GpKTzZP9f/lNCVYCHIHhN3HmK3UEnpd/VUOxc69n78xu2gr4t/2ChsJUQmZBLXUEIHUDA==}
+  '@sharadox/icon-web-library@0.3.0':
+    resolution: {integrity: sha512-FFA5kusby03hGN9oRhNyOmUcdwTtZ6yf0+Ks+A7RidPJTaTzM8JnqjPbrDGHQ3rtnKYvUfBXQ6TY0pC/z7e1/A==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -981,8 +981,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.31.0':
-    resolution: {integrity: sha512-RXowwSSVbP2kIMqKcwijmYElj11rmUwwtp7DJPQYi8gE7zhICNfWz28zmyb8ELzteVKPHBfswRY1Sl7fFW217Q==}
+  '@sharadox/sharadox-web-library@0.32.0':
+    resolution: {integrity: sha512-o9AdsmTPtc6fqIdObTXlXVbXnAzw8OgamN2hoAJ7R6mbj46thz1wfX5mcmBg9Gv3S+o0y5R+ucPqnE4MNiro6g==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3694,7 +3694,7 @@ snapshots:
       - immer
       - react-native
 
-  '@sharadox/icon-web-library@0.1.0(react@19.3.1)':
+  '@sharadox/icon-web-library@0.3.0(react@19.3.1)':
     optionalDependencies:
       react: 19.3.1
 
@@ -3773,13 +3773,13 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.31.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.32.0(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library': 0.3.0
       '@sharadox/globe-web-library': 0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@sharadox/icon-web-library': 0.1.0(react@19.3.1)
+      '@sharadox/icon-web-library': 0.3.0(react@19.3.1)
       '@sharadox/internationalization-web-library': 0.2.3(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/legal-web-library': 0.1.0(react@19.3.1)
       '@sharadox/menu-web-library': 0.1.0(react@19.3.1)

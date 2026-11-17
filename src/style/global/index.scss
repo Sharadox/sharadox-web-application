@@ -23,6 +23,10 @@
   align-content: center;
   align-items: center;
 }
+/* Except a multi-line text field: typing starts on its first line, at the top. */
+:where(textarea) {
+  align-content: start;
+}
 body {
   text-align: center;
 }
