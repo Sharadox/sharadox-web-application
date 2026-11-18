@@ -439,3 +439,39 @@ test("on a wide screen, the hero's copy sits in the middle of the space under th
   expect(Math.abs(copy.y - 64 - (shortcuts.y - copy.y - copy.height))).toBeLessThanOrEqual(2);
   expect(Math.abs(copy.y + copy.height / 2 - (globe.y + globe.height / 2))).toBeLessThanOrEqual(2);
 });
+
+test("the portfolio shows Luis Pires Decor live, filters by service and links to the site", async ({ page }) => {
+  await page.goto("/en#portfolio");
+  const project = page.getByRole("article", { name: /Luis Pires Decor/ });
+  await expect(project.getByRole("img", { name: "Luis Pires Decor on a computer and on a phone" })).toBeVisible();
+  // Both screens load their whole-page captures.
+  for (const image of await project.locator("img").all())
+    await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
+  await expect(project.getByRole("listitem")).toHaveText(["Website", "Hosting", "Professional Email", "PWA"]);
+  await expect(project.getByRole("link", { name: "Visit the Site" })).toHaveAttribute(
+    "href",
+    "https://luispiresdecor.com",
+  );
+  const services = page.getByRole("group", { name: "Service" });
+  await services.getByRole("button", { name: "Hosting" }).click();
+  await expect(services.getByRole("button", { name: "Hosting" })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByText("1 project")).toBeVisible();
+  await page.getByRole("combobox", { name: "Sort" }).selectOption("client");
+  await expect(project).toBeVisible();
+});
+
+test("the top bar fits its links at every width, and the menu takes over below 1200 pixels", async ({ page }) => {
+  for (const width of [1201, 1280, 1440]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/pt");
+    const right = await page
+      .getByRole("banner")
+      .evaluate((banner) =>
+        Math.max(...[...banner.querySelectorAll("*")].map((element) => element.getBoundingClientRect().right)),
+      );
+    expect(right, `at ${width}px`).toBeLessThanOrEqual(width);
+    await expect(page.getByRole("banner").getByRole("link", { name: "Portefólio" })).toBeVisible();
+  }
+  await page.setViewportSize({ width: 1200, height: 800 });
+  await expect(page.getByRole("button", { name: "Abrir menu" })).toBeVisible();
+});
