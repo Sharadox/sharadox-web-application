@@ -359,7 +359,9 @@ test("the questions open to their answers, and are given to search engines on th
   expect(faqPage(await page.locator('script[type="application/ld+json"]').allTextContents())).toBe(false);
 });
 
-test("the sections come in order, the invitation for unlisted ideas after the capabilities", async ({ page }) => {
+test("the sections come in order, the invitation for unlisted ideas after the capabilities, then the portfolio", async ({
+  page,
+}) => {
   await page.goto("/en");
   const order = await page.evaluate(() =>
     [...document.querySelectorAll("main > section")].map(
@@ -372,6 +374,7 @@ test("the sections come in order, the invitation for unlisted ideas after the ca
     "services",
     "capabilities",
     "Didn't find the service you were looking for?",
+    "portfolio",
     "process",
     "faq",
     "contact",
