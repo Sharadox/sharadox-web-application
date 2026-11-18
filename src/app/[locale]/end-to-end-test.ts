@@ -319,7 +319,7 @@ test("the section indicator stays outside the grid frame's right line", async ({
 
 test("the About section replaces One System, and the services and groups have short addresses", async ({ page }) => {
   await page.goto("/en");
-  await expect(page.locator("#about")).toContainText("Your business, run from anywhere.");
+  await expect(page.locator("#about")).toContainText("Your business, run by one system.");
   for (const id of [
     "about",
     "services",
