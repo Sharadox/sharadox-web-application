@@ -17,8 +17,9 @@
    line (an icon beside a label sits on the label's middle). A component says so wherever it aligns otherwise (left,
    top, stretched), so a box that says nothing (a button, a chip, an icon in a circle) is always centered. Boxes still
    fill their width by default: \`justify-items: center\` would shrink every block to its content. Zero specificity, so
-   any component's own alignment wins. */
-:where(*, *::before, *::after) {
+   any component's own alignment wins. Other sites' components shown here (data-guest: a portfolio's live parts) keep
+   their own defaults, so neither this nor the element styles below reach inside them. */
+:where(*, *::before, *::after):where(:not([data-guest] *, [data-guest] *::before, [data-guest] *::after)) {
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -57,38 +58,36 @@ body {
 main {
   overflow-x: clip;
 }
-a {
+a:where(:not([data-guest] *)) {
   color: inherit;
   text-decoration: none;
 }
-button {
+button:where(:not([data-guest] *)) {
   font: inherit;
   color: inherit;
   cursor: pointer;
 }
-h1,
-h2,
-h3 {
+:where(h1, h2, h3):where(:not([data-guest] *)) {
   margin: 0;
   font-weight: 600;
   letter-spacing: -0.045em;
   line-height: 1;
 }
-h2 {
+:where(h2):where(:not([data-guest] *)) {
   font-size: clamp(2.4rem, 5.6vw, 4.6rem);
 }
-h3 {
+:where(h3):where(:not([data-guest] *)) {
   font-size: 1.5rem;
   letter-spacing: -0.03em;
 }
-p {
+p:where(:not([data-guest] *)) {
   margin: 0;
 }
-::selection {
+:where(:not([data-guest] *))::selection {
   background: var(--foreground);
   color: var(--background);
 }
-:focus-visible {
+:where(:not([data-guest] *)):focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 3px;
   border-radius: 6px;

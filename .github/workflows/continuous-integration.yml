@@ -16,12 +16,13 @@ jobs:
     name: Verify
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: Sharadox/git-hub-action-library/verify@v0.1.6
         with:
           tasks: format:check lint type-check test:unit test:benchmark build test:end-to-end
           browser: "true"
+          npm-install-token: ${{ secrets.NPM_INSTALL_TOKEN }}
           turborepo-token: ${{ secrets.TURBOREPO_TOKEN }}
           turborepo-team: ${{ vars.TURBOREPO_TEAM }}
           turborepo-remote-cache-signature-key: ${{ secrets.TURBOREPO_REMOTE_CACHE_SIGNATURE_KEY }}

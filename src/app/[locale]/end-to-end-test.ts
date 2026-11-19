@@ -372,6 +372,7 @@ test("the sections come in order, the invitation for unlisted ideas after the ca
     "services",
     "capabilities",
     "Didn't find the service you were looking for?",
+    "portfolio",
     "process",
     "faq",
     "contact",
@@ -438,4 +439,67 @@ test("on a wide screen, the hero's copy sits in the middle of the space under th
   const globe = await box("#home > div[class*='globe']");
   expect(Math.abs(copy.y - 64 - (shortcuts.y - copy.y - copy.height))).toBeLessThanOrEqual(2);
   expect(Math.abs(copy.y + copy.height / 2 - (globe.y + globe.height / 2))).toBeLessThanOrEqual(2);
+});
+
+test("the portfolio shows Luis Pires Decor with its services and launch day, and leads to its own page", async ({
+  page,
+}) => {
+  await page.goto("/en#portfolio");
+  const project = page.getByRole("article", { name: /Luis Pires Decor/ });
+  await expect(project.getByRole("img", { name: "Luis Pires Decor on a computer and on a phone" })).toBeVisible();
+  await expect(project.getByRole("listitem")).toHaveText([
+    "Rebranding",
+    "Branding Design",
+    "Website",
+    "Hosting",
+    "Professional Email",
+    "PWA",
+  ]);
+  await expect(project.getByText("17 November 2026").first()).toBeVisible();
+  await expect(project.getByRole("link", { name: /Visit/ })).toHaveCount(0);
+  await project.getByRole("link", { name: "See the Project" }).click();
+  await expect(page).toHaveURL(/\/en\/portfolio\/luis-pires-decor$/, { timeout: 15_000 });
+});
+
+test("the project's page runs the website's own parts live, lets the form be tried, and ends with the site", async ({
+  page,
+}) => {
+  await page.goto("/en/portfolio/luis-pires-decor");
+  // The page's own title (the client's hero inside has its own).
+  await expect(page.locator("article > section").first().getByRole("heading", { level: 1 })).toHaveText(
+    "Luis Pires DecorMade by hand, now online.",
+  );
+  await expect(page.locator("[data-guest]")).toHaveCount(6);
+  await expect(page.getByText("Live · luispiresdecor.com")).toHaveCount(6);
+  // Their photos load from the client's own site.
+  const photo = page.locator("[data-guest] img").first();
+  await photo.scrollIntoViewIfNeeded();
+  await expect(photo).toHaveAttribute("src", /luispiresdecor\.com/);
+  // The booking form thanks, without sending anything.
+  const booking = page.locator("#book-a-visit");
+  await booking.locator('input[name="name"]').fill("Ana");
+  await booking.locator('input[name="email"]').fill("ana@example.com");
+  await page.waitForTimeout(2600);
+  await booking.getByRole("button", { name: /Send/i }).click();
+  await expect(booking.getByRole("status")).toContainText("Thank you", { timeout: 10_000 });
+  // The way to the site comes only at the end.
+  const visit = page.getByRole("link", { name: "Visit luispiresdecor.com" });
+  await expect(visit).toHaveCount(1);
+  await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
+});
+
+test("the top bar fits its links at every width, and the menu takes over below 1200 pixels", async ({ page }) => {
+  for (const width of [1201, 1280, 1440]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/pt");
+    const right = await page
+      .getByRole("banner")
+      .evaluate((banner) =>
+        Math.max(...[...banner.querySelectorAll("*")].map((element) => element.getBoundingClientRect().right)),
+      );
+    expect(right, `at ${width}px`).toBeLessThanOrEqual(width);
+    await expect(page.getByRole("banner").getByRole("link", { name: "Portefólio" })).toBeVisible();
+  }
+  await page.setViewportSize({ width: 1200, height: 800 });
+  await expect(page.getByRole("button", { name: "Abrir menu" })).toBeVisible();
 });
