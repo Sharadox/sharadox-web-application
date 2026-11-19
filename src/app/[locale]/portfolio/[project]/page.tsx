@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { Atelier } from "@sharadox/luis-pires-decor-web-library/component/atelier";
 import { FabricStudio } from "@sharadox/luis-pires-decor-web-library/component/fabric-studio";
 import { Hero } from "@sharadox/luis-pires-decor-web-library/component/hero";
-import { Places } from "@sharadox/luis-pires-decor-web-library/component/places";
-import { Process } from "@sharadox/luis-pires-decor-web-library/component/process";
 import { Sequence } from "@sharadox/luis-pires-decor-web-library/component/sequence";
 import { Showcase } from "@sharadox/luis-pires-decor-web-library/component/showcase";
 import { Work } from "@sharadox/luis-pires-decor-web-library/component/work";
@@ -41,23 +38,19 @@ const body = Manrope({
   display: "swap",
 });
 
-/** Each project's chapters: its website's own components, running live, by chapter key. */
+/**
+ * Each project's chapters: one part of its website we're proud of per chapter key, the component itself, running
+ * live (not the whole page).
+ */
 const SHOWCASES: Record<Project["key"], (locale: Locale) => ProjectChapters> = {
   "luis-pires-decor": (locale) => ({
-    hero: (
-      <>
-        <Hero locale={locale} />
-        <Places locale={locale} />
-        <Atelier locale={locale} />
-      </>
-    ),
+    hero: <Hero locale={locale} />,
     sequence: <Sequence locale={locale} phone="overlay" />,
     fabric: <FabricStudio locale={locale} />,
     work: <Work locale={locale} more={false} />,
-    process: <Process locale={locale} />,
     booking: (
       <div id={BOOKING.id}>
-        <DemoBooking locale={locale} />
+        <DemoBooking locale={locale} demo={translate(PORTFOLIO.page.demo, locale)} />
       </div>
     ),
   }),

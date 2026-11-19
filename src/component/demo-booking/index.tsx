@@ -3,22 +3,17 @@ import { ContactForm } from "@sharadox/luis-pires-decor-web-library/component/co
 import styles from "./index.module.scss";
 import type { DemoBookingProperties } from "@sharadox/sharadox-web-application/component/demo-booking/type";
 
-/** How long the pretend sending takes, so the form shows its sending state as on the site. */
-const SENDING = 900;
+/** The form's action, which a demo never calls (it shows its notice instead); it would leave the form as it was. */
+export const sendNothing = async () => ({ status: "idle" as const });
 
 /**
- * Luis Pires Decor's booking form, to try on the showcase: it checks and thanks as on the site, but nothing is sent.
+ * Luis Pires Decor's booking form, to try on the showcase: it checks itself as on the site (the phone's country
+ * picker too), but sending only says it's a demo; nothing is sent anywhere.
  */
-export function DemoBooking({ locale }: DemoBookingProperties) {
+export function DemoBooking({ locale, demo }: DemoBookingProperties) {
   return (
     <div className={styles.booking}>
-      <ContactForm
-        locale={locale}
-        action={async () => {
-          await new Promise((resolve) => setTimeout(resolve, SENDING));
-          return { status: "sent" as const };
-        }}
-      />
+      <ContactForm locale={locale} action={sendNothing} demo={demo} />
     </div>
   );
 }

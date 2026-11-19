@@ -15,8 +15,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/luis-pires-decor-web-library':
-        specifier: ^0.21.0
-        version: 0.21.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.24.0
+        version: 0.24.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.7.0
         version: 0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -27,8 +27,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.47.0
-        version: 0.47.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.48.0
+        version: 0.48.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -850,8 +850,8 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@sharadox/animation-web-library@0.2.3':
-    resolution: {integrity: sha512-aXV8LOUwx4nX7jxl+4EIvtFo1TFFbKLxPSgn/0tE+DcyTrrASK7pvJGgwB0IhvCzPQ83tPvGOlBNTOL5KthmIQ==}
+  '@sharadox/animation-web-library@0.2.4':
+    resolution: {integrity: sha512-vIg4AE/KyVczX9qUzuhqP0LKbWY5nb4WM7j7RDzmDGHAORnbecf77KP2fXWQEjGygcnhQZbKcksTzZKS+KH/sQ==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -868,10 +868,6 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/email-web-library@0.3.0':
-    resolution: {integrity: sha512-OHA8zrEB9oZGN9UFhHhHhPOdlHLt6lavvjrFNBg0d+Svbk9/ZsG3e6Uxc/7O4e9Kfi+gSW9soLPQD/LlqYOpQg==}
-    engines: {node: '>=26'}
-
   '@sharadox/email-web-library@0.4.0':
     resolution: {integrity: sha512-Hcb+UWL6ZCSycNJI5VqOVHNSR/XTigIX68mUU0CItTMjC3/Xw3xLqwqpCtf7LcDyM/U3TwRytLwqOWSlqmkB7A==}
     engines: {node: '>=26'}
@@ -887,13 +883,18 @@ packages:
       eslint-config-next:
         optional: true
 
-  '@sharadox/form-web-library@0.4.1':
-    resolution: {integrity: sha512-EThDIIqu58YyGHgbTyl4KW9vTla6/q+rXYlB8kkx3FNMNL1HM5DXubfWiF8AC/CKZ+6DxOBDkC+Hi9jfJce7xg==}
-    engines: {node: '>=26'}
-
   '@sharadox/form-web-library@0.5.1':
     resolution: {integrity: sha512-3pCUZ5n9mzUftgaurCL+sKuetNv1c+K6fLvRV2hXGtuuQFFf+tF+qxS0jfxqTIl5H4oBoW/4TksFrkm/fD2j5g==}
     engines: {node: '>=26'}
+
+  '@sharadox/form-web-library@0.6.1':
+    resolution: {integrity: sha512-mSISFWfbaIRjvrR2fnmxMxdhK4+LGQahao8yr09BJkTjxJw6xe5udxW72MuvBi9xdFJ4EN/NCJnRhnpIgIIC9g==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      react: '>=19'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@sharadox/globe-web-library@0.2.1':
     resolution: {integrity: sha512-lnGDFmnm9dH+TWNVGtrFCuKJiqjuir4qpFk4TVl95j9d9beJx4kOXWGouO4wO7OirWlKdsKuGoxoRhABwbh2TQ==}
@@ -903,8 +904,8 @@ packages:
       react: '>=19'
       react-dom: '>=19'
 
-  '@sharadox/icon-web-library@0.2.0':
-    resolution: {integrity: sha512-GPwFL0MZHW6Qb9TtLtpo8QrkiMO0EJ9G4UKwD0+S4efz8epDBT+RjOUcySzUWyDE1/OBEqXIWtcfDF7kA9QnWw==}
+  '@sharadox/icon-web-library@0.5.0':
+    resolution: {integrity: sha512-rX5gbt0aAKjronzijkPK6Cytd2hvSGHjyhtztlw8kVPWVeRp5g6zhNn+PMfnN93mM672+9TzTCPEKNDLuALX/Q==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -912,8 +913,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/icon-web-library@0.5.0':
-    resolution: {integrity: sha512-rX5gbt0aAKjronzijkPK6Cytd2hvSGHjyhtztlw8kVPWVeRp5g6zhNn+PMfnN93mM672+9TzTCPEKNDLuALX/Q==}
+  '@sharadox/icon-web-library@0.6.0':
+    resolution: {integrity: sha512-3IkbTZr5kLB6Uxyi/XVo/hTTCaMo2VBWDz9UDjijNQJJbg/bFBZGyrmD3YQmBs9H/bCL0g8q2JWDPckzveTs7g==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -944,8 +945,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/luis-pires-decor-web-library@0.21.0':
-    resolution: {integrity: sha512-WCPodKS4Xx0gNK+E+8QDmtSFk5UHJEb27NegKL4nf8ipYrU2NDzY9QmeUJjYkWOt5td39stNK4MfFQBXJycH0g==}
+  '@sharadox/luis-pires-decor-web-library@0.24.0':
+    resolution: {integrity: sha512-FVQI+yOeKEmPPcEtUnf+yJavp3fSWdz9BJlnrFMuwMK/z+jk9wD7Kv5APY1hL1WaLGiEoH8QPdjfqcEqf4ohlw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -962,18 +963,6 @@ packages:
       react: '>=19'
     peerDependenciesMeta:
       react:
-        optional: true
-
-  '@sharadox/metadata-web-library@0.6.0':
-    resolution: {integrity: sha512-5KhbetoeprE0e/avmCeQyfz1x92RvHwtN7OXdQpsvQOulDb35/Wie/i1yibys2pCxoKpK3KMDdUhWKi+ruViLA==}
-    engines: {node: '>=26'}
-    hasBin: true
-    peerDependencies:
-      '@resvg/resvg-js': '>=2'
-      next: '>=16'
-      react: '>=19'
-    peerDependenciesMeta:
-      '@resvg/resvg-js':
         optional: true
 
   '@sharadox/metadata-web-library@0.7.0':
@@ -1006,6 +995,12 @@ packages:
     peerDependencies:
       react: '>=19'
 
+  '@sharadox/pointer-web-library@0.2.0':
+    resolution: {integrity: sha512-Rr+XrCj1GtM6N1g9NlqLPXE8SMdSLrfMNyYl/f1zL8Jy7Nl4LsRZWvG+CsV3lCHTZpX8taDLpuppEldJpaM8Fw==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      react: '>=19'
+
   '@sharadox/prettier-configuration-web-library@0.1.1':
     resolution: {integrity: sha512-isV5gr/ku2DzfzIC+VlaxtuCBDwoV9ccMec3lvRn7/Gih1E5HW1+tV0YrxDwBH+wjaFiDuAQO6UTZNM5+N4rDw==}
     engines: {node: '>=26'}
@@ -1033,8 +1028,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.47.0':
-    resolution: {integrity: sha512-AoHr9t2fqcr5D4NMHeDw3b2uvcr7xs2kZ3ahd+Z/2tlfiyvOeonAvXo0mRxNTQtgAUjGNxszoT5bi4OFnHEpjg==}
+  '@sharadox/sharadox-web-library@0.48.0':
+    resolution: {integrity: sha512-Z97Nxq4QfQVOuTlChznnESEdTp3K0SZgkO5QqWDyGk+l6smX6WJAnlHx3HVgDCOojnRqkhTotbnJDjyK6zjrhg==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -1098,6 +1093,10 @@ packages:
 
   '@sharadox/web-library@0.7.0':
     resolution: {integrity: sha512-7UWzK5z2iKtw1l4wFJiB2Z77qCNFWpYd24+7MWFLvHkrDqIvv6y6+VDjqvbWlrMzRD8D46RdhRPMT5b50Of0lA==}
+    engines: {node: '>=26'}
+
+  '@sharadox/web-library@0.8.0':
+    resolution: {integrity: sha512-5lqIUC05HtOmaUlnmZtxHCWyWcbziZqNfI761eCHYv1vZmcZifgATBSBaqgkk77zSHvoapLenQJrFocKWdTOtA==}
     engines: {node: '>=26'}
 
   '@shikijs/engine-oniguruma@3.23.0':
@@ -3687,7 +3686,7 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.6.1
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3714,10 +3713,6 @@ snapshots:
       - '@emotion/is-prop-valid'
       - react-dom
 
-  '@sharadox/email-web-library@0.3.0':
-    dependencies:
-      nodemailer: 10.5.0
-
   '@sharadox/email-web-library@0.4.0':
     dependencies:
       '@sharadox/web-library': 0.7.0
@@ -3736,15 +3731,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sharadox/form-web-library@0.4.1':
-    dependencies:
-      '@sharadox/email-web-library': 0.3.0
-      '@sharadox/web-library': 0.7.0
-
   '@sharadox/form-web-library@0.5.1':
     dependencies:
       '@sharadox/email-web-library': 0.4.0
       '@sharadox/web-library': 0.7.0
+
+  '@sharadox/form-web-library@0.6.1(react@19.3.1)':
+    dependencies:
+      '@sharadox/email-web-library': 0.4.0
+      '@sharadox/icon-web-library': 0.6.0(react@19.3.1)
+      '@sharadox/web-library': 0.7.0
+    optionalDependencies:
+      react: 19.3.1
 
   '@sharadox/globe-web-library@0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
@@ -3765,11 +3763,11 @@ snapshots:
       - immer
       - react-native
 
-  '@sharadox/icon-web-library@0.2.0(react@19.3.1)':
+  '@sharadox/icon-web-library@0.5.0(react@19.3.1)':
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/icon-web-library@0.5.0(react@19.3.1)':
+  '@sharadox/icon-web-library@0.6.0(react@19.3.1)':
     optionalDependencies:
       react: 19.3.1
 
@@ -3791,22 +3789,23 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/luis-pires-decor-web-library@0.21.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/luis-pires-decor-web-library@0.24.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
-      '@sharadox/animation-web-library': 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/animation-web-library': 0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@sharadox/form-web-library': 0.4.1
-      '@sharadox/icon-web-library': 0.2.0(react@19.3.1)
+      '@sharadox/email-web-library': 0.4.0
+      '@sharadox/form-web-library': 0.6.1(react@19.3.1)
+      '@sharadox/icon-web-library': 0.6.0(react@19.3.1)
       '@sharadox/internationalization-web-library': 0.2.3(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/legal-web-library': 0.1.0(react@19.3.1)
       '@sharadox/menu-web-library': 0.1.0(react@19.3.1)
-      '@sharadox/metadata-web-library': 0.6.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+      '@sharadox/metadata-web-library': 0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
       '@sharadox/privacy-web-library': 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library': 0.5.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/time-web-library': 0.2.0(react@19.3.1)
-      '@sharadox/web-library': 0.7.0
+      '@sharadox/web-library': 0.8.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react-dom: 19.3.1(react@19.3.1)
@@ -3832,15 +3831,6 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/metadata-web-library@0.6.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
-    dependencies:
-      '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
-      '@sharadox/web-library': 0.7.0
-      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
-      react: 19.3.1
-    optionalDependencies:
-      '@resvg/resvg-js': 2.6.2
-
   '@sharadox/metadata-web-library@0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -3863,6 +3853,11 @@ snapshots:
       '@playwright/test': 1.65.0
 
   '@sharadox/pointer-web-library@0.1.1(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.5.1
+      react: 19.3.1
+
+  '@sharadox/pointer-web-library@0.2.0(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.5.1
       react: 19.3.1
@@ -3895,9 +3890,9 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.47.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.48.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/animation-web-library': 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/animation-web-library': 0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/form-web-library': 0.5.1
       '@sharadox/globe-web-library': 0.2.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3906,12 +3901,12 @@ snapshots:
       '@sharadox/legal-web-library': 0.1.0(react@19.3.1)
       '@sharadox/menu-web-library': 0.1.0(react@19.3.1)
       '@sharadox/metadata-web-library': 0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
-      '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
+      '@sharadox/pointer-web-library': 0.2.0(react@19.3.1)
       '@sharadox/privacy-web-library': 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library': 0.5.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/style-web-library': 0.2.1(react@19.3.1)
       '@sharadox/time-web-library': 0.2.0(react@19.3.1)
-      '@sharadox/web-library': 0.7.0
+      '@sharadox/web-library': 0.8.0
       marked: 17.0.6
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
@@ -3972,6 +3967,8 @@ snapshots:
   '@sharadox/web-library@0.6.1': {}
 
   '@sharadox/web-library@0.7.0': {}
+
+  '@sharadox/web-library@0.8.0': {}
 
   '@shikijs/engine-oniguruma@3.23.0':
     dependencies:
