@@ -43,7 +43,7 @@ const body = Manrope({
  * live (not the whole page).
  */
 const SHOWCASES: Record<Project["key"], (locale: Locale) => ProjectChapters> = {
-  "luis-pires-decor": (locale) => ({
+  "luis-pires-decor-website-and-rebranding": (locale) => ({
     hero: <Hero locale={locale} />,
     sequence: <Sequence locale={locale} phone="overlay" />,
     fabric: <FabricStudio locale={locale} />,
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/portfoli
     locales: LOCALES,
     locale,
     path: `${PORTFOLIO.path}/${project.key}`,
-    title: separate(project.client, SITE.name),
+    title: separate(project.title, translate(PORTFOLIO.pageTitle, locale)),
     description: translate(project.text, locale),
     image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });

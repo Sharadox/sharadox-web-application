@@ -415,6 +415,10 @@ test("the images to post on social media are served in both languages, landscape
       ["portrait.png", 1080, 1920],
       ["landscape-headline.png", 1920, 1080],
       ["portrait-headline.png", 1080, 1920],
+      ["background-landscape.png", 1920, 1080],
+      ["background-portrait.png", 1080, 1920],
+      ["background-square.png", 1080, 1080],
+      ["email-card.png", 256, 144],
     ] as const) {
       const response = await request.get(`/${locale}/social/${name}`);
       expect(response.status(), name).toBe(200);
@@ -469,22 +473,26 @@ test("the portfolio shows Luis Pires Decor with its services and launch day, and
   expect(window.frame - window.screen).toBeLessThan(60);
   await expect(project.getByRole("link", { name: /Visit/ })).toHaveCount(0);
   await project.getByRole("link", { name: "See the Project" }).click();
-  await expect(page).toHaveURL(/\/en\/portfolio\/luis-pires-decor$/, { timeout: 15_000 });
+  await expect(page).toHaveURL(/\/en\/portfolio\/luis-pires-decor-website-and-rebranding$/, { timeout: 15_000 });
 });
 
 test("the project's page shows a few of the site's parts, each explained and live, a demo form, and ends with the site", async ({
   page,
 }) => {
-  await page.goto("/en/portfolio/luis-pires-decor");
+  await page.goto("/en/portfolio/luis-pires-decor-website-and-rebranding");
+  await expect(page).toHaveTitle("Luis Pires Decor Website & Rebranding · Sharadox Portfolio");
   // The page's own title (the client's hero inside has its own).
   await expect(page.locator("article > section").first().getByRole("heading", { level: 1 })).toHaveText(
-    "Luis Pires DecorA lifelong craft, now easy to find.",
+    "Luis Pires Decor Website & RebrandingA craft of decades, now easy to find.",
   );
   await expect(page.getByText(/A few of the parts we're proudest of/)).toBeVisible();
   // Five parts, not the whole page: each with how it works, then the part itself, live.
   await expect(page.locator("[data-guest]")).toHaveCount(5);
   await expect(page.getByText("Live · luispiresdecor.com")).toHaveCount(5);
   await expect(page.getByText("How it works")).toHaveCount(5);
+  // Each part runs across the whole page, as wide as on the client's own site.
+  for (const part of await page.locator("[data-guest]").all())
+    expect((await part.boundingBox())!.width).toBe(page.viewportSize()!.width);
   // Their photos load from the client's own site.
   const photo = page.locator("[data-guest] img").first();
   await photo.scrollIntoViewIfNeeded();
@@ -496,12 +504,28 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await expect(booking.locator('input[name="phone"]')).toHaveValue("+351 912345678");
   await booking.getByRole("button", { name: /Send/i }).click();
   await expect(booking.getByRole("status")).toContainText("This is a demo, so nothing was sent.");
+  // Its buttons keep the client's own look (dark type on gold), not this site's.
+  await expect(booking.getByRole("button", { name: /Send/i })).toHaveCSS("color", "rgb(18, 13, 4)");
+  // The photo viewer opens in the client's look too, its round buttons outlined, and closes with Escape.
+  await page.locator("[data-guest]:has(#portfolio) button:has(img)").first().click();
+  const viewer = page.getByRole("dialog");
+  await expect(viewer).toBeVisible();
+  await expect(viewer.locator("xpath=..")).toHaveAttribute("data-guest", "");
+  await expect(viewer.getByRole("button", { name: "Close" })).not.toHaveCSS("border-top-width", "0px");
+  await page.keyboard.press("Escape");
+  await expect(viewer).toHaveCount(0);
   // The way to the site comes only at the end, in a new tab.
-  await expect(page.getByRole("heading", { level: 2, name: "See it live on luispiresdecor.com" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "See it live", exact: true })).toBeVisible();
   const visit = page.getByRole("link", { name: "Visit luispiresdecor.com" });
   await expect(visit).toHaveCount(1);
   await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
   await expect(visit).toHaveAttribute("target", "_blank");
+});
+
+test("a project's earlier address leads to its current one, temporarily", async ({ request }) => {
+  const response = await request.get("/pt/portfolio/luis-pires-decor", { maxRedirects: 0 });
+  expect(response.status()).toBe(307);
+  expect(response.headers().location).toBe("/pt/portfolio/luis-pires-decor-website-and-rebranding");
 });
 
 test("links that leave the site open in a new tab, and the footer's networks are centered", async ({ page }) => {
