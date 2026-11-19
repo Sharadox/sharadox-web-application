@@ -43,7 +43,7 @@ const body = Manrope({
  * live (not the whole page).
  */
 const SHOWCASES: Record<Project["key"], (locale: Locale) => ProjectChapters> = {
-  "luis-pires-decor": (locale) => ({
+  "luis-pires-decor-website-and-rebranding": (locale) => ({
     hero: <Hero locale={locale} />,
     sequence: <Sequence locale={locale} phone="overlay" />,
     fabric: <FabricStudio locale={locale} />,
@@ -65,16 +65,19 @@ export const generateStaticParams = () => PORTFOLIO.projects.map((project) => ({
 export async function generateMetadata({ params }: PageProps<"/[locale]/portfolio/[project]">): Promise<Metadata> {
   const { locale, project: key } = (await params) as { locale: Locale; project: string };
   const project = projectOf(key)!;
-  return pageMetadata({
+  // "<project> · Sharadox Portfolio" already names the site: no " · Sharadox" after it.
+  const title = separate(project.title, translate(PORTFOLIO.pageTitle, locale));
+  const metadata = pageMetadata({
     name: SITE.name,
     url: SITE.url,
     locales: LOCALES,
     locale,
     path: `${PORTFOLIO.path}/${project.key}`,
-    title: separate(project.client, SITE.name),
+    title,
     description: translate(project.text, locale),
     image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
+  return { ...metadata, title: { absolute: title } };
 }
 
 export default async function ProjectRoute({ params }: PageProps<"/[locale]/portfolio/[project]">) {
