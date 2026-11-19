@@ -9,6 +9,7 @@ import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { Hero } from "@sharadox/sharadox-web-library/component/hero";
 import { Marquee } from "@sharadox/sharadox-web-library/component/marquee";
 import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
+import { Portfolio } from "@sharadox/sharadox-web-library/component/portfolio";
 import { Process } from "@sharadox/sharadox-web-library/component/process";
 import { SectionIndicator } from "@sharadox/sharadox-web-library/component/section-indicator";
 import { ServiceIndex } from "@sharadox/sharadox-web-library/component/service-index";
@@ -31,6 +32,7 @@ export default async function Page({ params }: PageProps<"/[locale]">) {
         <Capability locale={locale} />
         <ServiceUnlisted locale={locale} />
         <Marquee />
+        <Portfolio locale={locale} />
         <Process locale={locale} />
         <Faq locale={locale} />
         <Contact locale={locale} action={sendContactAction} />
