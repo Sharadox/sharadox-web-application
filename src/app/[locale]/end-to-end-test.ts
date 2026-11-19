@@ -515,12 +515,58 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await expect(viewer.getByRole("button", { name: "Close" })).not.toHaveCSS("border-top-width", "0px");
   await page.keyboard.press("Escape");
   await expect(viewer).toHaveCount(0);
+  // It's a demo: the client's links lead nowhere (no jump to the form, no other page).
+  const book = page.locator("main [data-guest]").first().getByRole("link", { name: "Book a Visit" });
+  await book.scrollIntoViewIfNeeded();
+  const before = await page.evaluate(() => [location.href, scrollY]);
+  await book.click();
+  await page.waitForTimeout(600);
+  expect(await page.evaluate(() => [location.href, scrollY])).toEqual(before);
   // The way to the site comes only at the end, in a new tab.
   await expect(page.getByRole("heading", { level: 2, name: "See it live", exact: true })).toBeVisible();
   const visit = page.getByRole("link", { name: "Visit luispiresdecor.com" });
   await expect(visit).toHaveCount(1);
   await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
   await expect(visit).toHaveAttribute("target", "_blank");
+});
+
+test("on phones, the fabric studio's cushion sticks right under the bar, and the end's buttons are centered", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en/portfolio/luis-pires-decor-website-and-rebranding");
+  const studio = page.locator("main [data-guest]:has(#fabrics)");
+  // Scrolled through the studio, the cushion stops at the bar's edge and stays there a while.
+  const tops = await studio.evaluate(async (element) => {
+    const sticky = [...element.querySelectorAll("*")].find((child) => getComputedStyle(child).position === "sticky");
+    const start = element.getBoundingClientRect().top + scrollY;
+    const seen: number[] = [];
+    for (let y = 0; y < element.scrollHeight; y += 80) {
+      scrollTo(0, start + y);
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      seen.push(Math.round(sticky!.getBoundingClientRect().top));
+    }
+    return seen;
+  });
+  expect(tops.filter((top) => top === 65).length).toBeGreaterThan(2);
+  expect(Math.min(...tops.filter((top) => top > 0))).toBe(65);
+  const actions = page.getByRole("link", { name: "Visit luispiresdecor.com" }).locator("xpath=..");
+  const [box, first, last] = await Promise.all([
+    actions.boundingBox(),
+    actions.locator("a").first().boundingBox(),
+    actions.locator("a").last().boundingBox(),
+  ]);
+  expect(
+    Math.abs(first!.x - box!.x - (box!.x + box!.width - Math.max(first!.x + first!.width, last!.x + last!.width))),
+  ).toBeLessThanOrEqual(2);
+});
+
+test("the open phone menu and the bar are one surface, from the top of the screen", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  await page.getByRole("button", { name: "Open menu" }).click();
+  expect((await page.locator("#menu").boundingBox())!.y).toBe(0);
+  await expect(page.getByRole("banner")).toHaveCSS("border-bottom-color", "rgba(0, 0, 0, 0)");
 });
 
 test("a project's earlier address leads to its current one, temporarily", async ({ request }) => {

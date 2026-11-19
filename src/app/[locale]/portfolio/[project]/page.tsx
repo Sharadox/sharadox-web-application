@@ -38,6 +38,9 @@ const body = Manrope({
   display: "swap",
 });
 
+/** This site's top bar (64 px and its hairline): what the client's components stick under it. */
+const BAR_HEIGHT = 65;
+
 /**
  * Each project's chapters: one part of its website we're proud of per chapter key, the component itself, running
  * live (not the whole page).
@@ -89,7 +92,12 @@ export default async function ProjectRoute({ params }: PageProps<"/[locale]/port
   const live = Object.fromEntries(
     Object.entries(SHOWCASES[project.key](locale)).map(([chapter, content]) => [
       chapter,
-      <Showcase key={chapter} origin={project.url} fontClassName={`${display.variable} ${body.variable}`}>
+      <Showcase
+        key={chapter}
+        origin={project.url}
+        fontClassName={`${display.variable} ${body.variable}`}
+        barHeight={BAR_HEIGHT}
+      >
         {content}
       </Showcase>,
     ]),
