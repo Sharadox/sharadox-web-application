@@ -487,11 +487,12 @@ test("the project's page shows a few of the site's parts, each explained and liv
   );
   await expect(page.getByText(/A few of the parts we're proudest of/)).toBeVisible();
   // Five parts, not the whole page: each with how it works, then the part itself, live.
-  await expect(page.locator("[data-guest]")).toHaveCount(5);
+  // (The client's photo viewers keep their own guest layer at the end of the page, outside main.)
+  await expect(page.locator("main [data-guest]")).toHaveCount(5);
   await expect(page.getByText("Live · luispiresdecor.com")).toHaveCount(5);
   await expect(page.getByText("How it works")).toHaveCount(5);
   // Each part runs across the whole page, as wide as on the client's own site.
-  for (const part of await page.locator("[data-guest]").all())
+  for (const part of await page.locator("main [data-guest]").all())
     expect((await part.boundingBox())!.width).toBe(page.viewportSize()!.width);
   // Their photos load from the client's own site.
   const photo = page.locator("[data-guest] img").first();
@@ -510,7 +511,7 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await page.locator("[data-guest]:has(#portfolio) button:has(img)").first().click();
   const viewer = page.getByRole("dialog");
   await expect(viewer).toBeVisible();
-  await expect(viewer.locator("xpath=..")).toHaveAttribute("data-guest", "");
+  await expect(viewer.locator("xpath=..")).toHaveAttribute("data-guest");
   await expect(viewer.getByRole("button", { name: "Close" })).not.toHaveCSS("border-top-width", "0px");
   await page.keyboard.press("Escape");
   await expect(viewer).toHaveCount(0);

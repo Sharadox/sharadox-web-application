@@ -65,16 +65,19 @@ export const generateStaticParams = () => PORTFOLIO.projects.map((project) => ({
 export async function generateMetadata({ params }: PageProps<"/[locale]/portfolio/[project]">): Promise<Metadata> {
   const { locale, project: key } = (await params) as { locale: Locale; project: string };
   const project = projectOf(key)!;
-  return pageMetadata({
+  // "<project> · Sharadox Portfolio" already names the site: no " · Sharadox" after it.
+  const title = separate(project.title, translate(PORTFOLIO.pageTitle, locale));
+  const metadata = pageMetadata({
     name: SITE.name,
     url: SITE.url,
     locales: LOCALES,
     locale,
     path: `${PORTFOLIO.path}/${project.key}`,
-    title: separate(project.title, translate(PORTFOLIO.pageTitle, locale)),
+    title,
     description: translate(project.text, locale),
     image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
+  return { ...metadata, title: { absolute: title } };
 }
 
 export default async function ProjectRoute({ params }: PageProps<"/[locale]/portfolio/[project]">) {
