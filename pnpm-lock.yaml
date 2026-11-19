@@ -18,8 +18,8 @@ importers:
         specifier: ^0.21.0
         version: 0.21.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/metadata-web-library':
-        specifier: ^0.6.0
-        version: 0.6.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.7.0
+        version: 0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library':
         specifier: ^0.1.1
         version: 0.1.1(react@19.3.1)
@@ -27,8 +27,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.46.0
-        version: 0.46.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.47.0
+        version: 0.47.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -976,6 +976,18 @@ packages:
       '@resvg/resvg-js':
         optional: true
 
+  '@sharadox/metadata-web-library@0.7.0':
+    resolution: {integrity: sha512-nz4pSTZZkQlPp8q2+9m4wzD0FmPv9IqcqVy15A+YSweDqdahpP5j6WMZvVFhLDEKAqnXoX4P2uP5GfNuBXusiA==}
+    engines: {node: '>=26'}
+    hasBin: true
+    peerDependencies:
+      '@resvg/resvg-js': '>=2'
+      next: '>=16'
+      react: '>=19'
+    peerDependenciesMeta:
+      '@resvg/resvg-js':
+        optional: true
+
   '@sharadox/next-js-configuration-web-library@0.1.2':
     resolution: {integrity: sha512-4j4Kq47JJJSN/ZJ58Q6L/rcGwMJx4TGfernKKOT8tZm9vx7120LxShNOdba95WB8vNhffj5KY2uAnvoHIHl7bw==}
     engines: {node: '>=26'}
@@ -1021,8 +1033,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.46.0':
-    resolution: {integrity: sha512-IqWdoPMIqzSAzVdp3FONbfnMlAf8mmPjPvpixhq/gP1AUKJfg5Zh9s7uaPaMehNSWUMr0i9Ti7mZRIilVLaU4A==}
+  '@sharadox/sharadox-web-library@0.47.0':
+    resolution: {integrity: sha512-AoHr9t2fqcr5D4NMHeDw3b2uvcr7xs2kZ3ahd+Z/2tlfiyvOeonAvXo0mRxNTQtgAUjGNxszoT5bi4OFnHEpjg==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3829,6 +3841,15 @@ snapshots:
     optionalDependencies:
       '@resvg/resvg-js': 2.6.2
 
+  '@sharadox/metadata-web-library@0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+    dependencies:
+      '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+      '@sharadox/web-library': 0.7.0
+      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      react: 19.3.1
+    optionalDependencies:
+      '@resvg/resvg-js': 2.6.2
+
   '@sharadox/next-js-configuration-web-library@0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/internationalization-web-library': 0.1.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -3874,7 +3895,7 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.46.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.47.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.2.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3884,7 +3905,7 @@ snapshots:
       '@sharadox/internationalization-web-library': 0.2.3(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/legal-web-library': 0.1.0(react@19.3.1)
       '@sharadox/menu-web-library': 0.1.0(react@19.3.1)
-      '@sharadox/metadata-web-library': 0.6.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+      '@sharadox/metadata-web-library': 0.7.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/pointer-web-library': 0.1.1(react@19.3.1)
       '@sharadox/privacy-web-library': 0.1.1(react@19.3.1)
       '@sharadox/scroll-web-library': 0.5.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
