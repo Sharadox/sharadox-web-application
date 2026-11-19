@@ -528,6 +528,10 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await expect(visit).toHaveCount(1);
   await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
   await expect(visit).toHaveAttribute("target", "_blank");
+  // The way back leads to the project's own button in the portfolio, in view.
+  await page.getByRole("link", { name: "Back to the Portfolio" }).click();
+  await expect(page).toHaveURL(/\/en#see-luis-pires-decor-website-and-rebranding$/, { timeout: 15_000 });
+  await expect(page.getByRole("link", { name: "See the Project" })).toBeInViewport({ timeout: 10_000 });
 });
 
 test("on phones, the fabric studio's cushion sticks right under the bar, and the end's buttons are centered", async ({
@@ -566,7 +570,8 @@ test("the open phone menu and the bar are one surface, from the top of the scree
   await page.goto("/en");
   await page.getByRole("button", { name: "Open menu" }).click();
   expect((await page.locator("#menu").boundingBox())!.y).toBe(0);
-  await expect(page.getByRole("banner")).toHaveCSS("border-bottom-color", "rgba(0, 0, 0, 0)");
+  // Only the bar's hairline stands between them.
+  await expect(page.getByRole("banner")).not.toHaveCSS("border-bottom-color", "rgba(0, 0, 0, 0)");
 });
 
 test("a project's earlier address leads to its current one, temporarily", async ({ request }) => {
@@ -590,6 +595,10 @@ test("links that leave the site open in a new tab, and the footer's networks are
   const left = first!.x - box!.x;
   const right = box!.x + box!.width - (last!.x + last!.width);
   expect(Math.abs(left - right)).toBeLessThanOrEqual(2);
+  // The legal links two to a row, the last one alone centered under both.
+  const legal = footer.getByRole("navigation", { name: "Legal" });
+  const [area, lone] = await Promise.all([legal.boundingBox(), legal.locator("> *").last().boundingBox()]);
+  expect(Math.abs(lone!.x - area!.x - (area!.x + area!.width - (lone!.x + lone!.width)))).toBeLessThanOrEqual(2);
 });
 
 test("the top bar fits its links at every width, and the menu takes over below 1200 pixels", async ({ page }) => {
