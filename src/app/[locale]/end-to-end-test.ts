@@ -456,36 +456,69 @@ test("the portfolio shows Luis Pires Decor with its services and launch day, and
     "PWA",
   ]);
   await expect(project.getByText("17 November 2026").first()).toBeVisible();
+  // The computer's window is as tall as its screenshot (1440 by 900) and its bar, never stretched taller.
+  const window = await project
+    .locator("img")
+    .first()
+    .evaluate((image) => {
+      const frame = image.parentElement!.parentElement!.getBoundingClientRect();
+      const shown = image.parentElement!.getBoundingClientRect();
+      return { frame: frame.height, screen: shown.height, width: shown.width };
+    });
+  expect(Math.abs(window.screen - (window.width * 900) / 1440)).toBeLessThanOrEqual(1);
+  expect(window.frame - window.screen).toBeLessThan(60);
   await expect(project.getByRole("link", { name: /Visit/ })).toHaveCount(0);
   await project.getByRole("link", { name: "See the Project" }).click();
   await expect(page).toHaveURL(/\/en\/portfolio\/luis-pires-decor$/, { timeout: 15_000 });
 });
 
-test("the project's page runs the website's own parts live, lets the form be tried, and ends with the site", async ({
+test("the project's page shows a few of the site's parts, each explained and live, a demo form, and ends with the site", async ({
   page,
 }) => {
   await page.goto("/en/portfolio/luis-pires-decor");
   // The page's own title (the client's hero inside has its own).
   await expect(page.locator("article > section").first().getByRole("heading", { level: 1 })).toHaveText(
-    "Luis Pires DecorMade by hand, now online.",
+    "Luis Pires DecorA lifelong craft, now easy to find.",
   );
-  await expect(page.locator("[data-guest]")).toHaveCount(6);
-  await expect(page.getByText("Live · luispiresdecor.com")).toHaveCount(6);
+  await expect(page.getByText(/A few of the parts we're proudest of/)).toBeVisible();
+  // Five parts, not the whole page: each with how it works, then the part itself, live.
+  await expect(page.locator("[data-guest]")).toHaveCount(5);
+  await expect(page.getByText("Live · luispiresdecor.com")).toHaveCount(5);
+  await expect(page.getByText("How it works")).toHaveCount(5);
   // Their photos load from the client's own site.
   const photo = page.locator("[data-guest] img").first();
   await photo.scrollIntoViewIfNeeded();
   await expect(photo).toHaveAttribute("src", /luispiresdecor\.com/);
-  // The booking form thanks, without sending anything.
+  // The booking form checks itself, then says it's a demo, sending nothing.
   const booking = page.locator("#book-a-visit");
   await booking.locator('input[name="name"]').fill("Ana");
-  await booking.locator('input[name="email"]').fill("ana@example.com");
-  await page.waitForTimeout(2600);
+  await booking.locator("#booking-phone").fill("912 345 678");
+  await expect(booking.locator('input[name="phone"]')).toHaveValue("+351 912345678");
   await booking.getByRole("button", { name: /Send/i }).click();
-  await expect(booking.getByRole("status")).toContainText("Thank you", { timeout: 10_000 });
-  // The way to the site comes only at the end.
+  await expect(booking.getByRole("status")).toContainText("This is a demo, so nothing was sent.");
+  // The way to the site comes only at the end, in a new tab.
+  await expect(page.getByRole("heading", { level: 2, name: "See it live on luispiresdecor.com" })).toBeVisible();
   const visit = page.getByRole("link", { name: "Visit luispiresdecor.com" });
   await expect(visit).toHaveCount(1);
   await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
+  await expect(visit).toHaveAttribute("target", "_blank");
+});
+
+test("links that leave the site open in a new tab, and the footer's networks are centered", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en");
+  const footer = page.getByRole("contentinfo");
+  for (const name of ["Review us on Google", "contact@sharadox.com", "Livro de Reclamações (Complaints Book)"])
+    await expect(footer.getByRole("link", { name }).first()).toHaveAttribute("target", "_blank");
+  const networks = footer.getByRole("navigation", { name: "Sharadox elsewhere" });
+  const [box, first, last] = await Promise.all([
+    networks.boundingBox(),
+    networks.getByRole("link").first().boundingBox(),
+    networks.getByRole("link").last().boundingBox(),
+  ]);
+  const left = first!.x - box!.x;
+  const right = box!.x + box!.width - (last!.x + last!.width);
+  expect(Math.abs(left - right)).toBeLessThanOrEqual(2);
 });
 
 test("the top bar fits its links at every width, and the menu takes over below 1200 pixels", async ({ page }) => {
