@@ -516,8 +516,10 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await page.keyboard.press("Escape");
   await expect(viewer).toHaveCount(0);
   // It's a demo: the client's links lead nowhere (no jump to the form, no other page).
+  const book = page.locator("main [data-guest]").first().getByRole("link", { name: "Book a Visit" });
+  await book.scrollIntoViewIfNeeded();
   const before = await page.evaluate(() => [location.href, scrollY]);
-  await page.locator("main [data-guest]").first().getByRole("link", { name: "Book a Visit" }).click();
+  await book.click();
   await page.waitForTimeout(600);
   expect(await page.evaluate(() => [location.href, scrollY])).toEqual(before);
   // The way to the site comes only at the end, in a new tab.
@@ -534,17 +536,20 @@ test("on phones, the fabric studio's cushion sticks right under the bar, and the
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/portfolio/luis-pires-decor-website-and-rebranding");
   const studio = page.locator("main [data-guest]:has(#fabrics)");
-  await studio.evaluate((element) => scrollTo(0, element.getBoundingClientRect().top + scrollY + 900));
-  await page.waitForTimeout(800);
-  const stage = await studio
-    .locator("canvas")
-    .first()
-    .evaluate((canvas) => {
-      let element: Element | null = canvas;
-      while (element && getComputedStyle(element).position !== "sticky") element = element.parentElement;
-      return element!.getBoundingClientRect().top;
-    });
-  expect(stage).toBe(65);
+  // Scrolled through the studio, the cushion stops at the bar's edge and stays there a while.
+  const tops = await studio.evaluate(async (element) => {
+    const sticky = [...element.querySelectorAll("*")].find((child) => getComputedStyle(child).position === "sticky");
+    const start = element.getBoundingClientRect().top + scrollY;
+    const seen: number[] = [];
+    for (let y = 0; y < element.scrollHeight; y += 80) {
+      scrollTo(0, start + y);
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      seen.push(Math.round(sticky!.getBoundingClientRect().top));
+    }
+    return seen;
+  });
+  expect(tops.filter((top) => top === 65).length).toBeGreaterThan(2);
+  expect(Math.min(...tops.filter((top) => top > 0))).toBe(65);
   const actions = page.getByRole("link", { name: "Visit luispiresdecor.com" }).locator("xpath=..");
   const [box, first, last] = await Promise.all([
     actions.boundingBox(),
