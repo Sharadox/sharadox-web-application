@@ -9,5 +9,17 @@ export default defineNextConfiguration({
   next: {
     // One 404 for addresses outside every locale too (src/app/global-not-found.tsx).
     experimental: { globalNotFound: true },
+    // The portfolio's live parts load their photos from the client's own site.
+    images: { remotePatterns: [{ protocol: "https", hostname: "luispiresdecor.com" }] },
+    // A project's earlier address leads to its current one (temporarily, as every redirect here).
+    async redirects() {
+      return [
+        {
+          source: "/:locale/portfolio/luis-pires-decor",
+          destination: "/:locale/portfolio/luis-pires-decor-website-and-rebranding",
+          permanent: false,
+        },
+      ];
+    },
   },
 });
