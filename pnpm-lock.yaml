@@ -18,8 +18,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/luis-pires-decor-web-library':
-        specifier: ^0.25.0
-        version: 0.25.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.26.0
+        version: 0.26.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.8.0
         version: 0.8.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -30,8 +30,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.49.0
-        version: 0.49.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.50.0
+        version: 0.50.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
@@ -935,8 +935,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/luis-pires-decor-web-library@0.25.0':
-    resolution: {integrity: sha512-TyAS/L+2OPF2JRxo34ukJXA9+0hVL6uhvF9uxxn4k7Lyb34YBSM6h+Voov5DweNThG5I6gU7vQ/JjO4hOgHsSg==}
+  '@sharadox/luis-pires-decor-web-library@0.26.0':
+    resolution: {integrity: sha512-Dt+hiVI8Ba+Y1b3nSQlvmSWgKKLyzQEn5L+F0Bh/N1dk8iVgXn9VjegEqDhwvFDs+RmYn/tlbE1mv1mCvZMruw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -1018,8 +1018,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.49.0':
-    resolution: {integrity: sha512-qeqw3YQ4YmcQkX8iJis3I/WM+mAbV5n0O1new4MPjCbAwwdys42el8osaWvX5m0SHh3fTZMy5n9kMUIqoYBYuA==}
+  '@sharadox/sharadox-web-library@0.50.0':
+    resolution: {integrity: sha512-q8KyRUBiWoURcz6bBd3fNa+dJD8CAT0AKTqxXejwpu98eVQEuvxCqilyByC56h0NG34bLly0+ZMc+fupthRQjw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3770,7 +3770,7 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/luis-pires-decor-web-library@0.25.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/luis-pires-decor-web-library@0.26.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
       '@sharadox/animation-web-library': 0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3871,7 +3871,7 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.49.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.50.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/animation-web-library': 0.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/consent-web-library': 0.3.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
