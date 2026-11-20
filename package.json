@@ -16,7 +16,7 @@
     "documentation": "typedoc",
     "verify": "turbo run format:check lint type-check test:unit test:benchmark build test:end-to-end",
     "prepare": "turborepo-configuration next-js-application && (husky || true)",
-    "app-icons": "app-icons"
+    "application-icons": "application-icons"
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
