@@ -70,8 +70,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       '@sharadox/test-web-library':
-        specifier: ^0.5.0
-        version: 0.5.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
+        specifier: ^0.6.0
+        version: 0.6.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.2
         version: 0.1.2(turbo@2.11.10)
@@ -1044,8 +1044,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/test-web-library@0.5.0':
-    resolution: {integrity: sha512-0otO99klDDd6AMXq0l3gpMzXUNGESjK0b3y3XQsJgkaSEYsdmmpa5q5BicBAicuAEFN4JR89Qg5WEIH06C2EiA==}
+  '@sharadox/test-web-library@0.6.0':
+    resolution: {integrity: sha512-K1U756HYzyiPC10PvvStlOsdT+mSSRpOLvF6fS6UfXKK1MurilBL2OMYaR/bm7Hb18lXVfqKU7QD3PsjXRLuWg==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -3932,7 +3932,7 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/test-web-library@0.5.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
+  '@sharadox/test-web-library@0.6.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
     dependencies:
       '@sharadox/web-library': 0.8.0
     optionalDependencies:
