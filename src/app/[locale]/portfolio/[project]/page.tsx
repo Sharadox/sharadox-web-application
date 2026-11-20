@@ -9,19 +9,14 @@ import { Showcase } from "@sharadox/luis-pires-decor-web-library/component/showc
 import { Work } from "@sharadox/luis-pires-decor-web-library/component/work";
 import { BOOKING } from "@sharadox/luis-pires-decor-web-library/content/booking";
 import { DemoBooking } from "@sharadox/sharadox-web-application/component/demo-booking";
-import { Consent } from "@sharadox/sharadox-web-library/component/consent";
-import { Footer } from "@sharadox/sharadox-web-library/component/footer";
-import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 import { ProjectPage } from "@sharadox/sharadox-web-library/component/project-page";
 import type { Project } from "@sharadox/sharadox-web-library/component/portfolio/type";
-import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
-import { SITE } from "@sharadox/sharadox-web-library/content/site";
 import { separated } from "@sharadox/web-library/text/separated";
 import { translate } from "@sharadox/internationalization-web-library/translate";
-import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
-import { Cursor } from "@sharadox/pointer-web-library/cursor";
+import { PageFrame } from "@sharadox/sharadox-web-library/component/page-frame";
+import { siteMetadata } from "@sharadox/sharadox-web-library/utility/site-metadata";
 
 /** Luis Pires Decor's type, for its components shown here. */
 const display = Cormorant_Garamond({
@@ -70,15 +65,11 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/portfoli
   const project = projectOf(key)!;
   // "<project> · Sharadox Portfolio" already names the site: no " · Sharadox" after it.
   const title = separated(project.title, translate(PORTFOLIO.pageTitle, locale));
-  const metadata = pageMetadata({
-    name: SITE.name,
-    url: SITE.url,
-    locales: LOCALES,
+  const metadata = siteMetadata({
     locale,
     path: `${PORTFOLIO.path}/${project.key}`,
     title,
     description: translate(project.text, locale),
-    image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
   return { ...metadata, title: { absolute: title } };
 }
@@ -103,14 +94,8 @@ export default async function ProjectRoute({ params }: PageProps<"/[locale]/port
     ]),
   );
   return (
-    <>
-      <Cursor />
-      <Navigation locale={locale} path={path} />
-      <main>
-        <ProjectPage project={project} locale={locale} chapters={live} />
-      </main>
-      <Footer locale={locale} path={path} />
-      <Consent locale={locale} />
-    </>
+    <PageFrame locale={locale} path={path}>
+      <ProjectPage project={project} locale={locale} chapters={live} />
+    </PageFrame>
   );
 }

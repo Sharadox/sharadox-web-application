@@ -1,18 +1,12 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { Consent } from "@sharadox/sharadox-web-library/component/consent";
-import { Footer } from "@sharadox/sharadox-web-library/component/footer";
 import { License } from "@sharadox/sharadox-web-library/component/license";
-import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 import { LICENSE } from "@sharadox/sharadox-web-library/content/license";
-import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
-import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { separated } from "@sharadox/web-library/text/separated";
 import { translate } from "@sharadox/internationalization-web-library/translate";
-import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
-import { Cursor } from "@sharadox/pointer-web-library/cursor";
+import { PageFrame } from "@sharadox/sharadox-web-library/component/page-frame";
+import { siteMetadata } from "@sharadox/sharadox-web-library/utility/site-metadata";
 
 /** The binding Portuguese original, or its English translation; both live at the repository's root. */
 const READ = {
@@ -23,15 +17,11 @@ const READ = {
 export async function generateMetadata({ params }: PageProps<"/[locale]/license">): Promise<Metadata> {
   const locale = (await params).locale as Locale;
   const title = translate(LICENSE.title, locale);
-  return pageMetadata({
-    name: SITE.name,
-    url: SITE.url,
-    locales: LOCALES,
+  return siteMetadata({
     locale,
     path: LICENSE.path,
-    title: separated(title, SITE.name),
+    title,
     description: translate(LICENSE.description, locale),
-    image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
 }
 
@@ -39,14 +29,8 @@ export default async function LicensePage({ params }: PageProps<"/[locale]/licen
   const locale = (await params).locale as Locale;
   const markdown = await READ[locale]();
   return (
-    <>
-      <Cursor />
-      <Navigation locale={locale} path={LICENSE.path} />
-      <main>
-        <License locale={locale} markdown={markdown} />
-      </main>
-      <Footer locale={locale} path={LICENSE.path} />
-      <Consent locale={locale} />
-    </>
+    <PageFrame locale={locale} path={LICENSE.path}>
+      <License locale={locale} markdown={markdown} />
+    </PageFrame>
   );
 }
