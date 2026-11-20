@@ -25,7 +25,7 @@
     "@sharadox/next-js-configuration-web-library": "^0.3.0",
     "@sharadox/playwright-configuration-web-library": "^0.1.1",
     "@sharadox/prettier-configuration-web-library": "^0.1.1",
-    "@sharadox/test-web-library": "^0.4.0",
+    "@sharadox/test-web-library": "^0.5.0",
     "@sharadox/turborepo-configuration-web-library": "^0.1.2",
     "@sharadox/type-script-configuration-web-library": "^0.2.2",
     "@sharadox/vitest-configuration-web-library": "^0.2.0",

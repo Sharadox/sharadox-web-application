@@ -1,11 +1,8 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { Cursor } from "@sharadox/pointer-web-library/cursor";
-import { Consent } from "@sharadox/sharadox-web-library/component/consent";
-import { Footer } from "@sharadox/sharadox-web-library/component/footer";
-import { Navigation } from "@sharadox/sharadox-web-library/component/navigation";
 import { NotFound } from "@sharadox/sharadox-web-library/component/not-found";
 import { ServiceIndex } from "@sharadox/sharadox-web-library/component/service-index";
+import { PageFrame } from "@sharadox/sharadox-web-library/component/page-frame";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { NotFoundPageProperties } from "@sharadox/sharadox-web-application/component/not-found-page/type";
 
@@ -18,15 +15,9 @@ export function NotFoundPage({ path }: NotFoundPageProperties) {
   const address = path ?? current ?? "/";
   const { locale, path: after } = LOCALES.splitPath(address);
   return (
-    <>
-      <Cursor />
-      <Navigation locale={locale} path={after} />
-      <main>
-        <NotFound locale={locale} path={address} />
-        <ServiceIndex locale={locale} base={`/${locale}`} />
-      </main>
-      <Footer locale={locale} path={after} />
-      <Consent locale={locale} />
-    </>
+    <PageFrame locale={locale} path={after}>
+      <NotFound locale={locale} path={address} />
+      <ServiceIndex locale={locale} base={`/${locale}`} />
+    </PageFrame>
   );
 }
