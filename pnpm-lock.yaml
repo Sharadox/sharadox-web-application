@@ -15,8 +15,8 @@ importers:
         specifier: 0.6.0
         version: 0.6.0(react@19.3.1)
       '@sharadox/internationalization-web-library':
-        specifier: 0.3.0
-        version: 0.3.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.4.0
+        version: 0.4.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/luis-pires-decor-web-library':
         specifier: ^0.29.0
         version: 0.29.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -928,6 +928,13 @@ packages:
 
   '@sharadox/internationalization-web-library@0.3.0':
     resolution: {integrity: sha512-mn1hJIiibGmH1V0fCXc9WwpCxK5E8rLBvXyj7sZe5zWS0IG9SQIHwSpJbOArMNA+YZj1lbLT8Hokc11jDBiGkw==}
+    engines: {node: '>=26'}
+    peerDependencies:
+      next: '>=16'
+      react: '>=19'
+
+  '@sharadox/internationalization-web-library@0.4.0':
+    resolution: {integrity: sha512-tcOeqfjqg/11KjNRfHZavbIra09DElqExKxy3CqHO07hW0QXzkuynANVsyzFoP2GrdVwEfvf70c3sSJrwq3fyQ==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -3782,6 +3789,12 @@ snapshots:
       react: 19.3.1
 
   '@sharadox/internationalization-web-library@0.3.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
+    dependencies:
+      '@sharadox/web-library': 0.8.0
+      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      react: 19.3.1
+
+  '@sharadox/internationalization-web-library@0.4.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.8.0
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
