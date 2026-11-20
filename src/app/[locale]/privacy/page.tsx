@@ -7,7 +7,7 @@ import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 import { PRIVACY_PAGE } from "@sharadox/sharadox-web-library/content/privacy";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/privacy"
     locales: LOCALES,
     locale,
     path: PRIVACY_PAGE.path,
-    title: separate(translate(PRIVACY_PAGE.title, locale), SITE.name),
+    title: separated(translate(PRIVACY_PAGE.title, locale), SITE.name),
     description: translate(PRIVACY_PAGE.description, locale),
     image: { path: `/${locale}/opengraph-image`, alt: SITE.name },
   });
