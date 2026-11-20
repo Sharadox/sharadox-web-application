@@ -73,7 +73,7 @@
     "@sharadox/metadata-web-library": "^0.8.0",
     "@sharadox/pointer-web-library": "^0.3.0",
     "@sharadox/scroll-web-library": "^0.4.2",
-    "@sharadox/sharadox-web-library": "^0.51.0",
+    "@sharadox/sharadox-web-library": "0.51.0-proof-alpha.69",
     "@sharadox/style-web-library": "^0.2.1",
     "@sharadox/web-library": "^0.7.0",
     "geist": "^1.9.2",
