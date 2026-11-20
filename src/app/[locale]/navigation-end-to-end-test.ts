@@ -1,15 +1,5 @@
 import { expect, test } from "@playwright/test";
-
-test("on the home page the logo glides back to the top instead of reloading", async ({ page }) => {
-  await page.goto("/en");
-  await page.mouse.wheel(0, 2500);
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
-  await page.evaluate(() => ((window as unknown as { marker: boolean }).marker = true));
-  await page.getByRole("banner").getByRole("link").first().click();
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
-  // The same document: nothing reloaded.
-  expect(await page.evaluate(() => (window as unknown as { marker?: boolean }).marker)).toBe(true);
-});
+import { describeLogoBackToTop } from "@sharadox/test-web-library/logo-suite";
 
 test("Back to top stays on the page it is on, and section links glide on every page", async ({ page }) => {
   await page.goto("/en/privacy");
@@ -117,3 +107,5 @@ test("the top bar fits its links at every width, and the menu takes over below 1
   await page.setViewportSize({ width: 1200, height: 800 });
   await expect(page.getByRole("button", { name: "Abrir menu" })).toBeVisible();
 });
+
+describeLogoBackToTop({ path: "/en" });

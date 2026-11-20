@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { describeConsumerNotices } from "@sharadox/test-web-library/consumer-notice-suite";
 import { describeSocialImages } from "@sharadox/test-web-library/social-image-suite";
 import { SOCIAL_IMAGES } from "@sharadox/metadata-web-library/social-image";
 import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
@@ -128,16 +129,6 @@ test("the footer leads to the privacy policy", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de Privacidade");
 });
 
-test("the footer carries the complaints book and the consumer dispute notice", async ({ page }) => {
-  await page.goto("/pt");
-  const footer = page.getByRole("contentinfo");
-  await expect(footer.getByRole("link", { name: "Livro de Reclamações" })).toHaveAttribute(
-    "href",
-    "https://www.livroreclamacoes.pt/",
-  );
-  await expect(footer.getByRole("link", { name: /CIMAAL/ })).toHaveAttribute("href", "https://www.consumoalgarve.pt/");
-});
-
 test("the cookie panel only tells, once, and Cookie Preferences shows the details", async ({ browser }) => {
   const context = await browser.newContext({ storageState: { cookies: [], origins: [] } });
   const page = await context.newPage();
@@ -175,3 +166,5 @@ test("links that leave the site open in a new tab, and the footer's networks are
   const [area, lone] = await Promise.all([legal.boundingBox(), legal.locator("> *").last().boundingBox()]);
   expect(Math.abs(lone!.x - area!.x - (area!.x + area!.width - (lone!.x + lone!.width)))).toBeLessThanOrEqual(2);
 });
+
+describeConsumerNotices("/pt");
