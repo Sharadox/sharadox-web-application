@@ -18,7 +18,7 @@ import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
 import { PORTFOLIO } from "@sharadox/sharadox-web-library/content/portfolio";
 import { SITE } from "@sharadox/sharadox-web-library/content/site";
-import { separate } from "@sharadox/sharadox-web-library/utility/separate";
+import { separated } from "@sharadox/web-library/text/separated";
 import { translate } from "@sharadox/internationalization-web-library/translate";
 import { pageMetadata } from "@sharadox/metadata-web-library/page-metadata";
 import { Cursor } from "@sharadox/pointer-web-library/cursor";
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/portfoli
   const { locale, project: key } = (await params) as { locale: Locale; project: string };
   const project = projectOf(key)!;
   // "<project> · Sharadox Portfolio" already names the site: no " · Sharadox" after it.
-  const title = separate(project.title, translate(PORTFOLIO.pageTitle, locale));
+  const title = separated(project.title, translate(PORTFOLIO.pageTitle, locale));
   const metadata = pageMetadata({
     name: SITE.name,
     url: SITE.url,

@@ -16,9 +16,7 @@ import type { NotFoundPageProperties } from "@sharadox/sharadox-web-application/
 export function NotFoundPage({ path }: NotFoundPageProperties) {
   const current = usePathname();
   const address = path ?? current ?? "/";
-  const [, first = "", ...rest] = address.split("/");
-  const locale = LOCALES.isLocale(first) ? first : LOCALES.defaultLocale;
-  const after = LOCALES.isLocale(first) ? (rest.length ? `/${rest.join("/")}` : "/") : "/";
+  const { locale, path: after } = LOCALES.splitPath(address);
   return (
     <>
       <Cursor />
