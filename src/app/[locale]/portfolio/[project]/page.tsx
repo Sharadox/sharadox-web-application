@@ -2,13 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { FabricStudio } from "@sharadox/luis-pires-decor-web-library/component/fabric-studio";
-import { Hero } from "@sharadox/luis-pires-decor-web-library/component/hero";
-import { Sequence } from "@sharadox/luis-pires-decor-web-library/component/sequence";
 import { Showcase } from "@sharadox/luis-pires-decor-web-library/component/showcase";
-import { Work } from "@sharadox/luis-pires-decor-web-library/component/work";
-import { BOOKING } from "@sharadox/luis-pires-decor-web-library/content/booking";
-import { DemoBooking } from "@sharadox/sharadox-web-application/component/demo-booking";
+import { showcaseChapters } from "@sharadox/luis-pires-decor-web-library/component/showcase-chapters";
 import { ProjectPage } from "@sharadox/sharadox-web-library/component/project-page";
 import type { Project } from "@sharadox/sharadox-web-library/component/portfolio/type";
 import type { Locale } from "@sharadox/sharadox-web-library/content/locale/type";
@@ -38,20 +33,11 @@ const BAR_HEIGHT = 65;
 
 /**
  * Each project's chapters: one part of its website we're proud of per chapter key, the component itself, running
- * live (not the whole page).
+ * live (not the whole page). The client's library says which parts.
  */
 const SHOWCASES: Record<Project["key"], (locale: Locale) => ProjectChapters> = {
-  "luis-pires-decor-website-and-rebranding": (locale) => ({
-    hero: <Hero locale={locale} />,
-    sequence: <Sequence locale={locale} phone="overlay" />,
-    fabric: <FabricStudio locale={locale} />,
-    work: <Work locale={locale} more={false} />,
-    booking: (
-      <div id={BOOKING.id}>
-        <DemoBooking locale={locale} demo={translate(PORTFOLIO.page.demo, locale)} />
-      </div>
-    ),
-  }),
+  "luis-pires-decor-website-and-rebranding": (locale) =>
+    showcaseChapters({ locale, demo: translate(PORTFOLIO.page.demo, locale) }),
 };
 type ProjectChapters = Partial<Record<Project["chapters"][number]["key"], ReactNode>>;
 

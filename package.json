@@ -69,7 +69,7 @@
     "@sharadox/form-web-library": "^0.7.1",
     "@sharadox/icon-web-library": "^0.6.1",
     "@sharadox/internationalization-web-library": "^0.4.0",
-    "@sharadox/luis-pires-decor-web-library": "^0.31.0",
+    "@sharadox/luis-pires-decor-web-library": "^0.32.0",
     "@sharadox/metadata-web-library": "^0.10.0",
     "@sharadox/pointer-web-library": "^0.3.1",
     "@sharadox/scroll-web-library": "^0.7.1",
