@@ -27,8 +27,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react@19.3.1)
       '@sharadox/scroll-web-library':
-        specifier: ^0.4.2
-        version: 0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
+        specifier: ^0.5.0
+        version: 0.5.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
         specifier: ^0.51.0
         version: 0.51.0(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.7.0
-        version: 0.7.0
+        specifier: ^0.8.0
+        version: 0.8.0
       geist:
         specifier: ^1.9.2
         version: 1.9.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))
@@ -1003,13 +1003,6 @@ packages:
     peerDependenciesMeta:
       react:
         optional: true
-
-  '@sharadox/scroll-web-library@0.4.2':
-    resolution: {integrity: sha512-q2V0s2M9ibManCJGIOus2V62RHHmFiy6TPgArLUQq6FW5HbFeFv9AL1mZmg4cqpwINhr/8hMUgkIM39490csbQ==}
-    engines: {node: '>=26'}
-    peerDependencies:
-      next: '>=16'
-      react: '>=19'
 
   '@sharadox/scroll-web-library@0.5.0':
     resolution: {integrity: sha512-K4eYzuYTdpf2WHKG02PxzuYgqhhAcxssPbxaT/tZhl3d2OhOCAOGM99gzaTffWZwlRTJ4mIF0cB0QEDYYHzqww==}
@@ -3850,16 +3843,6 @@ snapshots:
       '@sharadox/web-library': 0.7.0
     optionalDependencies:
       react: 19.3.1
-
-  '@sharadox/scroll-web-library@0.4.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
-    dependencies:
-      '@sharadox/web-library': 0.5.1
-      lenis: 1.3.27(react@19.3.1)
-      next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
-      react: 19.3.1
-    transitivePeerDependencies:
-      - '@nuxt/kit'
-      - vue
 
   '@sharadox/scroll-web-library@0.5.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)':
     dependencies:
