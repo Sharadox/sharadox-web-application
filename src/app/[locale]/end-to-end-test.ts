@@ -1,4 +1,7 @@
 import { expect, test } from "@playwright/test";
+import { describeSocialImages } from "@sharadox/test-web-library/social-image-suite";
+import { SOCIAL_IMAGES } from "@sharadox/metadata-web-library/social-image";
+import { LOCALES } from "@sharadox/sharadox-web-library/content/locale";
 import { describeInstallability } from "@sharadox/test-web-library/installability-suite";
 import { describeLocaleMemory, describeStyleMemory } from "@sharadox/test-web-library/preference-suite";
 import { describeSearchEngine } from "@sharadox/test-web-library/search-engine-suite";
@@ -408,26 +411,7 @@ test("the section indicator holds still when the section changes, and its names 
   }
 });
 
-test("the images to post on social media are served in both languages, landscape and portrait", async ({ request }) => {
-  for (const locale of ["en", "pt"])
-    for (const [name, width, height] of [
-      ["landscape.png", 1920, 1080],
-      ["portrait.png", 1080, 1920],
-      ["landscape-headline.png", 1920, 1080],
-      ["portrait-headline.png", 1080, 1920],
-      ["background-landscape.png", 1920, 1080],
-      ["background-portrait.png", 1080, 1920],
-      ["background-square.png", 1080, 1080],
-      ["email-card.png", 256, 144],
-    ] as const) {
-      const response = await request.get(`/${locale}/social/${name}`);
-      expect(response.status(), name).toBe(200);
-      expect(response.headers()["content-type"]).toBe("image/png");
-      const png = await response.body();
-      expect([png.readUInt32BE(16), png.readUInt32BE(20)], name).toEqual([width, height]);
-    }
-  expect((await request.get("/en/social/other.png")).status()).toBe(404);
-});
+describeSocialImages({ locales: LOCALES.locales, images: SOCIAL_IMAGES });
 
 test("on a wide screen, the hero's copy sits in the middle of the space under the bar, the globe beside it", async ({
   page,
