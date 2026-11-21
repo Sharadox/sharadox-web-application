@@ -26,7 +26,7 @@
     "@sharadox/playwright-configuration-web-library": "^0.1.1",
     "@sharadox/prettier-configuration-web-library": "^0.1.1",
     "@sharadox/test-web-library": "^0.6.0",
-    "@sharadox/turborepo-configuration-web-library": "^0.1.2",
+    "@sharadox/turborepo-configuration-web-library": "0.1.3-polish.13",
     "@sharadox/type-script-configuration-web-library": "^0.2.2",
     "@sharadox/vitest-configuration-web-library": "^0.2.0",
     "@testing-library/dom": "^10.4.2",
