@@ -23,7 +23,7 @@
     "@resvg/resvg-js": "2.6.2",
     "@sharadox/es-lint-configuration-web-library": "^0.1.2",
     "@sharadox/next-js-configuration-web-library": "^0.3.0",
-    "@sharadox/playwright-configuration-web-library": "^0.1.1",
+    "@sharadox/playwright-configuration-web-library": "0.1.2-ci-time.6",
     "@sharadox/prettier-configuration-web-library": "^0.1.1",
     "@sharadox/test-web-library": "0.8.0-ci-time.35",
     "@sharadox/turborepo-configuration-web-library": "^0.1.3",
