@@ -18,8 +18,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/luis-pires-decor-web-library':
-        specifier: ^0.32.2
-        version: 0.32.2(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: ^0.32.3
+        version: 0.32.3(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.11.0
         version: 0.11.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -36,8 +36,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react@19.3.1)
       '@sharadox/web-library':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.11.0
+        version: 0.11.0
       geist:
         specifier: ^1.9.2
         version: 1.9.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))
@@ -64,14 +64,14 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/playwright-configuration-web-library':
-        specifier: 0.1.2-ci-time.6
-        version: 0.1.2-ci-time.6(@playwright/test@1.65.0)
+        specifier: ^0.1.2
+        version: 0.1.2(@playwright/test@1.65.0)
       '@sharadox/prettier-configuration-web-library':
         specifier: ^0.1.1
         version: 0.1.1
       '@sharadox/test-web-library':
-        specifier: 0.8.0-ci-time.35
-        version: 0.8.0-ci-time.35(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
+        specifier: ^0.8.0
+        version: 0.8.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.3
         version: 0.1.3(turbo@2.11.10)
@@ -935,8 +935,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/luis-pires-decor-web-library@0.32.2':
-    resolution: {integrity: sha512-7k5tweIWpVKvZ39ju0Cl/v5+fv0A2YlEmwu+JtrVKlzjLBqDYr6xzpQVC1ytTrJm9rGQ4t6Uzb+HHc+HB78Efw==}
+  '@sharadox/luis-pires-decor-web-library@0.32.3':
+    resolution: {integrity: sha512-+q2Sm4iercztAGgGSj6kU4s2266KwtposXkmay/WyqxM/ix/23zR8toQvFfNaET8N6pG3v2MqdA58lTnyFlYrw==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -973,8 +973,8 @@ packages:
     peerDependencies:
       next: '>=16'
 
-  '@sharadox/playwright-configuration-web-library@0.1.2-ci-time.6':
-    resolution: {integrity: sha512-PM9zkQkf+68m2T9YHtfnhyoNiQBtuGzT4NDpkAH3khrWbTqPq2qW8tmxkWN3yl1U5+SZcurq21EQ462ZSQxe4Q==}
+  '@sharadox/playwright-configuration-web-library@0.1.2':
+    resolution: {integrity: sha512-WSUr9TvO9So8hXuffd4KRlI+gjAp8S76BXUnPxG4VfZ9NSNKHeAInJ4tGW2DOs0EeCKTXIdyxKrJxqrgbWLyiA==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -1028,8 +1028,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/test-web-library@0.8.0-ci-time.35':
-    resolution: {integrity: sha512-g+we7B8lcvTDUK/bbdmZC2Br5/Zg1rUrSrn7DJmZL7swyfyqDLCoSgihrPLLfm5Gzr1griYLwodVPGqvW1NFQg==}
+  '@sharadox/test-web-library@0.8.0':
+    resolution: {integrity: sha512-ByvfBQie6ac+7RdHGDX1bgVnMLeVZSfKC9K+DOph0dl0zvjX/YKhuR48vmaNxf8MWrUrVbLcSSRA2pKbiQO+eg==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -1074,6 +1074,10 @@ packages:
 
   '@sharadox/web-library@0.10.0':
     resolution: {integrity: sha512-AJ73a6ULYqAOwUVpaYOPQbvwObCUD0O9NRzP5ASKj7jiGbcs+H7iDZ6bHYdlaxCSo1NTWhne+0hyAvg8JfXMZg==}
+    engines: {node: '>=26'}
+
+  '@sharadox/web-library@0.11.0':
+    resolution: {integrity: sha512-ELDop1Y1M2se8oJb5qPe8OhLkW8tvlIj5Ik8rYQblUI4bSjoOybkAi0TV2vh4ifVBmr5v+sAIX7zT/Cep9FC1g==}
     engines: {node: '>=26'}
 
   '@sharadox/web-library@0.6.1':
@@ -3772,7 +3776,7 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/luis-pires-decor-web-library@0.32.2(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/luis-pires-decor-web-library@0.32.3(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
       '@sharadox/animation-web-library': 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3791,7 +3795,7 @@ snapshots:
       '@sharadox/showcase-web-library': 0.1.1(react@19.3.1)
       '@sharadox/style-web-library': 0.3.0(react@19.3.1)
       '@sharadox/time-web-library': 0.2.2(react@19.3.1)
-      '@sharadox/web-library': 0.10.0
+      '@sharadox/web-library': 0.11.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react-dom: 19.3.1(react@19.3.1)
@@ -3834,7 +3838,7 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@sharadox/playwright-configuration-web-library@0.1.2-ci-time.6(@playwright/test@1.65.0)':
+  '@sharadox/playwright-configuration-web-library@0.1.2(@playwright/test@1.65.0)':
     dependencies:
       '@playwright/test': 1.65.0
 
@@ -3906,9 +3910,9 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/test-web-library@0.8.0-ci-time.35(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
+  '@sharadox/test-web-library@0.8.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
     dependencies:
-      '@sharadox/web-library': 0.8.0
+      '@sharadox/web-library': 0.11.0
     optionalDependencies:
       '@playwright/test': 1.65.0
       motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3940,6 +3944,8 @@ snapshots:
       - vite
 
   '@sharadox/web-library@0.10.0': {}
+
+  '@sharadox/web-library@0.11.0': {}
 
   '@sharadox/web-library@0.6.1': {}
 
