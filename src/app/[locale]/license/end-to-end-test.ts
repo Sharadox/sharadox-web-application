@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@sharadox/test-web-library/end-to-end-test";
 
 test("the license page shows the Portuguese original and the English translation, and links back home", async ({
   page,

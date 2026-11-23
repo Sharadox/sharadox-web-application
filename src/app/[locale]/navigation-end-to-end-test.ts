@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "@sharadox/test-web-library/end-to-end-test";
 import { describeLogoBackToTop } from "@sharadox/test-web-library/logo-suite";
 
 test("Back to top stays on the page it is on, and section links glide on every page", async ({ page }) => {
