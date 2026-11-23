@@ -94,15 +94,28 @@ test("on phones, the fabric studio's cushion sticks right under the bar, and the
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/portfolio/luis-pires-decor-website-and-rebranding");
+  await page.waitForLoadState("load");
   const studio = page.locator("main [data-guest]:has(#fabrics)");
   // Scrolled through the studio, the cushion stops at the bar's edge and stays there a while.
   const tops = await studio.evaluate(async (element) => {
+    const frame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+    /** Waits until `read` gives the same value for a few frames in a row (smooth scrolling, images still arriving). */
+    const steady = async (read: () => number) => {
+      for (let same = 0, last = read(), frames = 0; same < 4 && frames < 120; frames++) {
+        await frame();
+        const now = read();
+        same = now === last ? same + 1 : 0;
+        last = now;
+      }
+    };
+    await document.fonts.ready;
+    await steady(() => element.scrollHeight);
     const sticky = [...element.querySelectorAll("*")].find((child) => getComputedStyle(child).position === "sticky");
     const start = element.getBoundingClientRect().top + scrollY;
     const seen: number[] = [];
     for (let y = 0; y < element.scrollHeight; y += 80) {
       scrollTo(0, start + y);
-      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      await steady(() => Math.round(scrollY * 10 + sticky!.getBoundingClientRect().top));
       seen.push(Math.round(sticky!.getBoundingClientRect().top));
     }
     return seen;
