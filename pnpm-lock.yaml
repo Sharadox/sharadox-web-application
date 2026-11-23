@@ -18,8 +18,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/luis-pires-decor-web-library':
-        specifier: ^0.32.4
-        version: 0.32.4(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 0.32.5-motion.130
+        version: 0.32.5-motion.130(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/metadata-web-library':
         specifier: ^0.11.0
         version: 0.11.0(@resvg/resvg-js@2.6.2)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
@@ -30,8 +30,8 @@ importers:
         specifier: ^0.7.2
         version: 0.7.2(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/sharadox-web-library':
-        specifier: ^0.54.4
-        version: 0.54.4(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 0.54.5-motion.139
+        version: 0.54.5-motion.139(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/style-web-library':
         specifier: ^0.3.0
         version: 0.3.0(react@19.3.1)
@@ -70,8 +70,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       '@sharadox/test-web-library':
-        specifier: ^0.9.0
-        version: 0.9.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
+        specifier: 0.9.0-motion.52
+        version: 0.9.0-motion.52(@playwright/test@1.65.0)(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)
       '@sharadox/turborepo-configuration-web-library':
         specifier: ^0.1.3
         version: 0.1.3(turbo@2.11.10)
@@ -79,8 +79,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(typescript@6.0.3)
       '@sharadox/vitest-configuration-web-library':
-        specifier: ^0.2.0
-        version: 0.2.0(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)
+        specifier: 0.2.1-motion.25
+        version: 0.2.1-motion.25(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)
       '@testing-library/dom':
         specifier: ^10.4.2
         version: 10.4.2
@@ -914,14 +914,14 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@sharadox/animation-web-library@0.4.0':
-    resolution: {integrity: sha512-txMw6i0d6OXoLUxbgEVT6KxjlzCp+BHZJ/wCdC76gT/wX1A1nN5v7gVz8Ak7QjqdlFwXL5R7XA4vtBwPbpwyDw==}
+  '@sharadox/animation-web-library@0.4.1-motion.44':
+    resolution: {integrity: sha512-0OJ4Wy2vUYf6OHlo3FupRmZWVG+qD4g8vYTVuLjnC7aLmzQjb4eofJnoSPdBZ5+PtlWw/VuIBpTw8AgGSA77Aw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/consent-web-library@0.4.0':
-    resolution: {integrity: sha512-qMxT8/HMFCuGHfsZzaAS8W+aBgVuD7EZCRCDiPS1ra0NfAAmfQTYJIS6kKIkn/LMbdhvsQZUuljMbwxjOlyUWQ==}
+  '@sharadox/consent-web-library@0.4.1-motion.31':
+    resolution: {integrity: sha512-eWWHzaDQFBdqeqYG2eWhm324giCVXLU9qB+UKV+ZEgl5kZ8jCU1LpC/kZlwsEOF2Ex48mwoR+rmSzyoyMR+mSw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -950,8 +950,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/gallery-web-library@0.1.1':
-    resolution: {integrity: sha512-MWFJ4xJJHhviwfkSrIC5iMok5tJFkW7yiF7vmOd4uRMf41SpNiYJs0UPv+2adNiS34HwqhTrOUSOdN+thm+sVw==}
+  '@sharadox/gallery-web-library@0.1.2-motion.18':
+    resolution: {integrity: sha512-ULu+fDgPfC3NDed5uAxKbL24NV8utTEzcZ4cfP/G+2tTQjkoQs98qIw6g180aNv2F3fveFa54PQefCt08Kjklw==}
     engines: {node: '>=26'}
     peerDependencies:
       react: '>=19'
@@ -999,8 +999,8 @@ packages:
       react:
         optional: true
 
-  '@sharadox/luis-pires-decor-web-library@0.32.4':
-    resolution: {integrity: sha512-I7CPdEmnu6HzxYmaIVdrsnc7F1B6OpqQzC4jJtyRyuX/f7df6Lp59SXtrNbdzsQatLyP5zdlNi/eHZ/+PlrcxQ==}
+  '@sharadox/luis-pires-decor-web-library@0.32.5-motion.130':
+    resolution: {integrity: sha512-NRaKNFsVNn2RrWMo3ohdoAVTmeuxkh4d/Q1eY+wwCCcLaLrjGoX+VY1XOgdZBTL71644tcq182Sufyqydjbk9w==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -1069,8 +1069,8 @@ packages:
       next: '>=16'
       react: '>=19'
 
-  '@sharadox/sharadox-web-library@0.54.4':
-    resolution: {integrity: sha512-cYcJenxvj9vyeefUb6L7nhW19VgRA0xnGDI5VTdTghn2wjWKJiT+0kryJVMbzBP/frh6bHxgR4uSR4puDzrEgA==}
+  '@sharadox/sharadox-web-library@0.54.5-motion.139':
+    resolution: {integrity: sha512-PK55iGk7iGwyvQPaeZGnvFfm21ez5BbgXDaUaOs1VUcxWhcrM2sugP8TKtadbji4iI4tWBKb6187IHeEmdGAVA==}
     engines: {node: '>=26'}
     peerDependencies:
       next: '>=16'
@@ -1092,8 +1092,8 @@ packages:
     peerDependencies:
       react: '>=19'
 
-  '@sharadox/test-web-library@0.9.0':
-    resolution: {integrity: sha512-3N5jiIuTj5K8w6di8jY1g4K1+986UZ4RlXGsz4ZDEZcog34XkfKWEGEIARd4XS23z8+zNl8Sai3afdoE0ypa0Q==}
+  '@sharadox/test-web-library@0.9.0-motion.52':
+    resolution: {integrity: sha512-FyB+C3sTfLzLW0YNM5ZpNbW4kGvI76e1wXFP6jfOg6t9p6JIT4C1t7LPhsuaClQyrMipRoMbls1XPPA7vmzqcA==}
     engines: {node: '>=26'}
     peerDependencies:
       '@playwright/test': '>=1.50'
@@ -1129,8 +1129,8 @@ packages:
     peerDependencies:
       typescript: '>=6'
 
-  '@sharadox/vitest-configuration-web-library@0.2.0':
-    resolution: {integrity: sha512-lCfSm1NMOW0LSUs7TVpsLNSbEg9BEgkRGVGyrXkry51rsc7YLO5ERe6kZLFUPMMFXb+qFabP+aUvaATlzY6cMQ==}
+  '@sharadox/vitest-configuration-web-library@0.2.1-motion.25':
+    resolution: {integrity: sha512-M5Tc0iPnjgIO4T0M1HV4nmxnPz4IIfuLHDbycDn7ycXiwpDLjKkRDFZKCP2IfepJAhZ7h3s1oSgkG3tSmwDLSg==}
     engines: {node: '>=26'}
     peerDependencies:
       '@vitest/coverage-v8': '>=5'
@@ -2043,18 +2043,18 @@ packages:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
     engines: {node: '>= 0.4'}
 
-  framer-motion@12.43.0:
-    resolution: {integrity: sha512-1eaL3RvR/kAlbG7UYcpMptEyzPoENO0c6w7ZnB3/hh2vSAz/6uGAFn6fdoqTBguNstf3MsFhJHsD/0DHiclG+g==}
+  framer-motion@14.14.0:
+    resolution: {integrity: sha512-fidRX0VzkZdA9OovFiBSzJtt9/jLcJpna78Z+KCqQQZIWoIpN3tOhEXAhhAw/FObUUh+o3Y18yx1F4BP0mVJ8Q==}
     peerDependencies:
-      '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
+      remix: ^3.1.0
     peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
       react:
         optional: true
       react-dom:
+        optional: true
+      remix:
         optional: true
 
   fsevents@2.3.3:
@@ -2548,24 +2548,24 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  motion-dom@12.43.0:
-    resolution: {integrity: sha512-azKON4d9S65PEoFUiQTMTgPheEmzf2QngdRc50AKfJp9Q9mmcBVw22c8eMq9k8kxOFHdL7+WZY7N/5F/lwiDag==}
+  motion-dom@14.14.0:
+    resolution: {integrity: sha512-IAxcKhYkuQA2W0Tlx1AvVgImfqEoF3/t3IovbPQJlYkefmGsmrXjn967lMII5VmFmLpQEab4+ZkHo/ijJ4Esig==}
 
-  motion-utils@12.39.0:
-    resolution: {integrity: sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==}
+  motion-utils@14.7.0:
+    resolution: {integrity: sha512-woO0/Nb7ys75f94fjvQi/6leiHGvZUYkeHUPEZ3vxsV+9OpEVhkxp01x8MlRwX0zt31EqgXsKDAoBoJLC148Tw==}
 
-  motion@12.43.0:
-    resolution: {integrity: sha512-BQgQbSa9Hn3/mtbib0MK53y6JSANa+YKUKlaYnWzAVDH424RYQ5LVpV3pNiWH00BA2z4ojsSdMzqT7g2FQwjuQ==}
+  motion@14.14.0:
+    resolution: {integrity: sha512-a306U6sV5VKq1abtzKiinB+UQjiY88jrsvQzWORP3WPv/DFANyoYVlPbdnmJPMEbusyPXB4GyQJVANaq/pSIYQ==}
     peerDependencies:
-      '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
+      remix: ^3.1.0
     peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
       react:
         optional: true
       react-dom:
+        optional: true
+      remix:
         optional: true
 
   ms@2.1.3:
@@ -3986,23 +3986,23 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@sharadox/animation-web-library@0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/animation-web-library@0.4.1-motion.44(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.10.0
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - react-dom
+      - remix
 
-  '@sharadox/consent-web-library@0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/consent-web-library@0.4.1-motion.31(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/web-library': 0.8.0
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
     transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - react-dom
+      - remix
 
   '@sharadox/email-web-library@0.7.0':
     dependencies:
@@ -4032,15 +4032,15 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/gallery-web-library@0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/gallery-web-library@0.1.2-motion.18(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@sharadox/icon-web-library': 0.6.1(react@19.3.1)
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
     optionalDependencies:
       react: 19.3.1
     transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - react-dom
+      - remix
 
   '@sharadox/globe-web-library@0.2.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
@@ -4083,14 +4083,14 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@sharadox/luis-pires-decor-web-library@0.32.4(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/luis-pires-decor-web-library@0.32.5-motion.130(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@react-three/fiber': 9.8.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(three@0.180.0)
-      '@sharadox/animation-web-library': 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@sharadox/consent-web-library': 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/animation-web-library': 0.4.1-motion.44(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/consent-web-library': 0.4.1-motion.31(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library': 0.7.0
       '@sharadox/form-web-library': 0.8.2(react@19.3.1)
-      '@sharadox/gallery-web-library': 0.1.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/gallery-web-library': 0.1.2-motion.18(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/icon-web-library': 0.6.1(react@19.3.1)
       '@sharadox/internationalization-web-library': 0.4.0(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react@19.3.1)
       '@sharadox/legal-web-library': 0.1.2(react@19.3.1)
@@ -4103,14 +4103,13 @@ snapshots:
       '@sharadox/style-web-library': 0.3.0(react@19.3.1)
       '@sharadox/time-web-library': 0.2.2(react@19.3.1)
       '@sharadox/web-library': 0.11.0
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react-dom: 19.3.1(react@19.3.1)
       three: 0.180.0
     optionalDependencies:
       react: 19.3.1
     transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - '@nuxt/kit'
       - '@resvg/resvg-js'
       - '@types/react'
@@ -4120,6 +4119,7 @@ snapshots:
       - expo-gl
       - immer
       - react-native
+      - remix
       - vue
 
   '@sharadox/menu-web-library@0.1.2(react@19.3.1)':
@@ -4172,10 +4172,10 @@ snapshots:
       - '@nuxt/kit'
       - vue
 
-  '@sharadox/sharadox-web-library@0.54.4(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@sharadox/sharadox-web-library@0.54.5-motion.139(@resvg/resvg-js@2.6.2)(@types/react@19.3.0)(next@16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@sharadox/animation-web-library': 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@sharadox/consent-web-library': 0.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/animation-web-library': 0.4.1-motion.44(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@sharadox/consent-web-library': 0.4.1-motion.31(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@sharadox/email-web-library': 0.7.0
       '@sharadox/form-web-library': 0.8.2(react@19.3.1)
       '@sharadox/globe-web-library': 0.2.3(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -4191,12 +4191,11 @@ snapshots:
       '@sharadox/time-web-library': 0.2.2(react@19.3.1)
       '@sharadox/web-library': 0.11.0
       marked: 17.0.6
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next: 16.4.5(@babel/core@7.29.13)(@playwright/test@1.65.0)(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
       - '@nuxt/kit'
       - '@resvg/resvg-js'
       - '@types/react'
@@ -4206,6 +4205,7 @@ snapshots:
       - expo-gl
       - immer
       - react-native
+      - remix
       - vue
 
   '@sharadox/showcase-web-library@0.1.1(react@19.3.1)':
@@ -4217,12 +4217,12 @@ snapshots:
       '@sharadox/web-library': 0.8.0
       react: 19.3.1
 
-  '@sharadox/test-web-library@0.9.0(@playwright/test@1.65.0)(motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
+  '@sharadox/test-web-library@0.9.0-motion.52(@playwright/test@1.65.0)(motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(vitest@5.1.0)':
     dependencies:
       '@sharadox/web-library': 0.11.0
     optionalDependencies:
       '@playwright/test': 1.65.0
-      motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
       vitest: 5.1.0(@types/node@24.19.2)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))
 
@@ -4239,7 +4239,7 @@ snapshots:
     dependencies:
       typescript: 6.0.3
 
-  '@sharadox/vitest-configuration-web-library@0.2.0(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)':
+  '@sharadox/vitest-configuration-web-library@0.2.1-motion.25(@vitest/coverage-v8@5.1.0)(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))(vitest@5.1.0)':
     dependencies:
       '@vitejs/plugin-react': 6.3.0(vite@8.3.8(@types/node@24.19.2)(sass@1.108.2)(yaml@2.9.1))
       '@vitest/coverage-v8': 5.1.0(vitest@5.1.0)
@@ -5286,10 +5286,10 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  framer-motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  framer-motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
-      motion-dom: 12.43.0
-      motion-utils: 12.39.0
+      motion-dom: 14.14.0
+      motion-utils: 14.7.0
       tslib: 2.9.1
     optionalDependencies:
       react: 19.3.1
@@ -5752,15 +5752,15 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  motion-dom@12.43.0:
+  motion-dom@14.14.0:
     dependencies:
-      motion-utils: 12.39.0
+      motion-utils: 14.7.0
 
-  motion-utils@12.39.0: {}
+  motion-utils@14.7.0: {}
 
-  motion@12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  motion@14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
-      framer-motion: 12.43.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      framer-motion: 14.14.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       tslib: 2.9.1
     optionalDependencies:
       react: 19.3.1
