@@ -38,7 +38,7 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await expect(page).toHaveTitle("Luis Pires Decor Website & Rebranding · Sharadox Portfolio");
   // The page's own title (the client's hero inside has its own).
   await expect(page.locator("article > section").first().getByRole("heading", { level: 1 })).toHaveText(
-    "Luis Pires Decor Website & RebrandingA craft of decades, now easy to find.",
+    "Luis Pires Decor Website & RebrandingA Craft of Decades, Now Easy to Find.",
   );
   await expect(page.getByText(/A few of the parts we're proudest of/)).toBeVisible();
   // Five parts, not the whole page: each with how it works, then the part itself, live.
@@ -78,7 +78,7 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await page.waitForTimeout(600);
   expect(await page.evaluate(() => [location.href, scrollY])).toEqual(before);
   // The way to the site comes only at the end, in a new tab.
-  await expect(page.getByRole("heading", { level: 2, name: "See it live", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "See It Live", exact: true })).toBeVisible();
   const visit = page.getByRole("link", { name: "Visit luispiresdecor.com" });
   await expect(visit).toHaveCount(1);
   await expect(visit).toHaveAttribute("href", "https://luispiresdecor.com");
