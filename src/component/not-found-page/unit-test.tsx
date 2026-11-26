@@ -16,7 +16,7 @@ afterEach(() => {
 
 test("speaks the address's language and keeps the rest of the address when switching", () => {
   render(<NotFoundPage />);
-  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Esta página está fora do mapa.");
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Esta Página Está Fora do Mapa.");
   expect(screen.getByRole("contentinfo").querySelector('a[hreflang="en"]')!.getAttribute("href")).toBe("/en/old-page");
 });
 
@@ -27,7 +27,7 @@ test.each([
 ])("falls back to the default language and home for %s", (current, shown) => {
   pathname.value = current;
   render(<NotFoundPage />);
-  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("This page is off the map.");
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("This Page Is off the Map.");
   expect(screen.getByText(shown, { selector: "span" })).toBeTruthy();
 });
 

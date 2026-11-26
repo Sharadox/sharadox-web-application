@@ -53,8 +53,8 @@ describeStyleMemory({
 
 test("page titles carry the whole slogan, full stop included", async ({ page }) => {
   for (const [path, title] of [
-    ["/en", "Sharadox · Technologies that simplify the world."],
-    ["/pt", "Sharadox · Tecnologias que simplificam o mundo."],
+    ["/en", "Sharadox · Technologies That Simplify the World."],
+    ["/pt", "Sharadox · Tecnologias que Simplificam o Mundo."],
   ] as const) {
     await page.goto(path);
     await expect(page).toHaveTitle(title);
@@ -112,8 +112,8 @@ test("addresses without a language get the remembered one, or the default", asyn
 
 test("missing pages answer 404 with the site's own page, in their language", async ({ page, request }) => {
   for (const [path, heading] of [
-    ["/pt/nada-aqui", "Esta página está fora do mapa."],
-    ["/report.pdf", "This page is off the map."],
+    ["/pt/nada-aqui", "Esta Página Está Fora do Mapa."],
+    ["/report.pdf", "This Page Is off the Map."],
   ] as const) {
     expect((await request.get(path)).status(), path).toBe(404);
     await page.goto(path);
