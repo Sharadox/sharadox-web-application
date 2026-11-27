@@ -38,7 +38,7 @@ test("the project's page shows a few of the site's parts, each explained and liv
   await expect(page).toHaveTitle("Luis Pires Decor Website & Rebranding · Sharadox Portfolio");
   // The page's own title (the client's hero inside has its own).
   await expect(page.locator("article > section").first().getByRole("heading", { level: 1 })).toHaveText(
-    "Luis Pires Decor Website & RebrandingA Craft of Decades, Now Easy to Find.",
+    "Luis Pires Decor Website & RebrandingA craft of decades, now easy to find.",
   );
   await expect(page.getByText(/A few of the parts we're proudest of/)).toBeVisible();
   // Five parts, not the whole page: each with how it works, then the part itself, live.
