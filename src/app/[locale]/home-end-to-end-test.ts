@@ -22,7 +22,7 @@ test("the services come in four groups, each card with its own 3D object", async
   for (const name of ["Web", "Desktop & Mobile", "Creative", "Marketing"])
     await expect(page.locator("#services").getByRole("heading", { level: 3, name, exact: true })).toBeVisible();
   await expect(page.locator("#services article")).toHaveCount(18);
-  await expect(page.locator("#services").getByText("Didn't Find the Service You Were Looking for?")).toHaveCount(0);
+  await expect(page.locator("#services").getByText("Didn't find the service you were looking for?")).toHaveCount(0);
 });
 
 test("the contact form says what's missing before sending, and takes a phone instead of an email", async ({ page }) => {
@@ -86,7 +86,7 @@ test("on a wide screen, the four service shortcuts show at the bottom of the fir
 
 test("the About section replaces One System, and the services and groups have short addresses", async ({ page }) => {
   await page.goto("/en");
-  await expect(page.locator("#about")).toContainText("Your Business, Run from Anywhere.");
+  await expect(page.locator("#about")).toContainText("Your business, run from anywhere.");
   for (const id of [
     "about",
     "services",
@@ -138,7 +138,7 @@ test("the sections come in order, the invitation for unlisted ideas after the ca
     "about",
     "services",
     "capabilities",
-    "Didn't Find the Service You Were Looking for?",
+    "Didn't find the service you were looking for?",
     "portfolio",
     "process",
     "faq",
